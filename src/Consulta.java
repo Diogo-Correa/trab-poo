@@ -12,11 +12,11 @@ public class Consulta {
         this.veterinario = veterinario;
         this.dono = dono;
         this.animal = animal;
-        this.dataDaConsulta = new Date();
+        this.dataDaConsultaAbertura = new Date();
         this.resultadoDaConsulta = new Alta();
     }
 
-    public String terminarConsulta() {
-        return resultadoDaConsulta.fechar();
+    public void terminarConsulta() throws AltaJaFechada {
+        resultadoDaConsulta.fechar();
     }
 }
