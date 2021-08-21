@@ -1,24 +1,25 @@
 package models.clinica.consultas;
 import models.util.Procedimento;
 import models.util.Medicamento;
+import models.util.errors.AltaJaFechada;
 import java.util.ArrayList;
 
 public class Alta {
-    private Integer emAberto;
-    private ArrayList<Medicamento> medicamento = new ArrayList();
-    private ArrayList<Procedimento> procedimento = new ArrayList();
+    private Boolean emAberto;
+    private ArrayList<Medicamento> medicamento = new ArrayList<Medicamento>();
+    private ArrayList<Procedimento> procedimento = new ArrayList<Procedimento>();
 
     public Alta() {
-        this.emAberto = 1;
+        this.emAberto = true;
     }
 
     void fechar() {
-        this.emAberto = 0;
+        this.emAberto = false;
     };
 
-    private Boolean tentarMudarAtributo() {
+    private void tentarMudarAtributo() throws AltaJaFechada{
         if (!this.emAberto) {
-            throw AltaJaFechada("Essa consulta já foi dada alta e não pode ser modificada");
+            throw new AltaJaFechada("Essa consulta ja foi dada alta e nao pode ser modificada");
         }
     }
 
