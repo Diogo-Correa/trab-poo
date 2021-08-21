@@ -24,7 +24,7 @@ public class Consulta {
 
     public void terminarConsulta() throws AltaJaFechada {
         try{
-            resultadoDaConsulta.fechar();
+            this.resultadoDaConsulta.fechar();
             this.dataDaConsultaFechamento = new Date();
         }catch(AltaJaFechada e){
             // Tratar caso a alta já tenha sido fechada

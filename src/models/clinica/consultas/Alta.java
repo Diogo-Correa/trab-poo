@@ -13,26 +13,26 @@ public class Alta {
         this.emAberto = true;
     }
 
-    public void fechar() throws AltaJaFechada{
+    public void fechar() throws AltaJaFechada {
         if (this.emAberto){
             this.emAberto = false;
             return;
-        }throw new AltaJaFechada("A alta ja foi fechada anteriormente.");
+        } throw new AltaJaFechada("A alta ja foi fechada anteriormente.");
     };
 
-    private void tentarMudarAtributo() throws AltaJaFechada{
+    private void tentarMudarAtributo() throws AltaJaFechada {
         if (!this.emAberto) {
             throw new AltaJaFechada("Essa consulta ja foi dada alta e nao pode ser modificada.");
         }
     }
 
     // Modificador do Medicamento
-    public void addMedicamento (Medicamento medicamento) throws AltaJaFechada{
+    public void addMedicamento (Medicamento medicamento) throws AltaJaFechada {
         tentarMudarAtributo();
 
         this.medicamento.add(medicamento);
     };
-    public void removeMedicamento (Medicamento medicamento) throws AltaJaFechada{
+    public void removeMedicamento (Medicamento medicamento) throws AltaJaFechada {
         tentarMudarAtributo();
 
         this.medicamento.remove(medicamento);
@@ -40,12 +40,13 @@ public class Alta {
     ////////////////////////////////
 
     // Modificador do Precedimento
-    void addProcedimento (Procedimento procedimento) throws AltaJaFechada{
+    public void addProcedimento (Procedimento procedimento) throws AltaJaFechada {
         tentarMudarAtributo();
 
         this.procedimento.add(procedimento);
     };
-    void removeProcedimento (Procedimento procedimento) throws AltaJaFechada{
+
+    public void removeProcedimento (Procedimento procedimento) throws AltaJaFechada {
         tentarMudarAtributo();
 
         this.procedimento.remove(procedimento);

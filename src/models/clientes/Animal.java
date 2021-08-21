@@ -62,7 +62,7 @@ public class Animal {
 
     public void showMedicamentos() {
         for(Medicamento medicamento : this.medicamentos) {
-            System.out.println(medicamento.getNome());
+            System.out.println(medicamento.getNome() + " " + medicamento.getDosagem());
         }
     }
     
