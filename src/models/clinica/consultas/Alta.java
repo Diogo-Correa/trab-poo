@@ -1,3 +1,6 @@
+package models.clinica.consultas;
+import models.util.Procedimento;
+import models.util.Medicamento;
 import java.util.ArrayList;
 
 public class Alta {
