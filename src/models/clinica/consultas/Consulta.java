@@ -1,4 +1,9 @@
-import java.util.date;
+package models.clinica.consultas;
+import java.util.Date;
+
+import models.clientes.Animal;
+import models.clientes.Dono;
+import models.clinica.Veterinario;
 
 public class Consulta {
     private Veterinario veterinario;
@@ -8,15 +13,15 @@ public class Consulta {
     private Date dataDaConsultaFechamento;
     private Alta resultadoDaConsulta;
 
-    public Consulta(Veterinario veterinario, Dono dono, Animal animal){
+    public Consulta(Veterinario veterinario, Dono dono, Animal animal) {
         this.veterinario = veterinario;
         this.dono = dono;
         this.animal = animal;
-        this.dataDaConsulta = new Date();
+        this.dataDaConsultaAbertura = new Date();
         this.resultadoDaConsulta = new Alta();
     }
 
-    public String terminarConsulta() {
-        return resultadoDaConsulta.fechar();
+    public Boolean terminarConsulta() {
+        return this.resultadoDaConsulta.fechar();
     }
 }
