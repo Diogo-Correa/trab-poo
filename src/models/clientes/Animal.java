@@ -1,6 +1,11 @@
 package models.clientes;
 
+import java.util.ArrayList;
+
+import models.util.Medicamento;
+
 public class Animal {
+    private ArrayList<Medicamento> medicamentos = new ArrayList<Medicamento>();
     private String nome, especie, raca, porte, pelagem;
     private boolean agressivo;
     private Dono dono;
@@ -46,6 +51,19 @@ public class Animal {
     public Dono getDono() {
         return this.dono;
     }
-    
 
+    public ArrayList<Medicamento> getMedicamentos() {
+        return this.medicamentos;
+    }
+
+    public void addMedicamento(Medicamento medicamento) {
+        medicamentos.add(medicamento);
+    }
+
+    public void showMedicamentos() {
+        for(Medicamento medicamento : this.medicamentos) {
+            System.out.println(medicamento.getNome());
+        }
+    }
+    
 }

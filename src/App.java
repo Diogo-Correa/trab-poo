@@ -1,11 +1,8 @@
-import models.clinica.consultas.Alta;
 import models.clinica.consultas.Consulta;
 
 import models.clientes.*;
 import models.clinica.*;
 
-import models.util.Medicamento;
-import models.util.errors.AltaJaFechada;
 
 public class App {
     public static void main(String[] args) throws Exception {
