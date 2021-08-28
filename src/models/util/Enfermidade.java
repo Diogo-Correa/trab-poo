@@ -4,9 +4,9 @@ package models.util;
 
 public class Enfermidade {
     /* private ArrayList<Procedimento> procedimento = new ArrayList<Procedimento>();
-        Criar uma lista de procedimentos em Enfermidade e Veterinario
-        Para conseguir identificar qual o veterinario mais eficaz para cada consulta.
         Ideia de implementacao.
+        Criar uma lista de procedimentos em Enfermidade e Veterinario
+        Identificar qual o veterinario mais eficaz para cada consulta.
     */
     private String nome, gravidade;
 

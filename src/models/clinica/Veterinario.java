@@ -1,20 +1,47 @@
 package models.clinica;
 
-// import java.util.ArrayList;
+import models.util.Enfermidade;
+import models.util.database.Veterinarios;
+import models.util.status.VeterinarioStatus;
 
 public class Veterinario {
-    /* private ArrayList<Procedimento> procedimento = new ArrayList<Procedimento>();
-        Criar uma lista de procedimentos em Enfermidade e Veterinario
-        Para conseguir identificar qual o veterinario mais eficaz para cada consulta.
-        Ideia de implementacao.
-    */
+    private VeterinarioStatus status;
+    private Enfermidade especialidade;
     private String nome;
     private int idade;
     private String crmv;
+
+    public Veterinario(String nome, int idade, String crmv, Enfermidade especialidade){
+        this.nome = nome;
+        this.idade = idade;
+        this.crmv = crmv;
+        this.especialidade = especialidade;
+        this.status = VeterinarioStatus.ATIVO;
+        Veterinarios.addVeterinario(this);
+    }
 
     public Veterinario(String nome, int idade, String crmv){
         this.nome = nome;
         this.idade = idade;
         this.crmv = crmv;
+        this.especialidade = null;
+        this.status = VeterinarioStatus.ATIVO;
+        Veterinarios.addVeterinario(this);
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public Enfermidade getEspecialidade() {
+        return this.especialidade;
+    }
+
+    public VeterinarioStatus getVeterinarioStatus() {
+        return this.status;
+    }
+
+    public void setStatus(VeterinarioStatus status) {
+        this.status = status;
     }
 }

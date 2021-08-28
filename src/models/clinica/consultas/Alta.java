@@ -18,7 +18,7 @@ public class Alta {
             this.emAberto = false;
             return;
         } throw new AltaJaFechada("A alta ja foi fechada anteriormente.");
-    };
+    }
 
     private void tentarMudarAtributo() throws AltaJaFechada {
         if (!this.emAberto) {
@@ -31,12 +31,13 @@ public class Alta {
         tentarMudarAtributo();
 
         this.medicamento.add(medicamento);
-    };
+    }
+
     public void removeMedicamento (Medicamento medicamento) throws AltaJaFechada {
         tentarMudarAtributo();
 
         this.medicamento.remove(medicamento);
-    };
+    }
     ////////////////////////////////
 
     // Modificador do Precedimento
@@ -44,12 +45,12 @@ public class Alta {
         tentarMudarAtributo();
 
         this.procedimento.add(procedimento);
-    };
+    }
 
     public void removeProcedimento (Procedimento procedimento) throws AltaJaFechada {
         tentarMudarAtributo();
 
         this.procedimento.remove(procedimento);
-    };
+    }
     ///////////////////////////////
 }
