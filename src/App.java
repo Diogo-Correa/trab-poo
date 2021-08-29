@@ -1,24 +1,23 @@
 import models.clinica.consultas.Atendimento;
 import util.Enfermidade;
-import util.database.Enfermidades;
-import util.generator.EnfermidadesGenerator;
+import util.database.*;
+import util.generator.*;
 import models.clientes.*;
 import models.clinica.*;
 
 
 public class App {
+
+    App() {
+        this.initialize();
+    }
+
     public static void main(String[] args) throws Exception {
 
-        EnfermidadesGenerator.generate();
-        // System.out.println(Enfermidades.getEnfermidades());
+        new App();
 
-        Dono dono = new Dono("Dono da Silva", "12345", 30);
-        Enfermidade enfermidade = new Enfermidade("Cinomose", "Grave");
-
-        Veterinario vet1 = new Veterinario("Eduardo", 32, "123456789", enfermidade);
-        Veterinario vet2 = new Veterinario("Cristovão", 52, "987654321");
-
-        Animal animal = new Animal("Thor", "Cachorro", "Labrador", "Grande", "Branca", false, dono);
+        Animal animal = Animais.find("Thor");
+        Enfermidade enfermidade = Enfermidades.find("Cinomose");
 
         Atendimento atendimento = new Atendimento(animal);
 
@@ -26,11 +25,22 @@ public class App {
 
         atendimento.buscaVeterinario();
 
-        System.out.println(atendimento.getVeterinario().getNome());
+        System.out.println("Veterinario responsavel: " + atendimento.getVeterinario().getNome());
+        System.out.println("Animal em atendimento: " + atendimento.getAnimal().getNome());
+        System.out.println("Nome da enfermidade: " + atendimento.getEnfermidade().getNome());
 
         atendimento.abreConsulta();
         
-        System.out.println(atendimento.getVeterinario().getVeterinarioStatus());
+        System.out.println("Status do veterinario: " + atendimento.getVeterinario().getVeterinarioStatus());
     
+    }
+
+    private void initialize() {
+        EnfermidadesGenerator.generate();
+        // System.out.println(Enfermidades.getEnfermidades());
+        VeterinariosGenerator.generate();
+        // System.out.println(Veterinarios.getVeterinarios());
+        AnimaisGenerator.generate();
+        // System.out.println(Animais.getAnimais());
     }
 }

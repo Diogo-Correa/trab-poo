@@ -15,6 +15,10 @@ public class Atendimento {
         this.animal = animal;
     }
 
+    public Animal getAnimal() {
+        return this.animal;
+    }
+
     public Enfermidade getEnfermidade() {
         return this.enfermidade;
     }
@@ -28,7 +32,7 @@ public class Atendimento {
             if(vet.getEspecialidade() == this.enfermidade && vet.getVeterinarioStatus() == VeterinarioStatus.ATENDENDO) 
                 System.out.println("O veterinário " + vet.getNome() +" já está em atendimento.");
             
-            if((vet.getEspecialidade() == null || vet.getEspecialidade() != this.enfermidade) && vet.getVeterinarioStatus() == VeterinarioStatus.ATIVO && this.veterinario != null) 
+            if((vet.getEspecialidade() == null || vet.getEspecialidade() != this.enfermidade) && vet.getVeterinarioStatus() == VeterinarioStatus.ATIVO && this.veterinario == null) 
                 this.veterinario = vet;
 
             if(vet.getEspecialidade() == this.enfermidade && vet.getVeterinarioStatus() == VeterinarioStatus.ATIVO) {

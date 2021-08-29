@@ -1,25 +1,28 @@
 package models.clientes;
 
-public class Dono {
-    private String name, tel;
-    private int age;
+import util.database.Donos;
 
-    public Dono(String name, String tel, int age) {
-        this.name = name;
+public class Dono {
+    private String nome, tel;
+    private int idade;
+
+    public Dono(String nome, String tel, int idade) {
+        this.nome = nome;
         this.tel = tel;
-        this.age = age;
+        this.idade = idade;
+        Donos.addDono(this);
     }
 
-    public String getName() {
-        return this.name;
+    public String getNome() {
+        return this.nome;
     }
 
     public String getTel() {
         return this.tel;
     }
 
-    public int getAge() {
-        return this.age;
+    public int getIdade() {
+        return this.idade;
     }
 
 }

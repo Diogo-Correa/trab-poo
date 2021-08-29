@@ -3,6 +3,7 @@ package models.clientes;
 import java.util.ArrayList;
 
 import util.Medicamento;
+import util.database.Animais;
 
 public class Animal {
     private ArrayList<Medicamento> medicamentos = new ArrayList<Medicamento>();
@@ -18,6 +19,7 @@ public class Animal {
         this.pelagem = pelagem;
         this.agressivo = agressivo;
         this.dono = dono;
+        Animais.addAnimal(this);
     }
 
     public String getNome() {

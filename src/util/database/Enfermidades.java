@@ -18,5 +18,13 @@ public class Enfermidades {
     public static void removeEnfermidade(Enfermidade enfermidade) {
         enfermidades.remove(enfermidade);
     }
+
+    public static Enfermidade find(String dado) {
+        for(Enfermidade enf : enfermidades) {
+            if(enf.getNome().equals(dado))
+                return enf;
+        }
+        return null;
+    }
         
 }

@@ -33,6 +33,10 @@ public class Veterinario {
         return this.nome;
     }
 
+    public String getCRMV() {
+        return this.crmv;
+    }
+
     public Enfermidade getEspecialidade() {
         return this.especialidade;
     }
