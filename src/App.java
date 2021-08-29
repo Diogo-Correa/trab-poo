@@ -18,19 +18,31 @@ public class App {
 
         Animal animal = Animais.find("Thor");
         Enfermidade enfermidade = Enfermidades.find("Cinomose");
-
         Atendimento atendimento = new Atendimento(animal);
 
         atendimento.setEnfermidade(enfermidade);
 
+        // Busca algum veterinario especializado ou nao. (VeterinariosGenerator cria veterinario sem especialidades).
         atendimento.buscaVeterinario();
+        System.out.println("Veterinario selecionado: " + atendimento.getVeterinario().getNome());
 
+        
+        // Fazendo busca por algum veterinario e setando alguma especialidade para ele.
+        Veterinario vet = Veterinarios.find("1234");
+        vet.setEspecialidade(enfermidade);
+        
+        // Nova busca por um veterinario especializado na enfermidade informada.
+        atendimento.buscaVeterinario();
+        System.out.println("Veterinario selecionado: " + atendimento.getVeterinario().getNome());
+        System.out.println();
+
+        // Abre consulta
+        atendimento.abreConsulta();
+
+        // Infos da consulta, apos encaminhamento pelo primeiro atendimento.
         System.out.println("Veterinario responsavel: " + atendimento.getVeterinario().getNome());
         System.out.println("Animal em atendimento: " + atendimento.getAnimal().getNome());
         System.out.println("Nome da enfermidade: " + atendimento.getEnfermidade().getNome());
-
-        atendimento.abreConsulta();
-        
         System.out.println("Status do veterinario: " + atendimento.getVeterinario().getVeterinarioStatus());
     
     }
