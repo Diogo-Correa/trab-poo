@@ -1,8 +1,9 @@
 package models.clinica.consultas;
-import models.util.Procedimento;
-import models.util.Medicamento;
-import models.util.errors.AltaJaFechada;
 import java.util.ArrayList;
+
+import util.Medicamento;
+import util.Procedimento;
+import util.errors.AltaJaFechada;
 
 public class Alta {
     private Boolean emAberto;

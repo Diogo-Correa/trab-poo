@@ -2,9 +2,9 @@ package models.clinica.consultas;
 
 import models.clientes.Animal;
 import models.clinica.Veterinario;
-import models.util.Enfermidade;
-import models.util.database.Veterinarios;
-import models.util.status.VeterinarioStatus;
+import util.Enfermidade;
+import util.database.Veterinarios;
+import util.status.VeterinarioStatus;
 
 public class Atendimento {
     private Animal animal;
@@ -25,9 +25,11 @@ public class Atendimento {
 
     public void buscaVeterinario() {
         for(Veterinario vet : Veterinarios.getVeterinarios()) {
-            if(vet.getEspecialidade() == this.enfermidade && vet.getVeterinarioStatus() == VeterinarioStatus.ATENDENDO) System.out.println("O veterinário " + vet.getNome() +" já está em atendimento.");
+            if(vet.getEspecialidade() == this.enfermidade && vet.getVeterinarioStatus() == VeterinarioStatus.ATENDENDO) 
+                System.out.println("O veterinário " + vet.getNome() +" já está em atendimento.");
             
-            if((vet.getEspecialidade() == null || vet.getEspecialidade() != this.enfermidade) && vet.getVeterinarioStatus() == VeterinarioStatus.ATIVO) this.veterinario = vet;
+            if((vet.getEspecialidade() == null || vet.getEspecialidade() != this.enfermidade) && vet.getVeterinarioStatus() == VeterinarioStatus.ATIVO && this.veterinario != null) 
+                this.veterinario = vet;
 
             if(vet.getEspecialidade() == this.enfermidade && vet.getVeterinarioStatus() == VeterinarioStatus.ATIVO) {
                 this.veterinario = vet;
@@ -35,7 +37,7 @@ public class Atendimento {
             }
         }
 
-        if(this.veterinario == null) System.out.println("Nenhum veterinário especializado. Abrir consulta manualmente.");
+        if(this.veterinario == null) System.out.println("Nenhum veterinário disponivel.");
     }
 
     public Veterinario getVeterinario() {
@@ -47,7 +49,7 @@ public class Atendimento {
         if(this.enfermidade != null && this.veterinario != null) { 
             
             if(this.veterinario.getVeterinarioStatus() == VeterinarioStatus.ATENDENDO) {
-                System.out.println("O veterinário informado já está em atendimento.");
+                System.out.println("O veterinário informado já está em atendimento. Realize uma nova busca.");
                 return;
             }
 

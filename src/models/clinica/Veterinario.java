@@ -1,8 +1,8 @@
 package models.clinica;
 
-import models.util.Enfermidade;
-import models.util.database.Veterinarios;
-import models.util.status.VeterinarioStatus;
+import util.Enfermidade;
+import util.database.Veterinarios;
+import util.status.VeterinarioStatus;
 
 public class Veterinario {
     private VeterinarioStatus status;

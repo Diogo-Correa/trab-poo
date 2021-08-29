@@ -1,4 +1,4 @@
-package models.util.errors;
+package util.errors;
 
 public class AltaJaFechada extends Exception { 
     public AltaJaFechada(String errorMessage) {

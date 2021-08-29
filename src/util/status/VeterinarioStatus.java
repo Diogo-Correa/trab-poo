@@ -1,4 +1,4 @@
-package models.util.status;
+package util.status;
 
 public enum VeterinarioStatus {
     ATIVO, ATENDENDO;

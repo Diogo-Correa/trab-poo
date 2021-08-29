@@ -2,11 +2,10 @@ package models.clinica.consultas;
 import java.util.Date;
 
 import models.clientes.Animal;
-import models.clientes.Dono;
 import models.clinica.Veterinario;
-import models.util.Enfermidade;
-import models.util.errors.AltaJaFechada;
-import models.util.status.VeterinarioStatus;
+import util.Enfermidade;
+import util.errors.AltaJaFechada;
+import util.status.VeterinarioStatus;
 
 public class Consulta {
     private Veterinario veterinario;

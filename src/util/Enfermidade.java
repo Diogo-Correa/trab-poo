@@ -1,4 +1,6 @@
-package models.util;
+package util;
+
+import util.database.Enfermidades;
 
 // import java.util.ArrayList;
 
@@ -9,6 +11,7 @@ public class Enfermidade {
     public Enfermidade(String nome, String gravidade) {
         this.nome = nome;
         this.gravidade = gravidade;
+        Enfermidades.addEnfermidade(this);
     }
 
     public String getNome() {

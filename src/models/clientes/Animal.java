@@ -2,7 +2,7 @@ package models.clientes;
 
 import java.util.ArrayList;
 
-import models.util.Medicamento;
+import util.Medicamento;
 
 public class Animal {
     private ArrayList<Medicamento> medicamentos = new ArrayList<Medicamento>();
