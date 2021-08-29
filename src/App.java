@@ -1,4 +1,5 @@
 import models.clinica.consultas.Atendimento;
+import models.clinica.consultas.Consulta;
 import util.Enfermidade;
 import util.database.*;
 import util.generator.*;
@@ -37,13 +38,17 @@ public class App {
         System.out.println();
 
         // Abre consulta
-        atendimento.abreConsulta();
+        Consulta consulta = atendimento.abreConsulta();
 
         // Infos da consulta, apos encaminhamento pelo primeiro atendimento.
-        System.out.println("Veterinario responsavel: " + atendimento.getVeterinario().getNome());
-        System.out.println("Animal em atendimento: " + atendimento.getAnimal().getNome());
-        System.out.println("Nome da enfermidade: " + atendimento.getEnfermidade().getNome());
-        System.out.println("Status do veterinario: " + atendimento.getVeterinario().getVeterinarioStatus());
+        System.out.println("Data de inicio da consulta: " + consulta.getDataAbertura());
+        System.out.println("Veterinario responsavel: " + consulta.getVeterinario().getNome());
+        System.out.println("Status do veterinario: " + consulta.getVeterinario().getVeterinarioStatus());
+        System.out.println("Animal em atendimento: " + consulta.getAnimal().getNome());
+        System.out.println("Nome da enfermidade: " + consulta.getEnfermidade().getNome());
+
+        consulta.terminarConsulta();
+        System.out.println("Data final da consulta: " + consulta.getDataFechamento());
     
     }
 

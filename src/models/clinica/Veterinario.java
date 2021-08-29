@@ -37,6 +37,10 @@ public class Veterinario {
         return this.crmv;
     }
 
+    public int getIdade() {
+        return this.idade;
+    }
+
     public void setEspecialidade(Enfermidade especialidade) {
         this.especialidade = especialidade;
     }

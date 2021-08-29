@@ -23,6 +23,26 @@ public class Consulta {
         this.resultadoDaConsulta = new Alta();
     }
 
+    public Veterinario getVeterinario() {
+        return this.veterinario;
+    }
+
+    public Animal getAnimal() {
+        return this.animal;
+    }
+
+    public Enfermidade getEnfermidade() {
+        return this.enfermidade;
+    }
+
+    public Date getDataAbertura() {
+        return this.dataDaConsultaAbertura;
+    }
+
+    public Date getDataFechamento() {
+        return this.dataDaConsultaFechamento;
+    }
+
     public void terminarConsulta() throws AltaJaFechada {
         try{
             this.resultadoDaConsulta.fechar();

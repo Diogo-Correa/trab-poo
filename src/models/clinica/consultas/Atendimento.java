@@ -48,18 +48,19 @@ public class Atendimento {
         return this.veterinario;
     }
 
-    public void abreConsulta() {
+    public Consulta abreConsulta() {
 
         if(this.enfermidade != null && this.veterinario != null) { 
             
             if(this.veterinario.getVeterinarioStatus() == VeterinarioStatus.ATENDENDO) {
                 System.out.println("O veterinário informado já está em atendimento. Realize uma nova busca.");
-                return;
+                return null;
             }
 
-            new Consulta(this.veterinario, this.animal, this.enfermidade); 
+            return new Consulta(this.veterinario, this.animal, this.enfermidade); 
         }
         else System.out.println("Por favor informe um veterinário e a enfermidade do animal.");
+        return null;
     }
 
 }
