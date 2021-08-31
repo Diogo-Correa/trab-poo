@@ -3,6 +3,7 @@ package util.database;
 import java.util.ArrayList;
 
 import models.clientes.Animal;
+import util.log.Activity;
 
 public class Animais {
     private static ArrayList<Animal> animais = new ArrayList<Animal>();
@@ -13,10 +14,12 @@ public class Animais {
 
     public static void addAnimal(Animal animal) {
         animais.add(animal);
+        new Activity("Animal: " + animal.getNome() + " foi adicionado ao sistema.");
     }
 
     public static void removeAnimal(Animal animal) {
         animais.remove(animal);
+        new Activity("Animal: " + animal.getNome() + " foi removido do sistema.");
     }
 
     public static Animal find(String dado) {

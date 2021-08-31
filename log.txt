@@ -1,0 +1,34 @@
+App: programa inicializado. segunda-feira, 30 de agosto de 2021
+Enfermidade: Cinomose foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
+Enfermidade: Parvovirose foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
+Enfermidade: Parvovirose foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
+Enfermidade: Leishmaniose foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
+Enfermidade: Otite foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
+Enfermidade: Raiva foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
+Enfermidade: Hepatite Infecciosa foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
+Enfermidade: Erlichiose foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
+Enfermidade: Tumor foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
+Enfermidade: Dirofilariose foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
+Enfermidade: Sarna foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
+Veterinario: Eduardo foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Veterinario: Celso foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Veterinario: Maria foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Veterinario: Mauro foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Veterinario: Laura foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Veterinario: Andressa foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Veterinario: Jorge foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Veterinario: Gabriel foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Veterinario: Lucas foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Veterinario: Helena foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Veterinario: Eduarda foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Veterinario: Otavio foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Veterinario: Guilherme foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Veterinario: Julia foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Dono: Marcelo foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Animal: Thor foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Dono: Bruna foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Animal: Lola foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Dono: Jesse foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Animal: Meow foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Dono: George foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
+Animal: Stuart foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021

@@ -3,6 +3,7 @@ import models.clinica.consultas.Consulta;
 import util.Enfermidade;
 import util.database.*;
 import util.generator.*;
+import util.log.Activity;
 import models.clientes.*;
 import models.clinica.*;
 
@@ -10,6 +11,7 @@ import models.clinica.*;
 public class App {
 
     App() {
+        new Activity("App: programa inicializado.");
         this.initialize();
     }
 

@@ -3,6 +3,7 @@ package util.database;
 import java.util.ArrayList;
 
 import util.Enfermidade;
+import util.log.Activity;
 
 public class Enfermidades {
     private static ArrayList<Enfermidade> enfermidades = new ArrayList<Enfermidade>();
@@ -13,10 +14,12 @@ public class Enfermidades {
 
     public static void addEnfermidade(Enfermidade enfermidade) {
         enfermidades.add(enfermidade);
+        new Activity("Enfermidade: " + enfermidade.getNome() + " foi adicionada ao sistema.");
     }
 
     public static void removeEnfermidade(Enfermidade enfermidade) {
         enfermidades.remove(enfermidade);
+        new Activity("Enfermidade: " + enfermidade.getNome() + " foi removida do sistema.");
     }
 
     public static Enfermidade find(String dado) {
