@@ -1,5 +1,7 @@
 package app;
 
+import java.util.Scanner;
+
 import util.auth.Auth;
 import util.generator.*;
 import util.log.Activity;
@@ -8,7 +10,6 @@ import util.log.Activity;
 public class App {
 
     private String name;
-
 
     App(String name) {
         this.name = name;
@@ -22,7 +23,15 @@ public class App {
     }
 
     public static void login() {
-        new Auth("Andressa", "123");
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Digite o usuario:");
+        String user = input.next();
+
+        System.out.println("Digite a senha:");
+        String password = input.next();
+
+        new Auth(user, password);
     }
 
     private void initialize() {

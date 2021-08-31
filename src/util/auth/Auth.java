@@ -16,7 +16,7 @@ public class Auth {
       this.name = name;
       this.password = password;
       new Activity("Usuário: " + this.name + " efetuou uma tentativa de login.");
-      this.checkAuth();
+      this.authenticate();
     }
   
     public static User getUser() {
@@ -27,9 +27,9 @@ public class Auth {
       return authenticated;
     }
   
-    private void checkAuth() {
+    private void authenticate() {
       for(User user : Users.getUsers()) {
-        if(this.name == user.getNome() && this.password == user.getPassword() && !authenticated) {
+        if(this.name.equals(user.getNome()) && this.password.equals(user.getPassword()) && !authenticated) {
           new Activity("Usuário: " + this.name + " login efetuado com sucesso!");
           authenticated = true;
           authUser = user;
@@ -53,5 +53,14 @@ public class Auth {
           App.login();
         }
         else System.exit(0);
+    }
+
+    public static void logout() {
+      String name = authUser.getNome();
+      authenticated = false;
+      authUser = null;
+      tentativesCount = 3;
+      new Activity("Usuário: " + name + " deslogou-se do sistema.");
+      App.login();
     }
   }

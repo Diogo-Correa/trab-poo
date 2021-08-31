@@ -28,6 +28,7 @@ public class EstagiarioView {
         System.out.println("Ola " + Auth.getUser().getNome());
         System.out.println("O que deseja fazer?");
 
+        System.out.println("[0] Logout");
         System.out.println("[1] Iniciar um atendimento");
         
         if(Auth.getUser().getRole().canCreate())
@@ -35,8 +36,11 @@ public class EstagiarioView {
 
         int op = key.nextInt();
 
-        while(op > 0) {
+        while(op > -1) {
             switch (op) {
+                case 0:
+                    Auth.logout();
+                    break;
                 case 1:
                     // Busca por um animal
                     System.out.println("Animais:");
@@ -89,7 +93,8 @@ public class EstagiarioView {
             System.out.println("O que deseja fazer?");
 
             System.out.println("[1] Iniciar um atendimento");
-            System.out.println("[2] Cadastrar um novo animal");
+            if(Auth.getUser().getRole().canCreate())
+                System.out.println("[2] Cadastrar um novo animal");
 
             op = key.nextInt();
         }

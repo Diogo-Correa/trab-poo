@@ -8,7 +8,7 @@ import java.time.format.*;
 
 public class Activity {
     private List<String> activities = new ArrayList<String>();
-    private File arquivo = new File("log.txt");
+    private File arquivo = new File("atividades.log");
   
     public Activity(String atividade) {
                 
