@@ -2,43 +2,32 @@ package models.clinica;
 
 import util.Enfermidade;
 import util.database.Veterinarios;
+import util.middlewares.auth.Role;
 import util.status.VeterinarioStatus;
 
-public class Veterinario {
+public class Veterinario extends User {
     private VeterinarioStatus status;
     private Enfermidade especialidade;
-    private String nome;
-    private int idade;
     private String crmv;
 
-    public Veterinario(String nome, int idade, String crmv, Enfermidade especialidade){
-        this.nome = nome;
-        this.idade = idade;
+    public Veterinario(String nome, String password, Role role, int idade, String crmv, Enfermidade especialidade){
+        super(nome, password, idade, role);
         this.crmv = crmv;
         this.especialidade = especialidade;
         this.status = VeterinarioStatus.ATIVO;
         Veterinarios.addVeterinario(this);
     }
 
-    public Veterinario(String nome, int idade, String crmv){
-        this.nome = nome;
-        this.idade = idade;
+    public Veterinario(String nome, String password, Role role, int idade, String crmv){
+        super(nome, password, idade, role);
         this.crmv = crmv;
         this.especialidade = null;
         this.status = VeterinarioStatus.ATIVO;
         Veterinarios.addVeterinario(this);
     }
 
-    public String getNome() {
-        return this.nome;
-    }
-
     public String getCRMV() {
         return this.crmv;
-    }
-
-    public int getIdade() {
-        return this.idade;
     }
 
     public void setEspecialidade(Enfermidade especialidade) {

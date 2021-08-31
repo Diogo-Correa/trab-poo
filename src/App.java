@@ -31,7 +31,7 @@ public class App {
 
         
         // Fazendo busca por algum veterinario e setando alguma especialidade para ele.
-        Veterinario vet = Veterinarios.find("1234");
+        Veterinario vet = Veterinarios.find("123");
         vet.setEspecialidade(enfermidade);
         
         // Nova busca por um veterinario especializado na enfermidade informada.
@@ -57,7 +57,7 @@ public class App {
     private void initialize() {
         EnfermidadesGenerator.generate();
         // System.out.println(Enfermidades.getEnfermidades());
-        VeterinariosGenerator.generate();
+        UsersGenerator.generate();
         // System.out.println(Veterinarios.getVeterinarios());
         AnimaisGenerator.generate();
         // System.out.println(Animais.getAnimais());
