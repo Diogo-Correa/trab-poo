@@ -11,12 +11,14 @@ public class UsersGenerator implements Generator {
         Role admin = new Role("admin");
         Role mod = new Role("mod");
 
+        admin.addPermission(Permission.CREATE);
         admin.addPermission(Permission.EDIT);
         admin.addPermission(Permission.SHOW);
         admin.addPermission(Permission.DELETE); // success
         admin.addPermission(Permission.DELETE); // fail
     
         mod.addPermission(Permission.EDIT);
+        // mod.addPermission(Permission.CREATE);
         mod.addPermission(Permission.SHOW);
         
         new Veterinario("Eduardo", "123", admin, 32, "123456789");

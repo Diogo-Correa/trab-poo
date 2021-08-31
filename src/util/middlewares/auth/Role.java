@@ -25,6 +25,13 @@ public class Role {
       }
     }
   
+    public boolean canCreate() {
+      for(Permission permission : permissions) {
+        if(permission == Permission.CREATE) return true;
+      }
+      return false;
+    }
+
     public boolean canShow() {
       for(Permission permission : permissions) {
         if(permission == Permission.SHOW) return true;

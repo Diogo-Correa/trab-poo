@@ -1,10 +1,13 @@
 package util.auth;
 
+import app.App;
 import models.clinica.User;
 import util.database.Users;
 import util.log.Activity;
+import views.*;
 
 public class Auth {
+    private static int tentativesCount = 3;
     private static User authUser;
     private String name, password;
     private static boolean authenticated;
@@ -30,9 +33,25 @@ public class Auth {
           new Activity("Usuário: " + this.name + " login efetuado com sucesso!");
           authenticated = true;
           authUser = user;
-          return;
+
+          if(user.getRole().getNome() == "admin") {
+            VeterinarioView.run();
+            return;
+          }
+
+          if(user.getRole().getNome() == "mod") {
+            EstagiarioView.run();
+            return;
+          }
+
         }
       }
         new Activity("Usuário: " + this.name + " falha no login.");
+        System.out.println("Voce possui " + tentativesCount + " tentativas.");
+        if(tentativesCount > 0) {
+          tentativesCount--;
+          App.login();
+        }
+        else System.exit(0);
     }
   }

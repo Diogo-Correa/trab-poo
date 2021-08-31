@@ -1,58 +1,179 @@
-App: programa inicializado. segunda-feira, 30 de agosto de 2021
-Enfermidade: Cinomose foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Enfermidade: Parvovirose foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Enfermidade: Parvovirose foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Enfermidade: Leishmaniose foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Enfermidade: Otite foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Enfermidade: Raiva foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Enfermidade: Hepatite Infecciosa foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Enfermidade: Erlichiose foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Enfermidade: Tumor foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Enfermidade: Dirofilariose foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Enfermidade: Sarna foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Role: admin foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Role: mod foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Role[admin]: a permissão EDIT foi adicionada a role. segunda-feira, 30 de agosto de 2021
-Role[admin]: a permissão SHOW foi adicionada a role. segunda-feira, 30 de agosto de 2021
-Role[admin]: a permissão DELETE foi adicionada a role. segunda-feira, 30 de agosto de 2021
-Role[admin]: a permissão DELETE já pertence a role. segunda-feira, 30 de agosto de 2021
-Role[mod]: a permissão EDIT foi adicionada a role. segunda-feira, 30 de agosto de 2021
-Role[mod]: a permissão SHOW foi adicionada a role. segunda-feira, 30 de agosto de 2021
-User: Eduardo foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Veterinario: Eduardo foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-User: Celso foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Veterinario: Celso foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-User: Maria foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Veterinario: Maria foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-User: Mauro foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Veterinario: Mauro foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-User: Laura foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Veterinario: Laura foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-User: Andressa foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Estagiario: Andressa foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-User: Jorge foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Veterinario: Jorge foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-User: Gabriel foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Estagiario: Gabriel foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-User: Lucas foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Veterinario: Lucas foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-User: Helena foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Estagiario: Helena foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-User: Eduarda foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Veterinario: Eduarda foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-User: Otavio foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Veterinario: Otavio foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-User: Guilherme foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Veterinario: Guilherme foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-User: Julia foi adicionada ao sistema. segunda-feira, 30 de agosto de 2021
-Veterinario: Julia foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-Dono: Marcelo foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-Animal: Thor foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-Dono: Bruna foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-Animal: Lola foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-Dono: Jesse foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-Animal: Meow foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-Dono: George foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-Animal: Stuart foi adicionado ao sistema. segunda-feira, 30 de agosto de 2021
-Usuário: Andressa efetuou uma tentativa de login. segunda-feira, 30 de agosto de 2021
-Usuário: Andressa login efetuado com sucesso! segunda-feira, 30 de agosto de 2021
+VetSystem: programa inicializado. terça-feira, 31 de agosto de 2021
+Enfermidade: Cinomose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Parvovirose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Parvovirose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Leishmaniose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Otite foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Raiva foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Hepatite Infecciosa foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Erlichiose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Tumor foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Dirofilariose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Sarna foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Role: admin foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Role: mod foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Role[admin]: a permissão CREATE foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[admin]: a permissão EDIT foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[admin]: a permissão SHOW foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[admin]: a permissão DELETE foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[admin]: a permissão DELETE já pertence a role. terça-feira, 31 de agosto de 2021
+Role[mod]: a permissão EDIT foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[mod]: a permissão CREATE foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[mod]: a permissão SHOW foi adicionada a role. terça-feira, 31 de agosto de 2021
+User: Eduardo foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Eduardo foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Celso foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Celso foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Maria foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Maria foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Mauro foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Mauro foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Laura foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Laura foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Andressa foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Estagiario: Andressa foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Jorge foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Jorge foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Gabriel foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Estagiario: Gabriel foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Lucas foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Lucas foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Helena foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Estagiario: Helena foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Eduarda foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Eduarda foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Otavio foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Otavio foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Guilherme foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Guilherme foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Julia foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Julia foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Dono: Marcelo foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Animal: Thor foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Dono: Bruna foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Animal: Lola foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Dono: Jesse foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Animal: Meow foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Dono: George foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Animal: Stuart foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Usuário: Andressa efetuou uma tentativa de login. terça-feira, 31 de agosto de 2021
+Usuário: Andressa login efetuado com sucesso! terça-feira, 31 de agosto de 2021
+VetSystem: programa inicializado. terça-feira, 31 de agosto de 2021
+Enfermidade: Cinomose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Parvovirose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Parvovirose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Leishmaniose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Otite foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Raiva foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Hepatite Infecciosa foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Erlichiose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Tumor foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Dirofilariose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Sarna foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Role: admin foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Role: mod foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Role[admin]: a permissão CREATE foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[admin]: a permissão EDIT foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[admin]: a permissão SHOW foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[admin]: a permissão DELETE foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[admin]: a permissão DELETE já pertence a role. terça-feira, 31 de agosto de 2021
+Role[mod]: a permissão EDIT foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[mod]: a permissão CREATE foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[mod]: a permissão SHOW foi adicionada a role. terça-feira, 31 de agosto de 2021
+User: Eduardo foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Eduardo foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Celso foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Celso foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Maria foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Maria foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Mauro foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Mauro foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Laura foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Laura foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Andressa foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Estagiario: Andressa foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Jorge foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Jorge foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Gabriel foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Estagiario: Gabriel foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Lucas foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Lucas foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Helena foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Estagiario: Helena foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Eduarda foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Eduarda foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Otavio foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Otavio foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Guilherme foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Guilherme foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Julia foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Julia foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Dono: Marcelo foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Animal: Thor foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Dono: Bruna foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Animal: Lola foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Dono: Jesse foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Animal: Meow foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Dono: George foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Animal: Stuart foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Usuário: Andressa efetuou uma tentativa de login. terça-feira, 31 de agosto de 2021
+Usuário: Andressa login efetuado com sucesso! terça-feira, 31 de agosto de 2021
+VetSystem: programa inicializado. terça-feira, 31 de agosto de 2021
+Enfermidade: Cinomose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Parvovirose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Parvovirose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Leishmaniose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Otite foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Raiva foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Hepatite Infecciosa foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Erlichiose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Tumor foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Dirofilariose foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Enfermidade: Sarna foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Role: admin foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Role: mod foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Role[admin]: a permissão CREATE foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[admin]: a permissão EDIT foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[admin]: a permissão SHOW foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[admin]: a permissão DELETE foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[admin]: a permissão DELETE já pertence a role. terça-feira, 31 de agosto de 2021
+Role[mod]: a permissão EDIT foi adicionada a role. terça-feira, 31 de agosto de 2021
+Role[mod]: a permissão SHOW foi adicionada a role. terça-feira, 31 de agosto de 2021
+User: Eduardo foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Eduardo foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Celso foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Celso foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Maria foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Maria foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Mauro foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Mauro foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Laura foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Laura foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Andressa foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Estagiario: Andressa foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Jorge foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Jorge foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Gabriel foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Estagiario: Gabriel foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Lucas foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Lucas foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Helena foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Estagiario: Helena foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Eduarda foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Eduarda foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Otavio foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Otavio foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Guilherme foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Guilherme foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+User: Julia foi adicionada ao sistema. terça-feira, 31 de agosto de 2021
+Veterinario: Julia foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Dono: Marcelo foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Animal: Thor foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Dono: Bruna foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Animal: Lola foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Dono: Jesse foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Animal: Meow foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Dono: George foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Animal: Stuart foi adicionado ao sistema. terça-feira, 31 de agosto de 2021
+Usuário: Andressa efetuou uma tentativa de login. terça-feira, 31 de agosto de 2021
+Usuário: Andressa login efetuado com sucesso! terça-feira, 31 de agosto de 2021
