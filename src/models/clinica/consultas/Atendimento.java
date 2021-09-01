@@ -1,7 +1,7 @@
-package model.clinica.consultas;
+package models.clinica.consultas;
 
-import model.clientes.Animal;
-import model.clinica.Veterinario;
+import models.clientes.Animal;
+import models.clinica.Veterinario;
 import util.Enfermidade;
 import util.database.Veterinarios;
 import util.status.VeterinarioStatus;

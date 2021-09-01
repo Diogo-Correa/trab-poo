@@ -2,7 +2,7 @@ package util.database;
 
 import java.util.ArrayList;
 
-import controller.middlewares.auth.Role;
+import controllers.middlewares.auth.Role;
 import util.log.Activity;
 
 public class Roles {

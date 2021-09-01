@@ -2,7 +2,7 @@ package util.database;
 
 import java.util.ArrayList;
 
-import model.clientes.Animal;
+import models.clientes.Animal;
 import util.log.Activity;
 
 public class Animais {

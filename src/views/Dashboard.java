@@ -1,4 +1,4 @@
-package view.estagiario;
+package views;
 
 import util.Enfermidade;
 import util.auth.Auth;
@@ -6,16 +6,16 @@ import util.database.*;
 
 import java.util.Scanner;
 
-import controller.app.EstagiarioController;
-import model.clientes.*;
-import model.clinica.*;
-import model.clinica.consultas.Atendimento;
-import model.clinica.consultas.Consulta;
+import controllers.app.*;
+import models.clientes.*;
+import models.clinica.*;
+import models.clinica.consultas.Atendimento;
+import models.clinica.consultas.Consulta;
 
-public class Index {
+public class Dashboard {
 
-    public Index() {
-        if(Auth.getUser().getRole().canShow()) run();
+    public Dashboard() {
+        if(Auth.isAuthenticated()) run();
         else { 
             System.out.println("Voce nao tem permissao");
             System.exit(0); 
@@ -24,22 +24,33 @@ public class Index {
 
     public static void run() {
 
+
         Scanner input = new Scanner(System.in);
 
         System.out.println("Ola " + Auth.getUser().getNome());
         System.out.println("O que deseja fazer?");
 
+            
         System.out.println("[0] Logout");
         System.out.println("[1] Iniciar um atendimento");
-        
+    
         if(Auth.getUser().getRole().canCreate())
-            System.out.println("[2] Cadastrar um novo animal");
+            System.out.println("[2] Cadastrar um novo estagiario");
 
         if(Auth.getUser().getRole().canEdit())
             System.out.println("[3] Editar um estagiario");
 
         if(Auth.getUser().getRole().canDelete())
             System.out.println("[4] Deletar um estagiario");
+
+        if(Auth.getUser().getRole().canCreate())
+            System.out.println("[5] Cadastrar um novo veterinario");
+
+        if(Auth.getUser().getRole().canEdit())
+            System.out.println("[6] Editar um veterinario");
+
+        if(Auth.getUser().getRole().canDelete())
+            System.out.println("[7] Deletar um veterinario");
 
         int op = input.nextInt();
 
@@ -94,6 +105,9 @@ public class Index {
                     System.out.println("Nome da enfermidade: " + encaminhado.getEnfermidade().getNome());
 
                     break;
+                case 2:
+                    new EstagiarioController().create();
+                    break;
                 case 3:
                     for(Estagiario estagiario : Estagiarios.getEstagiarios()) System.out.println(estagiario.getNome() + ": " + estagiario.getContrato());
                     System.out.print("Digite o contrato do estagiario que deseja editar: ");
@@ -104,21 +118,49 @@ public class Index {
                     System.out.print("Digite o contrato do estagiario que deseja excluir: ");
                     new EstagiarioController().delete(Estagiarios.find(input.next()));
                     break;
+                case 5:
+                    new VeterinarioController().create();
+                    break;
+                case 6:
+                    for(Veterinario veterinario : Veterinarios.getVeterinarios()) System.out.println(veterinario.getNome() + ": " + veterinario.getCRMV());
+                    System.out.print("Digite o CRMV do veterinario que deseja editar: ");
+                    new VeterinarioController().update(Veterinarios.find(input.next()));
+                    break;
+                case 7:
+                    for(Veterinario veterinario : Veterinarios.getVeterinarios()) System.out.println(veterinario.getNome() + ": " + veterinario.getCRMV());
+                    System.out.print("Digite o CRMV do veterinario que deseja deletar: ");
+                    new VeterinarioController().delete(Veterinarios.find(input.next()));
+                    break;
+
+                default:
+                    System.out.println("Opcao invalida!");
+                    break;
             }
         
             System.out.println("Ola " + Auth.getUser().getNome());
             System.out.println("O que deseja fazer?");
 
+            
+            System.out.println("[0] Logout");
             System.out.println("[1] Iniciar um atendimento");
-
+        
             if(Auth.getUser().getRole().canCreate())
-                System.out.println("[2] Cadastrar um novo animal");
-
+                System.out.println("[2] Cadastrar um novo estagiario");
+    
             if(Auth.getUser().getRole().canEdit())
                 System.out.println("[3] Editar um estagiario");
-
+    
             if(Auth.getUser().getRole().canDelete())
                 System.out.println("[4] Deletar um estagiario");
+    
+            if(Auth.getUser().getRole().canCreate())
+                System.out.println("[5] Cadastrar um novo veterinario");
+    
+            if(Auth.getUser().getRole().canEdit())
+                System.out.println("[6] Editar um veterinario");
+    
+            if(Auth.getUser().getRole().canDelete())
+                System.out.println("[7] Deletar um veterinario");
 
             op = input.nextInt();
         }

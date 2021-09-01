@@ -1,11 +1,12 @@
-package controller.app;
+package controllers.app;
 
 import app.App;
-import controller.Controller;
-import model.clinica.Estagiario;
+import controllers.Controller;
+import models.clinica.Estagiario;
 import util.auth.Auth;
 import util.database.Estagiarios;
-import view.estagiario.*;
+import util.database.Users;
+import views.estagiario.*;
 
 public class EstagiarioController implements Controller {
 
@@ -30,8 +31,10 @@ public class EstagiarioController implements Controller {
     }
 
     public <E> void delete(E estagiario) {
-        if(Auth.getUser().getRole().canDelete()) 
+        if(Auth.getUser().getRole().canDelete()) {
             Estagiarios.removeEstagiario((Estagiario) estagiario);
+            Users.removeUser((Estagiario) estagiario);
+        }
     }
     
 }

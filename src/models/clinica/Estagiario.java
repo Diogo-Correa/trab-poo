@@ -1,7 +1,7 @@
-package model.clinica;
+package models.clinica;
 
-import controller.app.EstagiarioController;
-import controller.middlewares.auth.Role;
+import controllers.app.EstagiarioController;
+import controllers.middlewares.auth.Role;
 
 public class Estagiario extends User {
     private int horasSemanais;

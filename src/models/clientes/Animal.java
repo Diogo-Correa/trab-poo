@@ -1,4 +1,4 @@
-package model.clientes;
+package models.clientes;
 
 import java.util.ArrayList;
 

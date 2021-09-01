@@ -1,9 +1,9 @@
 package util.generator;
 
-import controller.middlewares.auth.Permission;
-import controller.middlewares.auth.Role;
-import model.clinica.Estagiario;
-import model.clinica.Veterinario;
+import controllers.middlewares.auth.Permission;
+import controllers.middlewares.auth.Role;
+import models.clinica.Estagiario;
+import models.clinica.Veterinario;
 
 public class UsersGenerator implements Generator {
     public static void generate() {

@@ -1,9 +1,9 @@
-package view.estagiario;
+package views.estagiario;
 
 import java.util.Scanner;
 
-import controller.middlewares.auth.Role;
-import model.clinica.Estagiario;
+import controllers.middlewares.auth.Role;
+import models.clinica.Estagiario;
 import util.database.Roles;
 
 public class Create {

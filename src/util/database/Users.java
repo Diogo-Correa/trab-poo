@@ -2,7 +2,7 @@ package util.database;
 
 import java.util.ArrayList;
 
-import model.clinica.User;
+import models.clinica.User;
 import util.log.Activity;
 
 public class Users {

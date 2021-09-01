@@ -2,13 +2,11 @@ package app;
 
 import java.util.Scanner;
 
-import controller.app.EstagiarioController;
-import model.clinica.User;
+import controllers.app.*;
 import util.auth.Auth;
-import util.database.Users;
 import util.generator.*;
 import util.log.Activity;
-import view.VeterinarioView;
+import views.Dashboard;
 
 
 public class App {
@@ -23,19 +21,8 @@ public class App {
     }
 
     public App() {
-        if(Auth.isAuthenticated()) {
-            if(Auth.getUser().getRole().getNome() == "admin") {
-              VeterinarioView.run();
-              return;
-            }
-  
-            if(Auth.getUser().getRole().getNome() == "mod") {
-              new EstagiarioController().index();
-              return;
-            }
-          } else {
-              login();
-          }
+        if(Auth.isAuthenticated()) Dashboard.run();
+        else login();
     }
 
     public static void main(String[] args) throws Exception {
@@ -77,7 +64,7 @@ public class App {
                     if(opUser == 1) {
                         new EstagiarioController().create();
                     } else if(opUser == 2) {
-
+                        new VeterinarioController().create();
                     } else op = 100;
                     break;
 

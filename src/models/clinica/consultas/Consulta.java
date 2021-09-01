@@ -1,8 +1,8 @@
-package model.clinica.consultas;
+package models.clinica.consultas;
 import java.util.Date;
 
-import model.clientes.Animal;
-import model.clinica.Veterinario;
+import models.clientes.Animal;
+import models.clinica.Veterinario;
 import util.Enfermidade;
 import util.errors.AltaJaFechada;
 import util.status.VeterinarioStatus;

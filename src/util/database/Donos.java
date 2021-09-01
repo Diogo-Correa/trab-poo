@@ -2,7 +2,7 @@ package util.database;
 
 import java.util.ArrayList;
 
-import model.clientes.Dono;
+import models.clientes.Dono;
 import util.log.Activity;
 
 public class Donos {

@@ -1,11 +1,11 @@
 package util.auth;
 
 import app.App;
-import controller.app.EstagiarioController;
-import model.clinica.User;
+import controllers.app.EstagiarioController;
+import models.clinica.User;
 import util.database.Users;
 import util.log.Activity;
-import view.*;
+import views.*;
 
 public class Auth {
     private static int tentativesCount = 3;
@@ -34,16 +34,7 @@ public class Auth {
           new Activity("Usuário: " + this.name + " login efetuado com sucesso!");
           authenticated = true;
           authUser = user;
-
-          if(user.getRole().getNome() == "admin") {
-            VeterinarioView.run();
-            return;
-          }
-
-          if(user.getRole().getNome() == "mod") {
-            new EstagiarioController().index();
-            return;
-          }
+          Dashboard.run();
 
         }
       }

@@ -1,6 +1,6 @@
-package model.clinica;
+package models.clinica;
 
-import controller.middlewares.auth.Role;
+import controllers.middlewares.auth.Role;
 import util.Enfermidade;
 import util.database.Veterinarios;
 import util.status.VeterinarioStatus;

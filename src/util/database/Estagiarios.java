@@ -2,7 +2,7 @@ package util.database;
 
 import java.util.*;
 
-import model.clinica.Estagiario;
+import models.clinica.Estagiario;
 import util.log.Activity;
 
 public class Estagiarios {

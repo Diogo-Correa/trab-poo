@@ -2,7 +2,7 @@ package util.database;
 
 import java.util.ArrayList;
 
-import model.clinica.Veterinario;
+import models.clinica.Veterinario;
 import util.log.Activity;
 
 public class Veterinarios {

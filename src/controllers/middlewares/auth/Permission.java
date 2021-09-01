@@ -1,4 +1,4 @@
-package controller.middlewares.auth;
+package controllers.middlewares.auth;
 
 public enum Permission {
     CREATE,
