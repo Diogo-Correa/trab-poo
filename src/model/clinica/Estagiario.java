@@ -1,7 +1,7 @@
-package models.clinica;
+package model.clinica;
 
-import util.database.Estagiarios;
-import util.middlewares.auth.Role;
+import controller.app.EstagiarioController;
+import controller.middlewares.auth.Role;
 
 public class Estagiario extends User {
     private int horasSemanais;
@@ -11,9 +11,10 @@ public class Estagiario extends User {
         super(nome, password, idade, role);
         this.horasSemanais = horasSemanais;
         this.contrato = contrato;
-        Estagiarios.addEstagiario(this);
+        new EstagiarioController().store(this);
     }
 
     public String getContrato() { return this.contrato; }
     public int getHorasSemanais() { return this.horasSemanais; }
+    public void setHorasSemanais(int horasSemanais) { this.horasSemanais = horasSemanais; }
 }

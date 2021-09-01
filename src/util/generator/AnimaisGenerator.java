@@ -1,7 +1,7 @@
 package util.generator;
 
-import models.clientes.Animal;
-import models.clientes.Dono;
+import model.clientes.Animal;
+import model.clientes.Dono;
 
 public class AnimaisGenerator implements Generator {
     public static void generate() {

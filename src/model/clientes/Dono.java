@@ -1,4 +1,4 @@
-package models.clientes;
+package model.clientes;
 
 import util.database.Donos;
 

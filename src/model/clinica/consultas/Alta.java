@@ -1,4 +1,4 @@
-package models.clinica.consultas;
+package model.clinica.consultas;
 import java.util.ArrayList;
 
 import util.Medicamento;

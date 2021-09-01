@@ -2,13 +2,13 @@ package util.database;
 
 import java.util.*;
 
-import models.clinica.Estagiario;
+import model.clinica.Estagiario;
 import util.log.Activity;
 
 public class Estagiarios {
     private static ArrayList<Estagiario> estagiarios = new ArrayList<Estagiario>();
 
-    public static ArrayList<Estagiario> getVeterinarios() {
+    public static ArrayList<Estagiario> getEstagiarios() {
         return estagiarios;
     }
 

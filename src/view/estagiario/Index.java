@@ -1,19 +1,20 @@
-package views;
+package view.estagiario;
 
-import models.clinica.consultas.Atendimento;
-import models.clinica.consultas.Consulta;
 import util.Enfermidade;
 import util.auth.Auth;
 import util.database.*;
 
 import java.util.Scanner;
 
-import models.clientes.*;
-import models.clinica.*;
+import controller.app.EstagiarioController;
+import model.clientes.*;
+import model.clinica.*;
+import model.clinica.consultas.Atendimento;
+import model.clinica.consultas.Consulta;
 
-public class EstagiarioView {
+public class Index {
 
-    public EstagiarioView() {
+    public Index() {
         if(Auth.getUser().getRole().canShow()) run();
         else { 
             System.out.println("Voce nao tem permissao");
@@ -23,7 +24,7 @@ public class EstagiarioView {
 
     public static void run() {
 
-        Scanner key = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
         System.out.println("Ola " + Auth.getUser().getNome());
         System.out.println("O que deseja fazer?");
@@ -34,7 +35,13 @@ public class EstagiarioView {
         if(Auth.getUser().getRole().canCreate())
             System.out.println("[2] Cadastrar um novo animal");
 
-        int op = key.nextInt();
+        if(Auth.getUser().getRole().canEdit())
+            System.out.println("[3] Editar um estagiario");
+
+        if(Auth.getUser().getRole().canDelete())
+            System.out.println("[4] Deletar um estagiario");
+
+        int op = input.nextInt();
 
         while(op > -1) {
             switch (op) {
@@ -47,14 +54,14 @@ public class EstagiarioView {
                     for(Animal animal : Animais.getAnimais()) System.out.print(animal.getNome()+ ", ");
                     System.out.println();
                     System.out.println("Digite o nome de um dos animais listados:");
-                    String nomeAnimal = key.next();
+                    String nomeAnimal = input.next();
                     Animal animal = Animais.find(nomeAnimal);
 
                     // Busca enfermidade
                     for(Enfermidade enfer : Enfermidades.getEnfermidades()) System.out.print(enfer.getNome()+ ", ");
                     System.out.println();
                     System.out.println("Digite o nome de uma enfermidade listada:");
-                    String nomeEnfermidade = key.next();
+                    String nomeEnfermidade = input.next();
                     Enfermidade enfermidade = Enfermidades.find(nomeEnfermidade);
 
                     // Inicia atendimento
@@ -87,16 +94,33 @@ public class EstagiarioView {
                     System.out.println("Nome da enfermidade: " + encaminhado.getEnfermidade().getNome());
 
                     break;
+                case 3:
+                    for(Estagiario estagiario : Estagiarios.getEstagiarios()) System.out.println(estagiario.getNome() + ": " + estagiario.getContrato());
+                    System.out.print("Digite o contrato do estagiario que deseja editar: ");
+                    new EstagiarioController().update(Estagiarios.find(input.next()));
+                    break;
+                case 4:
+                    for(Estagiario estag : Estagiarios.getEstagiarios()) System.out.println(estag.getNome() + ": " + estag.getContrato());
+                    System.out.print("Digite o contrato do estagiario que deseja excluir: ");
+                    new EstagiarioController().delete(Estagiarios.find(input.next()));
+                    break;
             }
         
             System.out.println("Ola " + Auth.getUser().getNome());
             System.out.println("O que deseja fazer?");
 
             System.out.println("[1] Iniciar um atendimento");
+
             if(Auth.getUser().getRole().canCreate())
                 System.out.println("[2] Cadastrar um novo animal");
 
-            op = key.nextInt();
+            if(Auth.getUser().getRole().canEdit())
+                System.out.println("[3] Editar um estagiario");
+
+            if(Auth.getUser().getRole().canDelete())
+                System.out.println("[4] Deletar um estagiario");
+
+            op = input.nextInt();
         }
     }
 }

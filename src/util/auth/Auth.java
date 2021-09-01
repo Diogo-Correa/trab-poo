@@ -1,10 +1,11 @@
 package util.auth;
 
 import app.App;
-import models.clinica.User;
+import controller.app.EstagiarioController;
+import model.clinica.User;
 import util.database.Users;
 import util.log.Activity;
-import views.*;
+import view.*;
 
 public class Auth {
     private static int tentativesCount = 3;
@@ -40,7 +41,7 @@ public class Auth {
           }
 
           if(user.getRole().getNome() == "mod") {
-            EstagiarioView.run();
+            new EstagiarioController().index();
             return;
           }
 

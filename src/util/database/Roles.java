@@ -2,8 +2,8 @@ package util.database;
 
 import java.util.ArrayList;
 
+import controller.middlewares.auth.Role;
 import util.log.Activity;
-import util.middlewares.auth.Role;
 
 public class Roles {
     private static ArrayList<Role> roles = new ArrayList<Role>();

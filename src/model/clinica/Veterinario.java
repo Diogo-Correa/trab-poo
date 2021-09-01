@@ -1,8 +1,8 @@
-package models.clinica;
+package model.clinica;
 
+import controller.middlewares.auth.Role;
 import util.Enfermidade;
 import util.database.Veterinarios;
-import util.middlewares.auth.Role;
 import util.status.VeterinarioStatus;
 
 public class Veterinario extends User {

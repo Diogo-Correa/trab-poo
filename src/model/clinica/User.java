@@ -1,7 +1,7 @@
-package models.clinica;
+package model.clinica;
 
+import controller.middlewares.auth.Role;
 import util.database.Users;
-import util.middlewares.auth.Role;
 
 public abstract class User {
     private String name, password;
@@ -18,10 +18,18 @@ public abstract class User {
 
     public String getNome() { return this.name; }
 
+    public void setNome(String value) { this.name = value; }
+
     public String getPassword() { return this.password; }
 
+    public void setPassword(String value) { this.password = value; }
+
     public Role getRole() { return this.role; }
+
+    public void setRole(Role value) { this.role = value; }
     
     public int getIdade() { return this.idade; }
+
+    public void setIdade(int value) { this.idade = value;}
 
 }
