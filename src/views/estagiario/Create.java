@@ -27,7 +27,7 @@ public class Create {
         String password = input.next();
 
         System.out.print("Escolha o ID nivel de acesso do estagiario: ");
-        for(Role role : Roles.getRoles()) System.out.print(role.getId() +": "+role.getNome()+ "] ");
+        for(Role role : Roles.getRoles()) System.out.print(role.getId() +": ["+role.getNome()+ "] ");
         Role role = Roles.find(input.nextInt());
 
         System.out.print("Digite a idade do estagiario: ");

@@ -30,11 +30,11 @@ public class Create {
         String password = input.next();
 
         System.out.print("Digite o ID do nivel de acesso do veterinario: ");
-        for(Role role : Roles.getRoles()) System.out.print(role.getId() +": "+role.getNome()+ "] ");
+        for(Role role : Roles.getRoles()) System.out.print(role.getId() +": ["+role.getNome()+ "] ");
         Role role = Roles.find(input.nextInt());
 
         System.out.print("Digite o ID da especialidade do veterinario: ");
-        for(Enfermidade enfermidade : Enfermidades.getEnfermidades()) System.out.print(enfermidade.getId() +": "+enfermidade.getNome()+ "] ");
+        for(Enfermidade enfermidade : Enfermidades.getEnfermidades()) System.out.print(enfermidade.getId() +": ["+enfermidade.getNome()+ "] ");
         Enfermidade especialidade = Enfermidades.find(input.nextInt());
 
         System.out.print("CRMV: ");

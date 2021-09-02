@@ -1,74 +1,91 @@
 package views;
 
-import java.util.Scanner;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
-import controllers.app.EstagiarioController;
-import controllers.app.VeterinarioController;
 import util.auth.Auth;
 
-public class Login {
+public class Login extends JFrame implements ActionListener {
+    
+    private JPanel panel;
+    private JLabel user_label, password_label;
+    private static JLabel message;
+    private JTextField userName_text;
+    private JPasswordField password_text;
+    private JButton submit, cancel;
 
     public Login() {
-        if(Auth.isAuthenticated()) run();
-        else { 
-            System.out.println("Voce nao tem permissao");
-            System.exit(0); 
-        }
-    }
 
-    public static void run() {
+        // User label
+        this.user_label = new JLabel();
+        this.user_label.setText("User: ");
+        this.userName_text = new JTextField();
+
+        // Senha
+        this.password_label = new JLabel();
+        this.password_label.setText("Password: ");
+        this.password_text = new JPasswordField();
+
+        // submit
+        this.submit = new JButton("ENTRAR");
+
+        //cancel
+        // this.cancel = new JButton("FECHAR");
+
+        // panel
+        this.panel = new JPanel(new GridLayout(3,1));
+
+        this.panel.add(this.user_label);
+        this.panel.add(this.userName_text);
+        this.panel.add(this.password_label);
+        this.panel.add(this.password_text);
+
+        // message
+        message = new JLabel();
         
-        Scanner input = new Scanner(System.in);
+        // this.panel.add(this.cancel);
+        this.panel.add(message);
+        this.panel.add(submit);
 
-        System.out.println("Selecione uma opcao: ");
-        System.out.println("[0] Encerrar");
-        System.out.println("[1] Login");
-        System.out.println("[2] Cadastro");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        int op = input.nextInt();
+        // event listener
+        this.submit.addActionListener(this);
+        // this.cancel.addActionListener(this);
+        add(panel, BorderLayout.CENTER);
+        setTitle("Login Page!");
+        setSize(400, 100);
+        setVisible(true);
+    }
 
-        while(op > -1) {
-            switch(op) {
-                case 0:
-                    System.out.println("Programa encerrado.");
-                    System.exit(0);
-                case 1:
-                    System.out.print("Digite o usuario: ");
-                    String user = input.next();
+    public static void setMessage(String msg) {
+        message.setText(msg);
+    }
 
-                    System.out.print("Digite a senha: ");
-                    String password = input.next();
+    public void actionPerformed(ActionEvent e) { 
 
-                    new Auth(user, password);
-                    break;
+        if (e.getSource() == this.submit) {
+            String user = this.userName_text.getText();
+            String password = this.password_text.getText();
 
-                case 2:
-                    System.out.println("Selecione uma opcao: ");
-                    System.out.println("[0] Voltar");
-                    System.out.println("[1] Estagiario");
-                    System.out.println("[2] Veterinario");
-                    int opUser = input.nextInt();
+            new Auth(user, password);
+            if(Auth.isAuthenticated()) {
+                this.dispose();
 
-                    if(opUser == 1) {
-                        new EstagiarioController().create();
-                    } else if(opUser == 2) {
-                        new VeterinarioController().create();
-                    } else op = 100;
-                    break;
-
-                default:
-                    System.out.println("Opcao invalida!");
-                    break;
             }
-
-            System.out.println("Selecione uma opcao: ");
-            System.out.println("[0] Encerrar");
-            System.out.println("[1] Login");
-            System.out.println("[2] Cadastro");
-    
-            op = input.nextInt();
         }
 
+        if (e.getSource() == this.cancel) {
+            if(Auth.isAuthenticated()) {
+                Auth.logout();
+                new Login();
+            } else {
+                System.exit(0);
+            }
+        }
     }
-    
+
+
+
 }

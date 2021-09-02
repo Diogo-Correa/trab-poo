@@ -1,127 +1,71 @@
 package views;
 
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+import controllers.app.EstagiarioController;
 import util.auth.Auth;
-import util.database.*;
 
-import java.util.Scanner;
-
-import controllers.app.*;
-import models.clinica.*;
-
-public class Dashboard {
+public class Dashboard extends JFrame implements ActionListener { 
+    private JMenu userMenu, atendMenu, vetMenu, estagMenu;
+    private JMenuItem logout, novoAtend, vet, estag;
+    private JMenuBar mainMenu;
+    private Container ContentPane;
 
     public Dashboard() {
-        if(Auth.isAuthenticated()) run();
-        else { 
-            System.out.println("Voce nao tem permissao");
-            System.exit(0); 
-        }
+        super("[VetSystem] POO Project");
+
+        this.userMenu = new JMenu(Auth.getUser().getNome());
+        this.atendMenu = new JMenu("Atendimentos");
+        this.vetMenu = new JMenu("Veterinarios");
+        this.estagMenu = new JMenu("Estagiarios");
+
+        // User items
+        this.logout = new JMenuItem("Logout", new ImageIcon());
+        this.userMenu.add(this.logout);
+
+        // Atendimento items
+        this.novoAtend = new JMenuItem("Novo", new ImageIcon());
+        this.atendMenu.add(this.novoAtend);
+
+        // Veterinarios items
+        this.vet = new JMenuItem("Listagem", new ImageIcon());
+        this.vetMenu.add(this.vet);
+
+        // Veterinarios items
+        this.estag = new JMenuItem("Listagem", new ImageIcon());
+        this.estagMenu.add(this.estag);
+
+        this.mainMenu = new JMenuBar();
+
+        this.mainMenu.add(this.userMenu);
+        this.mainMenu.add(this.atendMenu);
+        this.mainMenu.add(this.vetMenu);
+        this.mainMenu.add(this.estagMenu);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.logout.addActionListener(this);
+        this.estag.addActionListener(this);
+        this.ContentPane = getContentPane();
+        this.ContentPane.add(this.mainMenu, BorderLayout.NORTH);
+        setSize(600, 600);
+        setVisible(true);
     }
 
-    public static void run() {
+    public static void setMessage(String msg) {
+        //message.setText(msg);
+    }
 
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == this.logout) {
+            Auth.logout();
+            this.dispose(); 
+        }
 
-        Scanner input = new Scanner(System.in);
-
-        System.out.println("Ola " + Auth.getUser().getNome());
-        System.out.println("O que deseja fazer?");
-
-            
-        System.out.println("[0] Logout");
-        System.out.println("[1] Iniciar um atendimento");
-    
-        if(Auth.getRole().canCreate())
-            System.out.println("[2] Cadastrar um novo estagiario");
-
-        if(Auth.getRole().canEdit())
-            System.out.println("[3] Editar um estagiario");
-
-        if(Auth.getRole().canDelete())
-            System.out.println("[4] Deletar um estagiario");
-
-        if(Auth.getRole().canCreate())
-            System.out.println("[5] Cadastrar um novo veterinario");
-
-        if(Auth.getRole().canEdit())
-            System.out.println("[6] Editar um veterinario");
-
-        if(Auth.getRole().canDelete())
-            System.out.println("[7] Deletar um veterinario");
-
-        int op = input.nextInt();
-
-        while(op > -1) {
-            switch (op) {
-                case 0:
-                    Auth.logout();
-                    break;
-                case 1:
-                    new AtendimentoController().create();
-                    break;
-
-                case 2:
-                    new EstagiarioController().create();
-                    break;
-
-                case 3:
-                    for(Estagiario estagiario : Estagiarios.getEstagiarios()) System.out.println(estagiario.getNome() + ": " + estagiario.getId());
-                    System.out.print("Digite o ID do estagiario que deseja editar: ");
-                    new EstagiarioController().update(input.nextInt());
-                    break;
-
-                case 4:
-                    for(Estagiario estag : Estagiarios.getEstagiarios()) System.out.println(estag.getNome() + ": " + estag.getId());
-                    System.out.print("Digite o ID do estagiario que deseja excluir: ");
-                    new EstagiarioController().delete(input.nextInt());
-                    break;
-
-                case 5:
-                    new VeterinarioController().create();
-                    break;
-
-                case 6:
-                    for(Veterinario veterinario : Veterinarios.getVeterinarios()) System.out.println(veterinario.getNome() + ": " + veterinario.getId());
-                    System.out.print("Digite o ID do veterinario que deseja editar: ");
-                    new VeterinarioController().update(input.nextInt());
-                    break;
-                    
-                case 7:
-                    for(Veterinario veterinario : Veterinarios.getVeterinarios()) System.out.println(veterinario.getNome() + ": " + veterinario.getId());
-                    System.out.print("Digite o ID do veterinario que deseja deletar: ");
-                    new VeterinarioController().delete(input.nextInt());
-                    break;
-
-                default:
-                    System.out.println("Opcao invalida!");
-                    break;
-            }
-        
-            System.out.println("Ola " + Auth.getUser().getNome());
-            System.out.println("O que deseja fazer?");
-
-            
-            System.out.println("[0] Logout");
-            System.out.println("[1] Iniciar um atendimento");
-        
-            if(Auth.getRole().canCreate())
-                System.out.println("[2] Cadastrar um novo estagiario");
-    
-            if(Auth.getRole().canEdit())
-                System.out.println("[3] Editar um estagiario");
-    
-            if(Auth.getRole().canDelete())
-                System.out.println("[4] Deletar um estagiario");
-    
-            if(Auth.getRole().canCreate())
-                System.out.println("[5] Cadastrar um novo veterinario");
-    
-            if(Auth.getRole().canEdit())
-                System.out.println("[6] Editar um veterinario");
-    
-            if(Auth.getRole().canDelete())
-                System.out.println("[7] Deletar um veterinario");
-
-            op = input.nextInt();
+        if (e.getSource() == this.estag) {
+            new EstagiarioController().index();
         }
     }
 }

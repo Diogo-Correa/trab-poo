@@ -1,7 +1,6 @@
 package util.auth;
 
 import app.App;
-import controllers.app.EstagiarioController;
 import controllers.middlewares.auth.Role;
 import models.clinica.User;
 import util.database.Users;
@@ -53,15 +52,17 @@ public class Auth {
     private void authenticate() {
       for(User user : Users.getUsers()) {
         if(this.name.equals(user.getNome()) && this.password.equals(user.getPassword()) && !authenticated) {
+          Login.setMessage("Login efetuado com sucesso!");
           new Activity("Usuário: " + this.name + " login efetuado com sucesso!");
           authenticated = true;
           authUser = user;
-          Dashboard.run();
+          new App();
+          return;
 
         }
       }
         new Activity("Usuário: " + this.name + " falha no login.");
-        System.out.println("Voce possui " + tentativesCount + " tentativas.");
+        Login.setMessage("Voce possui " + tentativesCount + " tentativas.");
         if(tentativesCount > 0) {
           tentativesCount--;
         }

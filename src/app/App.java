@@ -25,12 +25,12 @@ public class App {
         this.name = name;
         new Activity(this.name+": programa inicializado.");
         initialize();
-        Login.run();
+        new Login();
     }
 
     public App() {
-        if(Auth.isAuthenticated()) Dashboard.run();
-        else Login.run();
+        if(Auth.isAuthenticated()) new Dashboard();
+        else new Login();
     }
 
     public static void main(String[] args) throws Exception {

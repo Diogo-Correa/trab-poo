@@ -8,11 +8,12 @@ import util.log.Activity;
 public class Role {
     private ArrayList<Permission> permissions = new ArrayList<Permission>();
     private String name;
-    private static int id = 0;
+    private static int nextId = 0;
+    private int id = 0;
   
     public Role(String name) {
       this.name = name;
-      id++;
+      id = nextId++;
       Roles.addRole(this);
     }
 
