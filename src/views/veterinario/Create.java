@@ -6,10 +6,18 @@ import app.App;
 import controllers.middlewares.auth.Role;
 import models.clinica.Veterinario;
 import util.Enfermidade;
+import util.auth.Auth;
 import util.database.Enfermidades;
 import util.database.Roles;
 
 public class Create {
+
+    public Create() {
+        if(!Auth.getRole().canCreate()) {
+            System.out.println("Voce nao tem permissao!");
+        } else form();
+    }
+    
     public static void form() {
         Scanner input = new Scanner(System.in);
 

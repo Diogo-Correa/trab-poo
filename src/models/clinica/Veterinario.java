@@ -1,8 +1,8 @@
 package models.clinica;
 
+import controllers.app.VeterinarioController;
 import controllers.middlewares.auth.Role;
 import util.Enfermidade;
-import util.database.Veterinarios;
 import util.status.VeterinarioStatus;
 
 public class Veterinario extends User {
@@ -15,7 +15,7 @@ public class Veterinario extends User {
         this.crmv = crmv;
         this.especialidade = especialidade;
         this.status = VeterinarioStatus.ATIVO;
-        Veterinarios.addVeterinario(this);
+        new VeterinarioController().store(this);
     }
 
     public Veterinario(String nome, String password, Role role, int idade, String crmv){
@@ -23,7 +23,7 @@ public class Veterinario extends User {
         this.crmv = crmv;
         this.especialidade = null;
         this.status = VeterinarioStatus.ATIVO;
-        Veterinarios.addVeterinario(this);
+        new VeterinarioController().store(this);
     }
 
     public String getCRMV() {

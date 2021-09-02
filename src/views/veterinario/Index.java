@@ -5,10 +5,9 @@ import util.auth.Auth;
 public class Index {
 
     public Index() {
-        if(Auth.getUser().getRole().canShow()) run();
+        if(Auth.getRole().canShow()) run();
         else { 
             System.out.println("Voce nao tem permissao");
-            System.exit(0); 
         }
     }
 

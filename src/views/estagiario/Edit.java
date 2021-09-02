@@ -5,26 +5,39 @@ import java.util.Scanner;
 import app.App;
 import controllers.middlewares.auth.Role;
 import models.clinica.Estagiario;
+import util.auth.Auth;
 import util.database.Roles;
 
 public class Edit {
-    public static void form(Estagiario estagiario) {
+
+    private Estagiario estagiario;
+
+    public Edit(Estagiario estagiario) {
+        if(!Auth.getRole().canEdit()) {
+            System.out.println("Voce nao tem permissao!");
+        } else {
+            this.estagiario = estagiario;
+            this.form();
+        }
+    }
+
+    public void form() {
         Scanner input = new Scanner(System.in);
 
         System.out.println("[Formulario de edicao de estagiarios]");
         System.out.println("[Digite o mesmo valor caso nao queira alterar]");
 
-        System.out.print("Digite o nome do estagiario ["+estagiario.getNome()+"]: ");
+        System.out.print("Digite o nome do estagiario ["+this.estagiario.getNome()+"]: ");
         String name = input.next();
 
         System.out.print("Escolha o nivel de acesso do estagiario: ");
         for(Role role : Roles.getRoles()) System.out.print("["+role.getNome()+ "] ");
         Role role = Roles.find(input.next());
 
-        System.out.print("Digite a idade do estagiario ["+estagiario.getIdade()+"]: ");
+        System.out.print("Digite a idade do estagiario ["+this.estagiario.getIdade()+"]: ");
         int idade = input.nextInt();
 
-        System.out.print("Digite as horas semanais do contrato ["+estagiario.getHorasSemanais()+"]: ");
+        System.out.print("Digite as horas semanais do contrato ["+this.estagiario.getHorasSemanais()+"]: ");
         int horas = input.nextInt();
 
         System.out.println("Confirma as alteracoes?");

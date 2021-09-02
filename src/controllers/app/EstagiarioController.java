@@ -11,29 +11,28 @@ import views.estagiario.*;
 public class EstagiarioController implements Controller {
 
     public void index() {
-        if(Auth.getUser().getRole().canShow()) 
-            Index.run();
+        new Index();
     }
 
     public void create() {
-        Create.form(); 
+        new Create(); 
     }
 
     public <E> void store(E estagiario) {
         Estagiarios.addEstagiario((Estagiario) estagiario);
-        if(Auth.isAuthenticated())
-            Index.run();
-        else App.login();
+        // new App();
     }
 
     public <E> void update(E estagiario) {
-        Edit.form((Estagiario) estagiario); 
+        new Edit((Estagiario) estagiario); 
     }
 
     public <E> void delete(E estagiario) {
-        if(Auth.getUser().getRole().canDelete()) {
+        if(Auth.getRole().canDelete()) {
             Estagiarios.removeEstagiario((Estagiario) estagiario);
             Users.removeUser((Estagiario) estagiario);
+        } else {
+            System.out.println("Voce nao tem permissao!");
         }
     }
     

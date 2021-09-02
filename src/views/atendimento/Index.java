@@ -1,4 +1,4 @@
-package views.estagiario;
+package views.atendimento;
 
 import util.auth.Auth;
 

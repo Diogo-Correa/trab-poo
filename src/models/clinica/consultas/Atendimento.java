@@ -1,5 +1,6 @@
 package models.clinica.consultas;
 
+import controllers.app.AtendimentoController;
 import models.clientes.Animal;
 import models.clinica.Veterinario;
 import util.Enfermidade;
@@ -7,14 +8,19 @@ import util.database.Veterinarios;
 import util.status.VeterinarioStatus;
 
 public class Atendimento {
+    private static int id = 0;
     private Animal animal;
     private Enfermidade enfermidade;
     private Veterinario veterinario;
 
     public Atendimento(Animal animal) {
         this.animal = animal;
+        id++;
+        new AtendimentoController().store(this);
     }
 
+    public int getId() { return id; }
+    
     public Animal getAnimal() {
         return this.animal;
     }
@@ -26,6 +32,7 @@ public class Atendimento {
     public void setEnfermidade(Enfermidade enfermidade) {
         this.enfermidade = enfermidade;
     }
+
 
     public void buscaVeterinario() {
         for(Veterinario vet : Veterinarios.getVeterinarios()) {

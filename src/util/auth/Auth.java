@@ -2,6 +2,7 @@ package util.auth;
 
 import app.App;
 import controllers.app.EstagiarioController;
+import controllers.middlewares.auth.Role;
 import models.clinica.User;
 import util.database.Users;
 import util.log.Activity;
@@ -19,15 +20,36 @@ public class Auth {
       new Activity("Usuário: " + this.name + " efetuou uma tentativa de login.");
       this.authenticate();
     }
+
+    /**
+     * Auth user
+     * @return usuario autenticado
+     */
   
     public static User getUser() {
       return authUser;
     }
+
+    /**
+     * Auth user get role
+     * @return role do usuario autenticado
+     */
+    public static Role getRole() {
+      return authUser.getRole();
+    }
   
+    
+    /** 
+     * Verifica se possui um usuario logado no sistema
+     * @return boolean 
+     */
     public static boolean isAuthenticated() {
       return authenticated;
     }
   
+    /** 
+     * Metodo de autenticacao de usuarios 
+     */
     private void authenticate() {
       for(User user : Users.getUsers()) {
         if(this.name.equals(user.getNome()) && this.password.equals(user.getPassword()) && !authenticated) {
@@ -42,17 +64,19 @@ public class Auth {
         System.out.println("Voce possui " + tentativesCount + " tentativas.");
         if(tentativesCount > 0) {
           tentativesCount--;
-          App.login();
         }
         else System.exit(0);
     }
 
+    /** 
+     * Metodo de logout de usuarios
+     */
     public static void logout() {
       String name = authUser.getNome();
       authenticated = false;
       authUser = null;
       tentativesCount = 3;
       new Activity("Usuário: " + name + " deslogou-se do sistema.");
-      App.login();
+      new App();
     }
   }

@@ -17,10 +17,10 @@ public class UsersGenerator implements Generator {
         admin.addPermission(Permission.DELETE); // success
         admin.addPermission(Permission.DELETE); // fail
     
-        mod.addPermission(Permission.EDIT);
-        // mod.addPermission(Permission.CREATE);
+        // mod.addPermission(Permission.EDIT);
+        mod.addPermission(Permission.CREATE);
         mod.addPermission(Permission.SHOW);
-        mod.addPermission(Permission.DELETE);
+        // mod.addPermission(Permission.DELETE);
         
         new Veterinario("Eduardo", "123", admin, 32, "123456789");
         new Veterinario("Celso", "123", admin,  42, "12345678");
