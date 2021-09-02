@@ -22,9 +22,9 @@ public class Enfermidades {
         new Activity("Enfermidade: " + enfermidade.getNome() + " foi removida do sistema.");
     }
 
-    public static Enfermidade find(String dado) {
+    public static Enfermidade find(int id) {
         for(Enfermidade enf : enfermidades) {
-            if(enf.getNome().equals(dado))
+            if(enf.getId() == id)
                 return enf;
         }
         return null;

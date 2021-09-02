@@ -29,13 +29,13 @@ public class Create {
         System.out.print("Digite a senha do veterinario: ");
         String password = input.next();
 
-        System.out.print("Escolha o nivel de acesso do veterinario: ");
-        for(Role role : Roles.getRoles()) System.out.print("["+role.getNome()+ "] ");
-        Role role = Roles.find(input.next());
+        System.out.print("Digite o ID do nivel de acesso do veterinario: ");
+        for(Role role : Roles.getRoles()) System.out.print(role.getId() +": "+role.getNome()+ "] ");
+        Role role = Roles.find(input.nextInt());
 
-        System.out.print("Escolha a especialidade do veterinario: ");
-        for(Enfermidade enfermidade : Enfermidades.getEnfermidades()) System.out.print("["+enfermidade.getNome()+ "] ");
-        Enfermidade especialidade = Enfermidades.find(input.next());
+        System.out.print("Digite o ID da especialidade do veterinario: ");
+        for(Enfermidade enfermidade : Enfermidades.getEnfermidades()) System.out.print(enfermidade.getId() +": "+enfermidade.getNome()+ "] ");
+        Enfermidade especialidade = Enfermidades.find(input.nextInt());
 
         System.out.print("CRMV: ");
         String crmv = input.next();

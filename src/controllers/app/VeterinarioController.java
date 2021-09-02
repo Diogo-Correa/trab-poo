@@ -1,6 +1,5 @@
 package controllers.app;
 
-import app.App;
 import controllers.Controller;
 import models.clinica.Veterinario;
 import util.auth.Auth;
@@ -18,19 +17,19 @@ public class VeterinarioController implements Controller {
         new Create(); 
     }
 
-    public <V> void store(V veterinario) {
-        Veterinarios.addVeterinario((Veterinario) veterinario);
+    public <V> void store(V obj) {
+        Veterinarios.addVeterinario((Veterinario) obj);
         // new App();
     }
 
-    public <V> void update(V veterinario) {
-        new Edit((Veterinario) veterinario); 
+    public void update(int id) {
+        new Edit(Veterinarios.find(id)); 
     }
 
-    public <V> void delete(V veterinario) {
+    public void delete(int id) {
         if(Auth.getRole().canDelete()) {
-            Veterinarios.removeVeterinario((Veterinario) veterinario);
-            Users.removeUser((Veterinario) veterinario); 
+            Veterinarios.removeVeterinario(Veterinarios.find(id));
+            Users.removeUser(Veterinarios.find(id)); 
         } else {
             System.out.println("Voce nao tem permissao!");
         }

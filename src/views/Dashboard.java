@@ -64,15 +64,15 @@ public class Dashboard {
                     break;
 
                 case 3:
-                    for(Estagiario estagiario : Estagiarios.getEstagiarios()) System.out.println(estagiario.getNome() + ": " + estagiario.getContrato());
-                    System.out.print("Digite o contrato do estagiario que deseja editar: ");
-                    new EstagiarioController().update(Estagiarios.find(input.next()));
+                    for(Estagiario estagiario : Estagiarios.getEstagiarios()) System.out.println(estagiario.getNome() + ": " + estagiario.getId());
+                    System.out.print("Digite o ID do estagiario que deseja editar: ");
+                    new EstagiarioController().update(input.nextInt());
                     break;
 
                 case 4:
-                    for(Estagiario estag : Estagiarios.getEstagiarios()) System.out.println(estag.getNome() + ": " + estag.getContrato());
-                    System.out.print("Digite o contrato do estagiario que deseja excluir: ");
-                    new EstagiarioController().delete(Estagiarios.find(input.next()));
+                    for(Estagiario estag : Estagiarios.getEstagiarios()) System.out.println(estag.getNome() + ": " + estag.getId());
+                    System.out.print("Digite o ID do estagiario que deseja excluir: ");
+                    new EstagiarioController().delete(input.nextInt());
                     break;
 
                 case 5:
@@ -80,15 +80,15 @@ public class Dashboard {
                     break;
 
                 case 6:
-                    for(Veterinario veterinario : Veterinarios.getVeterinarios()) System.out.println(veterinario.getNome() + ": " + veterinario.getCRMV());
-                    System.out.print("Digite o CRMV do veterinario que deseja editar: ");
-                    new VeterinarioController().update(Veterinarios.find(input.next()));
+                    for(Veterinario veterinario : Veterinarios.getVeterinarios()) System.out.println(veterinario.getNome() + ": " + veterinario.getId());
+                    System.out.print("Digite o ID do veterinario que deseja editar: ");
+                    new VeterinarioController().update(input.nextInt());
                     break;
                     
                 case 7:
-                    for(Veterinario veterinario : Veterinarios.getVeterinarios()) System.out.println(veterinario.getNome() + ": " + veterinario.getCRMV());
-                    System.out.print("Digite o CRMV do veterinario que deseja deletar: ");
-                    new VeterinarioController().delete(Veterinarios.find(input.next()));
+                    for(Veterinario veterinario : Veterinarios.getVeterinarios()) System.out.println(veterinario.getNome() + ": " + veterinario.getId());
+                    System.out.print("Digite o ID do veterinario que deseja deletar: ");
+                    new VeterinarioController().delete(input.nextInt());
                     break;
 
                 default:

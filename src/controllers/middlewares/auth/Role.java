@@ -8,11 +8,15 @@ import util.log.Activity;
 public class Role {
     private ArrayList<Permission> permissions = new ArrayList<Permission>();
     private String name;
+    private static int id = 0;
   
     public Role(String name) {
       this.name = name;
+      id++;
       Roles.addRole(this);
     }
+
+    public int getId() { return id; }
   
     public String getNome() { return this.name; }
 

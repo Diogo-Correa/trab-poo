@@ -22,9 +22,9 @@ public class Estagiarios {
         new Activity("Estagiario: " + estagiario.getNome() + " foi removido do sistema.");
     }
 
-    public static Estagiario find(String dado) {
+    public static Estagiario find(int id) {
         for(Estagiario est : estagiarios) {
-            if(est.getContrato().equals(dado))
+            if(est.getId() == id)
                 return est;
         }
         return null;

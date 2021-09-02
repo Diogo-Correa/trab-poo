@@ -30,9 +30,9 @@ public class Edit {
         System.out.print("Digite o nome do estagiario ["+this.estagiario.getNome()+"]: ");
         String name = input.next();
 
-        System.out.print("Escolha o nivel de acesso do estagiario: ");
-        for(Role role : Roles.getRoles()) System.out.print("["+role.getNome()+ "] ");
-        Role role = Roles.find(input.next());
+        System.out.print("Escolha o ID nivel de acesso do estagiario: ");
+        for(Role role : Roles.getRoles()) System.out.print(role.getId() +": "+role.getNome()+ "] ");
+        Role role = Roles.find(input.nextInt());
 
         System.out.print("Digite a idade do estagiario ["+this.estagiario.getIdade()+"]: ");
         int idade = input.nextInt();

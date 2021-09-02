@@ -15,7 +15,7 @@ public class Veterinario extends User {
         this.crmv = crmv;
         this.especialidade = especialidade;
         this.status = VeterinarioStatus.ATIVO;
-        new VeterinarioController().store(this);
+        new VeterinarioController().store(getId());
     }
 
     public Veterinario(String nome, String password, Role role, int idade, String crmv){

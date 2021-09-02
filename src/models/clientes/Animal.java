@@ -6,6 +6,8 @@ import util.Medicamento;
 import util.database.Animais;
 
 public class Animal {
+    private static int nextId = 0;
+    private int id;
     private ArrayList<Medicamento> medicamentos = new ArrayList<Medicamento>();
     private String nome, especie, raca, porte, pelagem;
     private boolean agressivo;
@@ -19,8 +21,11 @@ public class Animal {
         this.pelagem = pelagem;
         this.agressivo = agressivo;
         this.dono = dono;
+        this.id = nextId++;
         Animais.addAnimal(this);
     }
+
+    public int getId() { return id; }
 
     public String getNome() {
         return this.nome;

@@ -22,9 +22,9 @@ public class Animais {
         new Activity("Animal: " + animal.getNome() + " foi removido do sistema.");
     }
 
-    public static Animal find(String dado) {
+    public static Animal find(int id) {
         for(Animal animal : animais) {
-            if(animal.getNome().equals(dado))
+            if(animal.getId() == id)
                 return animal;
         }
         return null;

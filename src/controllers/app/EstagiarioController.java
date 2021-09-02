@@ -1,6 +1,5 @@
 package controllers.app;
 
-import app.App;
 import controllers.Controller;
 import models.clinica.Estagiario;
 import util.auth.Auth;
@@ -18,19 +17,19 @@ public class EstagiarioController implements Controller {
         new Create(); 
     }
 
-    public <E> void store(E estagiario) {
-        Estagiarios.addEstagiario((Estagiario) estagiario);
+    public <E> void store(E obj) {
+        Estagiarios.addEstagiario((Estagiario) obj);
         // new App();
     }
 
-    public <E> void update(E estagiario) {
-        new Edit((Estagiario) estagiario); 
+    public void update(int id) {
+        new Edit(Estagiarios.find(id)); 
     }
 
-    public <E> void delete(E estagiario) {
+    public void delete(int id) {
         if(Auth.getRole().canDelete()) {
-            Estagiarios.removeEstagiario((Estagiario) estagiario);
-            Users.removeUser((Estagiario) estagiario);
+            Estagiarios.removeEstagiario(Estagiarios.find(id));
+            Users.removeUser(Estagiarios.find(id));
         } else {
             System.out.println("Voce nao tem permissao!");
         }

@@ -10,9 +10,6 @@
 
 package app;
 
-import java.util.Scanner;
-
-import controllers.app.*;
 import util.auth.Auth;
 import util.generator.*;
 import util.log.Activity;

@@ -14,17 +14,17 @@ public class Atendimentos {
 
     public static void addAtendimento(Atendimento atendimento) {
         atendimentos.add(atendimento);
-        new Activity("Atendimento: " + atendimento + " foi adicionado ao sistema.");
+        new Activity("Atendimento: " + atendimento + " foi adicionado ao sistema por " + atendimento.getEstagiario().getNome() + ".");
     }
 
     public static void removeAtendimento(Atendimento atendimento) {
         atendimentos.remove(atendimento);
-        new Activity("Atendimento: " + atendimento + " foi removido do sistema.");
+        new Activity("Atendimento: " + atendimento + " foi removido do sistema " + atendimento.getEstagiario().getNome() + ".");
     }
 
-    public static Atendimento find(int dado) {
+    public static Atendimento find(int id) {
         for(Atendimento atendimento : atendimentos) {
-            if(atendimento.getId() == dado)
+            if(atendimento.getId() == id)
                 return atendimento;
         }
         return null;

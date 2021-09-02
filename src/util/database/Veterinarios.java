@@ -22,9 +22,9 @@ public class Veterinarios {
         new Activity("Veterinario: " + veterinario.getNome() + " foi removido do sistema.");
     }
 
-    public static Veterinario find(String dado) {
+    public static Veterinario find(int id) {
         for(Veterinario vet : veterinarios) {
-            if(vet.getCRMV().equals(dado))
+            if(vet.getId() == id)
                 return vet;
         }
         return null;

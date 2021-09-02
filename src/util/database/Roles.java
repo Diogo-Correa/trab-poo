@@ -22,9 +22,9 @@ public class Roles {
         new Activity("Role: " + role.getNome() + " foi removida do sistema.");
     }
 
-    public static Role find(String dado) {
+    public static Role find(int id) {
         for(Role r : roles) {
-            if(r.getNome().equals(dado))
+            if(r.getId() == id)
                 return r;
         }
         return null;

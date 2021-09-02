@@ -22,9 +22,9 @@ public class Users {
         new Activity("User: " + user.getNome() + " foi removida do sistema.");
     }
 
-    public static User find(String dado) {
+    public static User find(int id) {
         for(User u : users) {
-            if(u.getNome().equals(dado))
+            if(u.getId() == id)
                 return u;
         }
         return null;

@@ -16,20 +16,20 @@ public class AtendimentoController implements Controller {
         new Create(); 
     }
 
-    public <A> void store(A atendimento) {
-        Atendimentos.addAtendimento((Atendimento) atendimento);
+    public <A> void store(A obj) {
+        Atendimentos.addAtendimento((Atendimento) obj);
         // new App();
         
     }
 
-    public <A> void update(A atendimento) {
+    public void update(int id) {
         // Edit.form((atendimento) atendimento); 
         
     }
 
-    public <A> void delete(A atendimento) {
+    public void delete(int id) {
         if(Auth.getRole().canDelete()) {
-            Atendimentos.removeAtendimento((Atendimento) atendimento);
+            Atendimentos.removeAtendimento(Atendimentos.find(id));
         } else {
             System.out.println("Voce nao tem permissao!");
         }

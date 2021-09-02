@@ -2,20 +2,24 @@ package models.clinica.consultas;
 
 import controllers.app.AtendimentoController;
 import models.clientes.Animal;
+import models.clinica.User;
 import models.clinica.Veterinario;
 import util.Enfermidade;
 import util.database.Veterinarios;
 import util.status.VeterinarioStatus;
 
 public class Atendimento {
-    private static int id = 0;
+    private static int nextId = 0;
+    private int id = 0;
     private Animal animal;
     private Enfermidade enfermidade;
     private Veterinario veterinario;
+    private User user;
 
-    public Atendimento(Animal animal) {
+    public Atendimento(Animal animal, User user) {
         this.animal = animal;
-        id++;
+        this.user = user;
+        this.id = nextId++;
         new AtendimentoController().store(this);
     }
 
@@ -33,6 +37,13 @@ public class Atendimento {
         this.enfermidade = enfermidade;
     }
 
+    public Veterinario getVeterinario() {
+        return this.veterinario;
+    }
+
+    public User getEstagiario() {
+        return this.user;
+    }
 
     public void buscaVeterinario() {
         for(Veterinario vet : Veterinarios.getVeterinarios()) {
@@ -51,9 +62,6 @@ public class Atendimento {
         if(this.veterinario == null) System.out.println("Nenhum veterinário disponivel.");
     }
 
-    public Veterinario getVeterinario() {
-        return this.veterinario;
-    }
 
     public Consulta abreConsulta() {
 

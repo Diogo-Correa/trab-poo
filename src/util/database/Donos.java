@@ -22,9 +22,9 @@ public class Donos {
         new Activity("Dono: " + dono.getNome() + " foi removido do sistema.");
     }
 
-    public static Dono find(String dado) {
+    public static Dono find(int id) {
         for(Dono dono : donos) {
-            if(dono.getNome().equals(dado))
+            if(dono.getId() == id)
                 return dono;
         }
         return null;
