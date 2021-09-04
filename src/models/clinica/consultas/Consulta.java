@@ -6,6 +6,7 @@ import models.clientes.Animal;
 import models.clinica.Veterinario;
 import util.Enfermidade;
 import util.errors.AltaJaFechada;
+import util.status.AnimalStatus;
 import util.status.VeterinarioStatus;
 
 public class Consulta {
@@ -21,6 +22,7 @@ public class Consulta {
         this.veterinario = veterinario;
         this.veterinario.setStatus(VeterinarioStatus.ATENDENDO);
         this.animal = animal;
+        this.animal.setStatus(AnimalStatus.EM_ATENDIMENTO);
         this.enfermidade = enfermidade;
         this.id = nextId++;
         this.dataDaConsultaAbertura = new Date();
@@ -55,6 +57,7 @@ public class Consulta {
             this.resultadoDaConsulta.fechar();
             this.dataDaConsultaFechamento = new Date();
             this.veterinario.setStatus(VeterinarioStatus.ATIVO);
+            this.animal.setStatus(AnimalStatus.ATIVO);
         }catch(AltaJaFechada e){
             // Tratar caso a alta já tenha sido fechada
             System.out.println(e); // Temp

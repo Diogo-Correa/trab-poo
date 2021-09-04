@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import util.Medicamento;
 import util.database.Animais;
+import util.status.AnimalStatus;
 
 public class Animal {
     private static int nextId = 0;
     private int id;
+    private AnimalStatus status;
     private ArrayList<Medicamento> medicamentos = new ArrayList<Medicamento>();
     private String nome, especie, raca, porte, pelagem;
     private boolean agressivo;
@@ -21,11 +23,15 @@ public class Animal {
         this.pelagem = pelagem;
         this.agressivo = agressivo;
         this.dono = dono;
+        this.status = AnimalStatus.ATIVO;
         this.id = nextId++;
         Animais.addAnimal(this);
     }
 
     public int getId() { return id; }
+
+    public AnimalStatus getStatus() { return this.status; }
+    public void setStatus(AnimalStatus status) { this.status = status; }
 
     public String getNome() {
         return this.nome;

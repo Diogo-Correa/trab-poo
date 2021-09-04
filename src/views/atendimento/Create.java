@@ -14,6 +14,7 @@ import util.Enfermidade;
 import util.auth.Auth;
 import util.database.Animais;
 import util.database.Enfermidades;
+import util.status.AnimalStatus;
 import views.Dashboard;
 
 public class Create extends JFrame implements ActionListener{
@@ -46,7 +47,8 @@ public class Create extends JFrame implements ActionListener{
 
         this.animais_text = new JLabel("Selecione um animal: ");
         for(Animal a : Animais.getAnimais()) {
-            animaisVec.addElement(new ComboBoxItem(a.getId(), a.getNome()));
+            if(a.getStatus() != AnimalStatus.EM_ATENDIMENTO)
+                animaisVec.addElement(new ComboBoxItem(a.getId(), a.getNome()));
         }
         this.animais = new JComboBox(animaisVec);
 
