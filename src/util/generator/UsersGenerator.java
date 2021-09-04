@@ -4,6 +4,7 @@ import controllers.middlewares.auth.Permission;
 import controllers.middlewares.auth.Role;
 import models.clinica.Estagiario;
 import models.clinica.Veterinario;
+import models.clinica.consultas.Consulta;
 
 public class UsersGenerator implements Generator {
     public static void generate() {
@@ -21,7 +22,8 @@ public class UsersGenerator implements Generator {
         mod.addPermission(Permission.CREATE);
         mod.addPermission(Permission.SHOW);
         // mod.addPermission(Permission.DELETE);
-        
+
+        // Veterinarios
         new Veterinario("Eduardo", "123", admin, 32, "123456789");
         new Veterinario("Celso", "123", admin,  42, "12345678");
         new Veterinario("Maria", "123", admin,  31, "1234567");
@@ -34,8 +36,7 @@ public class UsersGenerator implements Generator {
         new Veterinario("Guilherme", "123", admin,  35, "98765432");
         new Veterinario("Julia", "123", admin,  32, "987654321");
 
-
-        
+        // Estagiarios
         new Estagiario("Helena", "123", mod,  26, 20, "2020.2Z");
         new Estagiario("Andressa", "123", mod,  28, 20, "2021.1A");
         new Estagiario("Gabriel", "123", mod,  24, 20, "2021.2C");

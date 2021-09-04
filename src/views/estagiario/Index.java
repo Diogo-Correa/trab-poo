@@ -3,6 +3,7 @@ package views.estagiario;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.*;
 
 import models.clinica.Estagiario;
 import util.auth.Auth;
@@ -26,6 +27,7 @@ public class Index extends JFrame implements ActionListener {
 
         // panel
         this.panel = new JPanel(new GridLayout(Estagiarios.getEstagiarios().size(),1));
+        this.panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         
         // this.panel.add(this.cancel);
@@ -41,9 +43,9 @@ public class Index extends JFrame implements ActionListener {
 
             this.panel.add(estagId);
             this.panel.add(estagName);
-            this.panel.add(show);
-            this.panel.add(edit);
-            this.panel.add(delete);
+            if(Auth.getRole().canShow()) this.panel.add(show);
+            if(Auth.getRole().canEdit()) this.panel.add(edit);
+            if(Auth.getRole().canDelete()) this.panel.add(delete);
 
             estagId.setText("ID:" + estag.getId());
             estagName.setText(estag.getNome());
