@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import models.clinica.consultas.Consulta;
 import util.auth.Auth;
 import util.log.Activity;
-import util.status.VeterinarioStatus;
 
 public class Consultas {
     private static ArrayList<Consulta> consultas = new ArrayList<Consulta>();

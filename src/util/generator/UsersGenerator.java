@@ -4,7 +4,6 @@ import controllers.middlewares.auth.Permission;
 import controllers.middlewares.auth.Role;
 import models.clinica.Estagiario;
 import models.clinica.Veterinario;
-import models.clinica.consultas.Consulta;
 
 public class UsersGenerator implements Generator {
     public static void generate() {

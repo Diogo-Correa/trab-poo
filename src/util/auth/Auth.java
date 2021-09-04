@@ -3,7 +3,6 @@ package util.auth;
 import app.App;
 import controllers.middlewares.auth.Role;
 import models.clinica.User;
-import models.clinica.Veterinario;
 import util.database.Users;
 import util.log.Activity;
 import views.*;

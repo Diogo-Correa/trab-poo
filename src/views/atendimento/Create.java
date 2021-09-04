@@ -2,12 +2,14 @@ package views.atendimento;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
+
 import javax.swing.*;
 import javax.swing.border.*;
 
 import models.clientes.Animal;
 import models.clinica.consultas.Atendimento;
-import models.clinica.consultas.Consulta;
+import util.ComboBoxItem;
 import util.Enfermidade;
 import util.auth.Auth;
 import util.database.Animais;
@@ -21,6 +23,7 @@ public class Create extends JFrame implements ActionListener{
     private JComboBox animais, enfermidades;
     private JButton buscarVet, finalizar;
     private Atendimento atendimento;
+    private Vector enfermidadesVec, animaisVec;
 
     public Create() {
         if(Auth.getRole().canCreate()) run();
@@ -32,25 +35,27 @@ public class Create extends JFrame implements ActionListener{
 
     public void run() {
 
+        // vetores
+        this.animaisVec = new Vector();
+        this.enfermidadesVec = new Vector();
+
         // panel
         this.panel = new JPanel(new GridLayout(10, 10, 10, 10));
         this.panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        this.animais = new JComboBox();
-        this.animais_text = new JLabel();
-        this.animais_text.setText("Selecione um animal: ");
 
-        this.enfermidades = new JComboBox();
-        this.enfermidades_text = new JLabel();
-        this.enfermidades_text.setText("Selecione uma enfermidade: ");
-
+        this.animais_text = new JLabel("Selecione um animal: ");
         for(Animal a : Animais.getAnimais()) {
-            this.animais.addItem(a);
+            animaisVec.addElement(new ComboBoxItem(a.getId(), a.getNome()));
         }
+        this.animais = new JComboBox(animaisVec);
 
+
+        this.enfermidades_text = new JLabel("Selecione uma enfermidade: ");
         for(Enfermidade e : Enfermidades.getEnfermidades()) {
-            this.enfermidades.addItem(e);
+            enfermidadesVec.addElement(new ComboBoxItem(e.getId(), e.getNome()));
         }
+        this.enfermidades = new JComboBox(enfermidadesVec);
 
 
         this.buscarVet = new JButton("Buscar veterinario");
@@ -79,15 +84,30 @@ public class Create extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.buscarVet) {
-            this.atendimento = new Atendimento((Animal) this.animais.getSelectedItem(), Auth.getUser());
+            // abre atendimento
+            ComboBoxItem animal = (ComboBoxItem) this.animais.getSelectedItem();
+            this.atendimento = new Atendimento(Animais.find(animal.getId()), Auth.getUser());
             
             // seta a enfermidade no animal
-            this.atendimento.setEnfermidade((Enfermidade) this.enfermidades.getSelectedItem());
+            ComboBoxItem enfermidade = (ComboBoxItem) this.enfermidades.getSelectedItem();
+            this.atendimento.setEnfermidade(Enfermidades.find(enfermidade.getId()));
 
             // busca por um veterinario
             this.atendimento.buscaVeterinario();
 
-            this.veterinario.setText(atendimento.getVeterinario().getNome());
+            if(atendimento.getVeterinario().getEspecialidade() == this.enfermidades.getSelectedItem())
+                this.veterinario.setText(
+                    "Veterinario selecionado: " + 
+                    atendimento.getVeterinario().getNome() +
+                    " | Especialista: Sim"
+                );
+
+            else
+                this.veterinario.setText(
+                        "Veterinario selecionado: " + 
+                        atendimento.getVeterinario().getNome() +
+                        " | Especialista: Nao"
+                    );
 
             this.panel.add(this.finalizar);
         }
@@ -100,6 +120,4 @@ public class Create extends JFrame implements ActionListener{
         }
         
     }
-
-
 }
