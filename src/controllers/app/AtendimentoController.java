@@ -16,6 +16,15 @@ public class AtendimentoController implements Controller {
     }
 
     /**
+     * Metodo para redirecionar para a view de visualizacao
+     * @param id Id referente ao Atendimento
+     */
+    public void show(int id) {
+        // Edit.form((atendimento) atendimento); 
+        
+    }
+
+    /**
      * Metodo para redirecionar para a view create do Atendimento
      */
     public void create() {

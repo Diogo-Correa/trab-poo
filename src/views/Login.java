@@ -51,7 +51,7 @@ public class Login extends JFrame implements ActionListener {
         this.panel.add(submit);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        
         // event listener
         this.submit.addActionListener(this);
         // this.cancel.addActionListener(this);

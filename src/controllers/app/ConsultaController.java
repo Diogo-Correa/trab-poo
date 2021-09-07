@@ -16,6 +16,12 @@ public class ConsultaController implements Controller {
     }
 
     /**
+     * Metodo para redirecionar para a view de visualizacao
+     * @param id Id referente ao Consulta
+     */
+    public void show(int id) {}
+
+    /**
      * Metodo para redirecionar para a view create da Consulta
      */
     public void create() {

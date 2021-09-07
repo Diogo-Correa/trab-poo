@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import controllers.app.*;
+import models.clientes.Animal;
 import models.clinica.Estagiario;
 import models.clinica.Veterinario;
 import models.clinica.consultas.Consulta;
@@ -33,6 +34,9 @@ public class Dashboard extends JFrame implements ActionListener {
 
     // Verifica se o usuario logado eh um estagiario
     private Estagiario estag = Estagiarios.find(Auth.getUser().getId());
+
+    // Pega o animal referente a consulta aberta
+    private Animal animal;
 
     public Dashboard() {
         super("[VetSystem] POO Project");
@@ -77,6 +81,8 @@ public class Dashboard extends JFrame implements ActionListener {
         if(this.vet != null && vet.getVeterinarioStatus() == VeterinarioStatus.ATENDENDO) {
 
             this.consulta = Consultas.findOpenConsulta();
+            this.animal = consulta.getAnimal();
+
             this.fecharConsulta = new JButton("FECHAR CONSULTA");
             this.abrirFicha = new JButton("ABRIR FICHA");
             this.emConsulta = new JLabel();
@@ -95,6 +101,7 @@ public class Dashboard extends JFrame implements ActionListener {
             this.panel.add(this.abrirFicha);
             this.panel.add(this.fecharConsulta);
 
+            this.abrirFicha.addActionListener(this);
             this.fecharConsulta.addActionListener(this);
         } 
         
@@ -103,6 +110,7 @@ public class Dashboard extends JFrame implements ActionListener {
 
         this.logout.addActionListener(this);
         this.novoAtend.addActionListener(this);
+        this.vetItem.addActionListener(this);
         this.estagItem.addActionListener(this);
         this.ContentPane = getContentPane();
         this.ContentPane.add(this.mainMenu, BorderLayout.NORTH);
@@ -127,8 +135,16 @@ public class Dashboard extends JFrame implements ActionListener {
             new AtendimentoController().create();
         }
 
+        if (e.getSource() == this.vetItem) {
+            new VeterinarioController().index();
+        }
+
         if (e.getSource() == this.estagItem) {
             new EstagiarioController().index();
+        }
+
+        if (e.getSource() == this.abrirFicha) {
+            new AnimalController().show(this.animal.getId());
         }
 
         if (e.getSource() == this.fecharConsulta) {

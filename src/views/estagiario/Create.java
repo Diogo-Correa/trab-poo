@@ -36,9 +36,8 @@ public class Create {
         System.out.print("Digite as horas semanais do contrato: ");
         int horas = input.nextInt();
 
-        System.out.print("Digite o numero de contrato do estagiario: (usado para localizar no sistema) ");
-        String contrato = input.next();
+        input.close();
 
-        new Estagiario(name, password, role,  idade, horas, contrato);
+        new Estagiario(name, password, role,  idade, horas);
     }
 }

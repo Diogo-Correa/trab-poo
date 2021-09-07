@@ -36,8 +36,8 @@ public class UsersGenerator implements Generator {
         new Veterinario("Julia", "123", admin,  32, "987654321");
 
         // Estagiarios
-        new Estagiario("Helena", "123", mod,  26, 20, "2020.2Z");
-        new Estagiario("Andressa", "123", mod,  28, 20, "2021.1A");
-        new Estagiario("Gabriel", "123", mod,  24, 20, "2021.2C");
+        new Estagiario("Helena", "123", mod,  26, 20);
+        new Estagiario("Andressa", "123", mod,  28, 20);
+        new Estagiario("Gabriel", "123", mod,  24, 20);
     }
 }

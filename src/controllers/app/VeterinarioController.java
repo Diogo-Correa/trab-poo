@@ -17,6 +17,14 @@ public class VeterinarioController implements Controller {
     }
 
     /**
+     * Metodo para redirecionar para a view de visualizacao
+     * @param id Id referente ao Veterinario
+     */
+    public void show(int id) {
+        new Show(Veterinarios.find(id));
+    }
+
+    /**
      * Metodo para redirecionar para a view index do Veterinario
      */
     public void create() {
@@ -48,7 +56,7 @@ public class VeterinarioController implements Controller {
     public void delete(int id) {
         if(Auth.getRole().canDelete()) {
             Veterinarios.removeVeterinario(Veterinarios.find(id));
-            Users.removeUser(Veterinarios.find(id)); 
+            Users.removeUser(Users.find(id)); 
         } else {
             System.out.println("Voce nao tem permissao!");
         }

@@ -17,6 +17,14 @@ public class EstagiarioController implements Controller {
     }
 
     /**
+     * Metodo para redirecionar para a view de visualizacao
+     * @param id Id referente ao Estagiario
+     */
+    public void show(int id) {
+        new Show(Estagiarios.find(id));
+    }
+
+    /**
      * Metodo para redirecionar para a view index do Estagiario
      */
     public void create() {
@@ -47,7 +55,7 @@ public class EstagiarioController implements Controller {
     public void delete(int id) {
         if(Auth.getRole().canDelete()) {
             Estagiarios.removeEstagiario(Estagiarios.find(id));
-            Users.removeUser(Estagiarios.find(id));
+            Users.removeUser(Users.find(id));
         } else {
             System.out.println("Voce nao tem permissao!");
         }

@@ -5,11 +5,12 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import controllers.app.EstagiarioController;
 import models.clinica.Estagiario;
 import util.auth.Auth;
 import util.database.Estagiarios;
 
-public class Index extends JFrame implements ActionListener {
+public class Index extends JFrame {
 
     private JPanel panel;
 
@@ -26,7 +27,7 @@ public class Index extends JFrame implements ActionListener {
         // this.cancel = new JButton("FECHAR");
 
         // panel
-        this.panel = new JPanel(new GridLayout(Estagiarios.getEstagiarios().size(),1));
+        this.panel = new JPanel(new GridLayout(Estagiarios.getEstagiarios().size(), 10, 10, 10));
         this.panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         
@@ -43,9 +44,30 @@ public class Index extends JFrame implements ActionListener {
 
             this.panel.add(estagId);
             this.panel.add(estagName);
-            if(Auth.getRole().canShow()) this.panel.add(show);
+            if(Auth.getRole().canShow()) {
+                this.panel.add(show);
+                show.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) { 
+                        new EstagiarioController().show(estag.getId());
+                    }
+                });
+            };
             if(Auth.getRole().canEdit()) this.panel.add(edit);
-            if(Auth.getRole().canDelete()) this.panel.add(delete);
+            if(Auth.getRole().canDelete()) {
+                this.panel.add(delete);
+                delete.addActionListener(new ActionListener()
+                {
+                    public void actionPerformed(ActionEvent ae)
+                    {
+                        int res = JOptionPane.showConfirmDialog(panel,
+                       "Deseja excluir o estagiario "+ estag.getNome() +"?");
+
+                       if(res == JOptionPane.YES_OPTION) {
+                        new EstagiarioController().delete(estag.getId());
+                       }
+                    }
+                });
+            }
 
             estagId.setText("ID:" + estag.getId());
             estagName.setText(estag.getNome());
@@ -55,11 +77,7 @@ public class Index extends JFrame implements ActionListener {
         // this.submit.addActionListener(this);
         add(panel, BorderLayout.CENTER);
         setTitle("[VetSystem] POO Project - Estagiarios");
-        setSize(400, 100);
+        setSize(500, Estagiarios.getEstagiarios().size()*100);
         setVisible(true);
-    }
-
-    public void actionPerformed(ActionEvent e) { 
-
     }
 }
