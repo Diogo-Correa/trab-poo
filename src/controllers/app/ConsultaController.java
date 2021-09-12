@@ -1,9 +1,12 @@
 package controllers.app;
 
+import java.awt.*;
+
 import controllers.Controller;
 import models.clinica.consultas.Consulta;
 import util.auth.Auth;
 import util.database.Consultas;
+import views.Dashboard;
 import views.atendimento.*;
 
 public class ConsultaController implements Controller {
@@ -34,7 +37,7 @@ public class ConsultaController implements Controller {
      */
     public <A> void store(A obj) {
         Consultas.addConsulta((Consulta) obj);
-        // new App();
+        Dashboard.setMessage("Consulta adicionada com sucesso", Color.GREEN);
         
     }
 
@@ -54,6 +57,7 @@ public class ConsultaController implements Controller {
     public void delete(int id) {
         if(Auth.getRole().canDelete()) {
             Consultas.removeConsulta(Consultas.find(id));
+            Dashboard.setMessage("Cosulta deletada com sucesso", Color.RED);
         } else {
             System.out.println("Voce nao tem permissao!");
         }

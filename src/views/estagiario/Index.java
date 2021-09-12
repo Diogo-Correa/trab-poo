@@ -23,13 +23,9 @@ public class Index extends JFrame {
 
     public void run() {
 
-        //cancel
-        // this.cancel = new JButton("FECHAR");
-
         // panel
         this.panel = new JPanel(new GridLayout(Estagiarios.getEstagiarios().size(), 10, 10, 10));
         this.panel.setBorder(new EmptyBorder(10, 10, 10, 10));
-
         
         // this.panel.add(this.cancel);
         for(Estagiario estag : Estagiarios.getEstagiarios()) {
@@ -44,6 +40,8 @@ public class Index extends JFrame {
 
             this.panel.add(estagId);
             this.panel.add(estagName);
+
+            // Show button
             if(Auth.getRole().canShow()) {
                 this.panel.add(show);
                 show.addActionListener(new ActionListener() {
@@ -52,18 +50,24 @@ public class Index extends JFrame {
                     }
                 });
             };
+
+            // Edit button
             if(Auth.getRole().canEdit()) this.panel.add(edit);
+
+            // Delete button
             if(Auth.getRole().canDelete()) {
                 this.panel.add(delete);
                 delete.addActionListener(new ActionListener()
                 {
-                    public void actionPerformed(ActionEvent ae)
+                    public void actionPerformed(ActionEvent e)
                     {
                         int res = JOptionPane.showConfirmDialog(panel,
                        "Deseja excluir o estagiario "+ estag.getNome() +"?");
 
                        if(res == JOptionPane.YES_OPTION) {
                         new EstagiarioController().delete(estag.getId());
+                        dispose();
+                        new EstagiarioController().index();
                        }
                     }
                 });

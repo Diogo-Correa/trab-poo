@@ -45,6 +45,7 @@ public class Index extends JFrame {
             this.panel.add(vetId);
             this.panel.add(vetName);
 
+            // Show button
             if(Auth.getRole().canShow()) {
                 this.panel.add(show);
                 show.addActionListener(new ActionListener() {
@@ -54,19 +55,23 @@ public class Index extends JFrame {
                 });
             };
 
+            // Edit button
             if(Auth.getRole().canEdit()) this.panel.add(edit);
 
+            // Delete button
             if(Auth.getRole().canDelete()) {
                 this.panel.add(delete);
                 delete.addActionListener(new ActionListener()
                 {
-                    public void actionPerformed(ActionEvent ae)
+                    public void actionPerformed(ActionEvent e)
                     {
                         int res = JOptionPane.showConfirmDialog(panel,
                        "Deseja excluir o veterinario "+ vet.getNome() +"?");
 
                        if(res == JOptionPane.YES_OPTION) {
                         new VeterinarioController().delete(vet.getId());
+                        dispose();
+                        new VeterinarioController().index();
                        }
                     }
                 });

@@ -22,7 +22,7 @@ public class Dashboard extends JFrame implements ActionListener {
     private static JLabel message;
     private JLabel emConsulta, enfermidade, dataConsulta;
     private JMenu userMenu, atendMenu, vetMenu, estagMenu;
-    private JMenuItem logout, novoAtend, vetItem, estagItem;
+    private JMenuItem logout, novoAtend, vetItem, estagItem, novoEstag, novoVet;
     private JMenuBar mainMenu;
     private Container ContentPane;
     private JButton fecharConsulta, abrirFicha;
@@ -55,10 +55,24 @@ public class Dashboard extends JFrame implements ActionListener {
         this.atendMenu.add(this.novoAtend);
 
         // Veterinarios items
+        this.novoVet = new JMenuItem("Novo", new ImageIcon());
+        this.vetMenu.add(this.novoVet);
+        this.novoVet.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) { 
+                new VeterinarioController().create();
+            }
+        });
         this.vetItem = new JMenuItem("Listagem", new ImageIcon());
         this.vetMenu.add(this.vetItem);
 
         // Veterinarios items
+        this.novoEstag = new JMenuItem("Novo", new ImageIcon());
+        this.estagMenu.add(this.novoEstag);
+        this.novoEstag.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) { 
+                new EstagiarioController().create();
+            }
+        });
         this.estagItem = new JMenuItem("Listagem", new ImageIcon());
         this.estagMenu.add(this.estagItem);
 

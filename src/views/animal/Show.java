@@ -59,7 +59,6 @@ public class Show extends JFrame implements ActionListener{
         this.panel.add(this.agressivo);
         this.panel.add(this.status);
         this.panel.add(this.dono);
-        this.animal.addMedicamento(new Medicamento("Gardenal", 1));
 
         if(this.animal.getMedicamentos().size() == 0) {
             this.panel.add(this.semMedicamentos);

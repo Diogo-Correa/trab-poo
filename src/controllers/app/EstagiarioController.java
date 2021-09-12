@@ -1,10 +1,13 @@
 package controllers.app;
 
+import java.awt.*;
+
 import controllers.Controller;
 import models.clinica.Estagiario;
 import util.auth.Auth;
 import util.database.Estagiarios;
 import util.database.Users;
+import views.Dashboard;
 import views.estagiario.*;
 
 public class EstagiarioController implements Controller {
@@ -37,7 +40,7 @@ public class EstagiarioController implements Controller {
      */
     public <E> void store(E obj) {
         Estagiarios.addEstagiario((Estagiario) obj);
-        // new App();
+        //Dashboard.setMessage("Estagiario adicionado com sucesso", Color.GREEN);
     }
 
     /**
@@ -56,6 +59,7 @@ public class EstagiarioController implements Controller {
         if(Auth.getRole().canDelete()) {
             Estagiarios.removeEstagiario(Estagiarios.find(id));
             Users.removeUser(Users.find(id));
+            Dashboard.setMessage("Estagiario deletado com sucesso", Color.RED);
         } else {
             System.out.println("Voce nao tem permissao!");
         }

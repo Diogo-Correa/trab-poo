@@ -1,13 +1,9 @@
 package views.animal;
 
-import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.*;
 
-import models.clientes.Animal;
 import util.auth.Auth;
-import util.database.Animais;
 
 public class Index extends JFrame implements ActionListener{
 

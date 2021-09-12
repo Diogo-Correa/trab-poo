@@ -20,6 +20,7 @@ public class UsersGenerator implements Generator {
         // mod.addPermission(Permission.EDIT);
         mod.addPermission(Permission.CREATE);
         mod.addPermission(Permission.SHOW);
+        mod.addPermission(Permission.EDIT);
         // mod.addPermission(Permission.DELETE);
 
         // Veterinarios

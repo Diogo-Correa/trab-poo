@@ -45,6 +45,8 @@ public class Edit {
         System.out.println("[1] Sim");
         int confirma = input.nextInt();
 
+        input.close();
+        
         if(confirma == 0) {
           new App();
         } else {
