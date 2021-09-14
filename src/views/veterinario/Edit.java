@@ -7,7 +7,6 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import controllers.app.VeterinarioController;
 import controllers.middlewares.auth.Role;
 import models.clinica.Veterinario;
 import util.ComboBoxItem;

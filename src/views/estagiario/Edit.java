@@ -1,62 +1,126 @@
 package views.estagiario;
 
-import java.util.Scanner;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
 
-import app.App;
+import javax.swing.*;
+import javax.swing.border.*;
+
 import controllers.middlewares.auth.Role;
 import models.clinica.Estagiario;
+import util.ComboBoxItem;
 import util.auth.Auth;
 import util.database.Roles;
 
-public class Edit {
+public class Edit extends JFrame {
 
     private Estagiario estagiario;
+    
+    private JPanel panel;
+    private JLabel nome_txt, role_txt, idade_txt, horas_txt, error, br2;
+    private JTextField nome, idade, horas;    
+    private JComboBox role;
+    private JButton atualizar, cancelar;
+    private Vector roles;
 
     public Edit(Estagiario estagiario) {
-        if(!Auth.getRole().canEdit()) {
-            System.out.println("Voce nao tem permissao!");
-        } else {
+        if(Auth.getRole().canEdit() && estagiario != null) {
             this.estagiario = estagiario;
-            this.form();
+            run();
+        }
+        else { 
+            System.out.println("Voce nao tem permissao");
+            dispose();
         }
     }
+    
+    public void run() {
 
-    public void form() {
-        Scanner input = new Scanner(System.in);
+        // vetores
+        this.roles = new Vector();
 
-        System.out.println("[Formulario de edicao de estagiarios]");
-        System.out.println("[Digite o mesmo valor caso nao queira alterar]");
+        // panel
+        this.panel = new JPanel(new GridLayout(10, 10, 10, 10));
+        this.panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        System.out.print("Digite o nome do estagiario ["+this.estagiario.getNome()+"]: ");
-        String name = input.next();
+        // labels
+        this.nome_txt = new JLabel("Digite o nome do usuario: ");
+        this.idade_txt = new JLabel("Digite a idade: ");
+        this.horas_txt = new JLabel("Digite as horas semanais: ");
+        this.role_txt = new JLabel("Selecione um nivel de acesso: ");
+        this.br2 = new JLabel();
+        this.error = new JLabel();
 
-        System.out.print("Escolha o ID nivel de acesso do estagiario: ");
-        for(Role role : Roles.getRoles()) System.out.print(role.getId() +": "+role.getNome()+ "] ");
-        Role role = Roles.find(input.nextInt());
+        // inputs
+        this.nome = new JTextField(this.estagiario.getNome());
+        this.idade = new JTextField(Integer.toString(this.estagiario.getIdade()));
+        this.horas = new JTextField(Integer.toString(this.estagiario.getHorasSemanais()));
 
-        System.out.print("Digite a idade do estagiario ["+this.estagiario.getIdade()+"]: ");
-        int idade = input.nextInt();
-
-        System.out.print("Digite as horas semanais do contrato ["+this.estagiario.getHorasSemanais()+"]: ");
-        int horas = input.nextInt();
-
-        System.out.println("Confirma as alteracoes?");
-        System.out.println("[0] Nao");
-        System.out.println("[1] Sim");
-        int confirma = input.nextInt();
-
-        input.close();
-        
-        if(confirma == 0) {
-          new App();
-        } else {
-            estagiario.setNome(name);
-            estagiario.setRole(role);
-            estagiario.setIdade(idade);
-            estagiario.setHorasSemanais(horas);
-            new App();
+        this.role = new JComboBox(this.roles);
+        for(Role r : Roles.getRoles()) {
+            ComboBoxItem rol = new ComboBoxItem(r.getId(), r.getNome());
+            this.roles.addElement(rol);
+            if(r == this.estagiario.getRole()) this.role.setSelectedItem(rol);
         }
 
+        this.atualizar = new JButton("Atualizar");
+        this.cancelar = new JButton("Cancelar");
+        
+        this.panel.add(this.error);
+        this.error.setForeground(Color.RED);
+        this.panel.add(this.br2);
 
+        this.panel.add(this.nome_txt);
+        this.panel.add(this.nome);
+
+        this.panel.add(this.idade_txt);
+        this.panel.add(this.idade);
+
+        this.panel.add(this.horas_txt);
+        this.panel.add(this.horas);
+
+        this.panel.add(this.role_txt);
+        this.panel.add(this.role);
+
+        this.panel.add(this.atualizar);
+        this.atualizar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                update();
+            }
+        });
+        this.panel.add(cancelar);
+        this.cancelar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+
+
+        add(panel, BorderLayout.CENTER);
+        //this.atualizar.addActionListener(this);
+        //this.cancelar.addActionListener(this);
+        setTitle("[VetSystem] POO Project - Editar estagiario");
+        setSize(400, 400);
+        setVisible(true);
+    }
+
+    public void update() {
+        if(!this.nome.getText().trim().equals("") && !this.idade.getText().trim().equals("") && !this.horas.getText().trim().equals("")) {
+            ComboBoxItem r = (ComboBoxItem) this.role.getSelectedItem();
+            this.estagiario.setNome(this.nome.getText());
+            this.estagiario.setRole((Role) Roles.find(r.getId()));
+            this.estagiario.setIdade(Integer.parseInt(this.idade.getText()));
+            this.estagiario.setHorasSemanais(Integer.parseInt(this.horas.getText()));
+            dispose();
+            return;
+        } else if(this.nome.getText().trim().equals("")) {
+            this.error.setText("O campo nome nao pode ser nulo.");
+        } else if(this.idade.getText().trim().equals("")) {
+            this.error.setText("O campo idade nao pode ser nulo.");
+        } else if(this.horas.getText().trim().equals("")) {
+            this.error.setText("O campo crmv nao pode ser nulo.");
+        }
+        return;
     }
 }
