@@ -13,6 +13,11 @@ public class Auth {
     private String name, password;
     private static boolean authenticated;
   
+    /**
+     * 
+     * @param name nome do User
+     * @param password senha do User
+     */
     public Auth(String name, String password) {
       this.name = name;
       this.password = password;

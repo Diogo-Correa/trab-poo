@@ -10,6 +10,10 @@ public class Activity {
     private List<String> activities = new ArrayList<String>();
     private File arquivo = new File("atividades.log");
   
+    /**
+     * 
+     * @param atividade Activity realizada pelo usuario
+     */
     public Activity(String atividade) {
                 
       if( !this.arquivo.exists()){

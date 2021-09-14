@@ -28,7 +28,7 @@ public class EstagiarioController implements Controller {
     }
 
     /**
-     * Metodo para redirecionar para a view index do Estagiario
+     * Metodo para redirecionar para a view create do Estagiario
      */
     public void create() {
         new Create(); 

@@ -18,6 +18,12 @@ public class Consulta {
     private Alta resultadoDaConsulta;
     private Enfermidade enfermidade;
 
+    /**
+     * 
+     * @param veterinario (Veterinario) veterinario responsavel pela consulta
+     * @param animal (Animal) animal a ser consultado
+     * @param enfermidade (Enfermidade) enfermidade passada pelo atendimento
+     */
     public Consulta(Veterinario veterinario, Animal animal, Enfermidade enfermidade) {
         this.veterinario = veterinario;
         this.veterinario.setStatus(VeterinarioStatus.ATENDENDO);
@@ -30,28 +36,64 @@ public class Consulta {
         new ConsultaController().store(this);
     }
 
+    /**
+     * Metodo para obter o ID da consulta
+     * @return consulta id
+     */
     public int getId() { return this.id; }
 
+    /**
+     * Metodo para obter o responsavel pela consulta
+     * @return retorna o Veterinario
+     */
     public Veterinario getVeterinario() {
         return this.veterinario;
     }
 
+    /**
+     * Metodo para obter o animal consultado
+     * @return retorna o Animal
+     */
     public Animal getAnimal() {
         return this.animal;
     }
 
+    /**
+     * Metodo para obter a enfermidade do Animal
+     * @return retorna a Enfermidade
+     */
     public Enfermidade getEnfermidade() {
         return this.enfermidade;
     }
 
+    /**
+     * Metodo para obter a data de inicio da consulta
+     * @return dataDaConsultaAbertura
+     */
     public Date getDataAbertura() {
         return this.dataDaConsultaAbertura;
     }
 
+    /**
+     * Metodo para obter a data de termino da consulta
+     * @return dataDaConsultaFechamento
+     */
     public Date getDataFechamento() {
         return this.dataDaConsultaFechamento;
     }
 
+    /**
+     * Metodo para obter a Alta referente a consulta
+     * @return retorna a Alta
+     */
+    public Alta getAlta() {
+        return this.resultadoDaConsulta;
+    }
+
+    /**
+     * Metodo para finalizar a consulta
+     * @throws AltaJaFechada
+     */
     public void terminarConsulta() throws AltaJaFechada {
         try{
             this.resultadoDaConsulta.fechar();

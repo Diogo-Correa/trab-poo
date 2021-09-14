@@ -28,7 +28,7 @@ public class VeterinarioController implements Controller {
     }
 
     /**
-     * Metodo para redirecionar para a view index do Veterinario
+     * Metodo para redirecionar para a view create do Veterinario
      */
     public void create() {
         new Create(); 

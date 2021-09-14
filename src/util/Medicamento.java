@@ -4,11 +4,9 @@ public class Medicamento {
     private static int nextId = 0;
     private int id;
     private String nome;
-    private double dosagem;
 
-    public Medicamento(String nome, double dosagem) {
+    public Medicamento(String nome) {
         this.nome = nome;
-        this.dosagem = dosagem;
         this.id = nextId++;
     }
 
@@ -16,10 +14,6 @@ public class Medicamento {
 
     public String getNome() {
         return this.nome;
-    }
-
-    public double getDosagem() {
-        return this.dosagem;
     }
 
 }
