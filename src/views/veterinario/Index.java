@@ -56,7 +56,14 @@ public class Index extends JFrame {
             };
 
             // Edit button
-            if(Auth.getRole().canEdit()) this.panel.add(edit);
+            if(Auth.getRole().canEdit()) {
+                this.panel.add(edit);
+                edit.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) { 
+                        new VeterinarioController().update(vet.getId());
+                    }
+                });
+            }
 
             // Delete button
             if(Auth.getRole().canDelete()) {

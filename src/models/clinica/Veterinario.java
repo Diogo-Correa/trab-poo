@@ -30,6 +30,10 @@ public class Veterinario extends User {
         return this.crmv;
     }
 
+    public void setCRMV(String crmv) {
+        this.crmv = crmv;
+    }
+
     public void setEspecialidade(Enfermidade especialidade) {
         this.especialidade = especialidade;
     }
