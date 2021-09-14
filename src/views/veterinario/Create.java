@@ -20,7 +20,7 @@ import views.Dashboard;
 public class Create extends JFrame {
     
     private JPanel panel;
-    private JLabel nome_txt, senha_txt, role_txt, idade_txt, crmv_txt, especialidade_txt, br, br2;
+    private JLabel nome_txt, senha_txt, role_txt, idade_txt, crmv_txt, especialidade_txt, error, br, br2, br3;
     private JTextField nome, idade, crmv;
     private JPasswordField senha;
     private JRadioButton espTrue, espFalse;
@@ -56,6 +56,8 @@ public class Create extends JFrame {
         this.especialidade_txt = new JLabel("Possui especialidade? ");
         this.br = new JLabel();
         this.br2 = new JLabel();
+        this.br3 = new JLabel();
+        this.error = new JLabel();
 
         // inputs
         this.nome = new JTextField();
@@ -78,6 +80,10 @@ public class Create extends JFrame {
         this.adicionar = new JButton("Adicionar");
         this.cancelar = new JButton("Cancelar");
         
+        this.panel.add(this.error);
+        this.error.setForeground(Color.RED);
+        this.panel.add(this.br3);
+
         this.panel.add(this.nome_txt);
         this.panel.add(this.nome);
 
@@ -116,27 +122,7 @@ public class Create extends JFrame {
         this.panel.add(this.adicionar);
         this.adicionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ComboBoxItem r = (ComboBoxItem) role.getSelectedItem();
-                ComboBoxItem esp = (ComboBoxItem) especialidade.getSelectedItem();
-                if(espFalse.isSelected()){ 
-                    new VeterinarioController().store(new Veterinario(
-                        nome.getText(), 
-                        senha.getText(), 
-                        Roles.find(r.getId()), 
-                        Integer.parseInt(idade.getText()), 
-                        crmv.getText()
-                    ));
-                } else {
-                    new VeterinarioController().store(new Veterinario(
-                        nome.getText(), 
-                        senha.getText(), 
-                        Roles.find(r.getId()), 
-                        Integer.parseInt(idade.getText()), 
-                        crmv.getText(),
-                        Enfermidades.find(esp.getId()) 
-                    ));
-                }
-                dispose();
+                create();
             }
         });
         this.panel.add(cancelar);
@@ -154,5 +140,43 @@ public class Create extends JFrame {
         setSize(400, 400);
         setVisible(true);
 
+    }
+
+    public void create() {
+        if(!this.nome.getText().trim().equals("") && !this.senha.getText().trim().equals("") && !this.idade.getText().trim().equals("") && !this.crmv.getText().trim().equals("") && (this.espTrue.isSelected() || this.espFalse.isSelected())) {
+            ComboBoxItem r = (ComboBoxItem) this.role.getSelectedItem();
+            ComboBoxItem esp = (ComboBoxItem) this.especialidade.getSelectedItem();
+            if(espFalse.isSelected()){ 
+                new VeterinarioController().store(new Veterinario(
+                    this.nome.getText(), 
+                    this.senha.getText(), 
+                    Roles.find(r.getId()), 
+                    Integer.parseInt(idade.getText()), 
+                    this.crmv.getText()
+                ));
+            } else {
+                new VeterinarioController().store(new Veterinario(
+                    this.nome.getText(), 
+                    this.senha.getText(), 
+                    Roles.find(r.getId()), 
+                    Integer.parseInt(idade.getText()), 
+                    this.crmv.getText(),
+                    Enfermidades.find(esp.getId()) 
+                ));
+            }
+            dispose();
+            return;
+        } else if(this.nome.getText().trim().equals("")) {
+            this.error.setText("O campo nome nao pode ser nulo.");
+        } else if(this.senha.getText().trim().equals("")) {
+            this.error.setText("O campo senha nao pode ser nulo.");
+        }  else if(this.idade.getText().trim().equals("")) {
+            this.error.setText("O campo idade nao pode ser nulo.");
+        } else if(this.crmv.getText().trim().equals("")) {
+            this.error.setText("O campo crmv nao pode ser nulo.");
+        } else if(!this.espTrue.isSelected() || !this.espFalse.isSelected()) {
+            this.error.setText("O campo especialidade nao pode ser nulo.");
+        }
+        return;
     }
 }

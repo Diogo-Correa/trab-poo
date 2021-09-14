@@ -13,12 +13,11 @@ import models.clinica.Estagiario;
 import util.ComboBoxItem;
 import util.auth.Auth;
 import util.database.Roles;
-import views.Dashboard;
 
 public class Create extends JFrame {
     
     private JPanel panel;
-    private JLabel nome_txt, senha_txt, role_txt, idade_txt, horas_txt;
+    private JLabel nome_txt, senha_txt, role_txt, idade_txt, horas_txt, error, br;
     private JTextField nome, idade, horas;
     private JPasswordField senha;
     private JComboBox role;
@@ -49,6 +48,10 @@ public class Create extends JFrame {
         this.horas_txt = new JLabel("Digite as horas semanais: ");
         this.role_txt = new JLabel("Selecione um nivel de acesso: ");
 
+        // labels errors
+        this.error = new JLabel();
+        this.br = new JLabel();
+
         // inputs
         this.nome = new JTextField();
         this.senha = new JPasswordField();
@@ -64,6 +67,10 @@ public class Create extends JFrame {
         this.adicionar = new JButton("Adicionar");
         this.cancelar = new JButton("Cancelar");
         
+        this.panel.add(this.error);
+        this.error.setForeground(Color.RED);
+        this.panel.add(this.br);
+
         this.panel.add(this.nome_txt);
         this.panel.add(this.nome);
 
@@ -82,14 +89,7 @@ public class Create extends JFrame {
         this.panel.add(this.adicionar);
         this.adicionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ComboBoxItem r = (ComboBoxItem) role.getSelectedItem();
-                new EstagiarioController().store(new Estagiario(
-                    nome.getText(), senha.getText(), 
-                    Roles.find(r.getId()), 
-                    Integer.parseInt(idade.getText()), 
-                    Integer.parseInt(horas.getText())
-                    ));
-                dispose();
+                create();
             }
         });
         this.panel.add(cancelar);
@@ -107,5 +107,28 @@ public class Create extends JFrame {
         setSize(400, 400);
         setVisible(true);
 
+    }
+
+    public void create() {
+        if(!this.nome.getText().trim().equals("") && !this.senha.getText().trim().equals("") && !this.idade.getText().trim().equals("") && !this.horas.getText().trim().equals("")) {
+            ComboBoxItem r = (ComboBoxItem) this.role.getSelectedItem();
+            new EstagiarioController().store(new Estagiario(
+                this.nome.getText(), this.senha.getText(), 
+                Roles.find(r.getId()), 
+                Integer.parseInt(this.idade.getText()), 
+                Integer.parseInt(this.horas.getText())
+                ));
+            dispose();
+            return;
+        } else if(this.nome.getText().trim().equals("")) {
+            this.error.setText("O campo nome nao pode ser nulo.");
+        } else if(this.senha.getText().trim().equals("")) {
+            this.error.setText("O campo senha nao pode ser nulo.");
+        }  else if(this.idade.getText().trim().equals("")) {
+            this.error.setText("O campo idade nao pode ser nulo.");
+        } else if(this.horas.getText().trim().equals("")) {
+            this.error.setText("O campo horas nao pode ser nulo.");
+        }
+        return;
     }
 }
