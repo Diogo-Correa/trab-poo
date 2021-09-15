@@ -103,7 +103,7 @@ public class Create extends JFrame {
         add(panel, BorderLayout.CENTER);
         //this.adicionar.addActionListener(this);
         //this.cancelar.addActionListener(this);
-        setTitle("[VetSystem] POO Project - Novo atendimento");
+        setTitle("[VetSystem] POO Project - Novo animal");
         setSize(400, 400);
         setVisible(true);
 
