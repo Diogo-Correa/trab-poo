@@ -70,7 +70,6 @@ public class VeterinariosDatabase {
             // e.printStackTrace();
         }
     }
-    
 
     public static Veterinario find(int id) {
         try{

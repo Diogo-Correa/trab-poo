@@ -2,21 +2,17 @@ package views.animal;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 
 import javax.swing.*;
 import javax.swing.border.*;
 
 import models.clientes.Animal;
-import util.ComboBoxItem;
-import util.Medicamento;
 import util.auth.Auth;
 
 public class Show extends JFrame implements ActionListener{
 
     private JPanel panel;
     private JLabel nome, especie, raca, porte, pelagem, agressivo, dono, status, semMedicamentos;
-    private Vector medicamentos;
     private Animal animal;
 
     public Show(Animal animal) {
@@ -49,7 +45,6 @@ public class Show extends JFrame implements ActionListener{
         this.semMedicamentos.setForeground(Color.WHITE);
         this.semMedicamentos.setBackground(Color.BLACK);
         this.semMedicamentos.setOpaque(true);
-        this.medicamentos = new Vector();
 
         this.panel.add(this.nome);
         this.panel.add(this.especie);

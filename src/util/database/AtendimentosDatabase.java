@@ -68,7 +68,6 @@ public class AtendimentosDatabase {
             // e.printStackTrace();
         }
     }
-    
 
     public static Atendimento find(int id) {
         try{

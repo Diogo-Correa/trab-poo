@@ -10,6 +10,7 @@ import models.clientes.Animal;
 import models.clinica.Estagiario;
 import models.clinica.Veterinario;
 import models.clinica.consultas.Consulta;
+import models.clinica.consultas.Internacao;
 import util.auth.Auth;
 import util.database.*;
 import util.errors.AltaJaFechada;
@@ -23,7 +24,7 @@ public class Dashboard extends JFrame implements ActionListener {
     private JMenuItem logout, novoAtend, vetItem, estagItem, novoEstag, novoVet;
     private JMenuBar mainMenu;
     private Container ContentPane;
-    private JButton fecharConsulta, abrirFicha;
+    private JButton fecharConsulta, abrirFicha, internar;
     private Consulta consulta;
 
     
@@ -97,6 +98,7 @@ public class Dashboard extends JFrame implements ActionListener {
 
             this.fecharConsulta = new JButton("FECHAR CONSULTA");
             this.abrirFicha = new JButton("ABRIR FICHA");
+            this.internar = new JButton("INTERNAR");
             this.emConsulta = new JLabel();
             this.enfermidade = new JLabel();
             this.dataConsulta = new JLabel();
@@ -111,9 +113,11 @@ public class Dashboard extends JFrame implements ActionListener {
             this.panel.add(enfermidade);
             this.enfermidade.setText("Enfermidade do pet: " + consulta.getEnfermidade().getNome());
             this.panel.add(this.abrirFicha);
+            this.panel.add(this.internar);
             this.panel.add(this.fecharConsulta);
 
             this.abrirFicha.addActionListener(this);
+            this.internar.addActionListener(this);
             this.fecharConsulta.addActionListener(this);
         } 
         
@@ -159,6 +163,16 @@ public class Dashboard extends JFrame implements ActionListener {
             new AnimalController().show(this.animal.getId());
         }
 
+        if (e.getSource() == this.internar) {
+            new Thread(new Internacao(this.consulta)).start();
+            this.dataConsulta.setText("");
+            this.enfermidade.setText("");
+            this.emConsulta.setText("");
+            this.abrirFicha.setVisible(false);
+            this.internar.setVisible(false);
+            this.fecharConsulta.setVisible(false);
+        }
+
         if (e.getSource() == this.fecharConsulta) {
             try {
                 consulta.terminarConsulta();
@@ -166,6 +180,7 @@ public class Dashboard extends JFrame implements ActionListener {
                 this.enfermidade.setText("");
                 this.emConsulta.setText("");
                 this.abrirFicha.setVisible(false);
+            this.internar.setVisible(false);
                 this.fecharConsulta.setVisible(false);
                 setMessage("Consulta finalizada!", Color.RED);
             } catch (AltaJaFechada error) {

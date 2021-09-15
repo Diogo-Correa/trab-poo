@@ -13,7 +13,7 @@ import java.io.OutputStream;
 
 public class UsersDatabase {
     private static String dir = "src\\util\\database\\records\\";
-    private static String recordFileName = dir + "UsersRecords.txt";
+    private static String recordFileName = dir + "UserRecords.txt";
 
     public static void addRecord(User objType) {
         try{
@@ -71,7 +71,6 @@ public class UsersDatabase {
         }
     }
     
-
     public static User find(int id) {
         try{
             FileInputStream file = new FileInputStream(new File(recordFileName));

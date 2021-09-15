@@ -12,7 +12,7 @@ package app;
 
 import util.auth.Auth;
 import util.errors.UserCadastradoException;
-import util.generator.*;
+import util.generator.UsersGenerator;
 import util.log.Activity;
 import views.Dashboard;
 import views.Login;
@@ -39,16 +39,15 @@ public class App {
     }
 
     private static void initialize() {
-        EnfermidadesGenerator.generate();
+        // EnfermidadesGenerator.generate();
         // System.out.println(Enfermidades.getEnfermidades());
-        try {
-            UsersGenerator.generate();
-        } catch (UserCadastradoException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        //try {
+        //UsersGenerator.generate();
+        //} catch (UserCadastradoException e) {
+        //e.printStackTrace();
+        //}
         // System.out.println(Veterinarios.getVeterinarios());
-        AnimaisGenerator.generate();
+        // AnimaisGenerator.generate();
         // System.out.println(AnimaisDatabase.all());
     }
 }

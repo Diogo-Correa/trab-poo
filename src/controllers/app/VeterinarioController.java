@@ -46,10 +46,16 @@ public class VeterinarioController implements Controller {
      * Metodo para redirecionar para a view de edicao
      * @param id Id referente ao Veterinario
      */
-    public void update(int id) {
+    public void edit(int id) {
         new Edit(VeterinariosDatabase.find(id)); 
     }
 
+    /**
+     * Metodo para atualizar o banco de dados
+     */
+    public void update() {
+        // VeterinariosDatabase.attRecord();
+    }
 
     /**
      * Metodo de exclusao de um Veterinario

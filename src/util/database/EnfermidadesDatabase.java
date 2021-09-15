@@ -71,7 +71,6 @@ public class EnfermidadesDatabase {
         }
     }
     
-
     public static Enfermidade find(int id) {
         try{
             FileInputStream file = new FileInputStream(new File(recordFileName));

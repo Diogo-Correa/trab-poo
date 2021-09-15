@@ -69,7 +69,6 @@ public class ConsultasDatabase {
         }
     }
     
-
     public static Consulta find(int id) {
         try{
             FileInputStream file = new FileInputStream(new File(recordFileName));

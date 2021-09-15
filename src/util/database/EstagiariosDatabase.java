@@ -71,7 +71,6 @@ public class EstagiariosDatabase {
         }
     }
     
-
     public static Estagiario find(int id) {
         try{
             FileInputStream file = new FileInputStream(new File(recordFileName));

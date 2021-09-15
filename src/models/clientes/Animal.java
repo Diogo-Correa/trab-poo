@@ -1,10 +1,7 @@
 package models.clientes;
 
-import java.util.ArrayList;
-
 import util.Medicamento;
 import util.database.AnimaisDatabase;
-import util.database.MedicamentosDatabase;
 import util.database.DonosDatabase;
 import java.io.Serializable;
 import util.status.AnimalStatus;

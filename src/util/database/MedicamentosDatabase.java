@@ -70,7 +70,6 @@ public class MedicamentosDatabase {
         }
     }
     
-
     public static Medicamento find(int id) {
         try{
             FileInputStream file = new FileInputStream(new File(recordFileName));

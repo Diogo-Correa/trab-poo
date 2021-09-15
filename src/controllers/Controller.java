@@ -27,7 +27,12 @@ public interface Controller {
      * Metodo para redirecionar para a view de edicao
      * @param id Id referente ao Objeto que queira encontrar
      */
-    public void update(int id);
+    public void edit(int id);
+
+    /**
+     * Metodo para atualizar os dados do banco de dados
+     */
+    public void update();
 
     /**
      * Metodo de exclusao de dados do ArrayList

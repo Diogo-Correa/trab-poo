@@ -15,7 +15,7 @@ public class AtendimentoController implements Controller {
      * Metodo para redirecionar para a view index do Atendimento
      */
     public void index() {
-        new Index();
+        // new Index();
     }
 
     /**
@@ -48,9 +48,16 @@ public class AtendimentoController implements Controller {
      * Metodo para redirecionar para a view de edicao
      * @param id Id referente ao Atendimento
      */
-    public void update(int id) {
+    public void edit(int id) {
         // Edit.form((atendimento) atendimento); 
         
+    }
+    
+    /**
+     * Metodo para atualizar o banco de dados
+     */
+    public void update() {
+        //
     }
 
     /**

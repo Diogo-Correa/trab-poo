@@ -56,7 +56,7 @@ public class Index extends JFrame {
                 this.panel.add(edit);
                 edit.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) { 
-                        new EstagiarioController().update(estag.getId());
+                        new EstagiarioController().edit(estag.getId());
                     }
                 });
             }

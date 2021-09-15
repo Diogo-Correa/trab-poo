@@ -40,7 +40,14 @@ public class AnimalController implements Controller {
      * Metodo para redirecionar para a view de edicao
      * @param id Id referente ao Animal
      */
-    public void update(int id) {
+    public void edit(int id) {
+        //
+    }
+    
+    /**
+     * Metodo para atualizar o banco de dados
+     */
+    public void update() {
         //
     }
 

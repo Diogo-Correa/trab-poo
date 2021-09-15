@@ -69,7 +69,6 @@ public class AnimaisDatabase {
             // e.printStackTrace();
         }
     }
-    
 
     public static Animal find(int id) {
         try{

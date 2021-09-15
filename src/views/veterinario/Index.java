@@ -60,7 +60,7 @@ public class Index extends JFrame {
                 this.panel.add(edit);
                 edit.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) { 
-                        new VeterinarioController().update(vet.getId());
+                        new VeterinarioController().edit(vet.getId());
                     }
                 });
             }

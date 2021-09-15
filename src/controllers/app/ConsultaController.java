@@ -7,7 +7,7 @@ import models.clinica.consultas.Consulta;
 import util.auth.Auth;
 import util.database.ConsultasDatabase;
 import views.Dashboard;
-import views.atendimento.*;
+// import views.consulta.*;
 
 public class ConsultaController implements Controller {
 
@@ -15,7 +15,7 @@ public class ConsultaController implements Controller {
      * Metodo para redirecionar para a view index da Consulta
      */
     public void index() {
-        new Index();
+        // new Index();
     }
 
     /**
@@ -28,7 +28,7 @@ public class ConsultaController implements Controller {
      * Metodo para redirecionar para a view create da Consulta
      */
     public void create() {
-        new Create(); 
+      //  new Create(); 
     }
 
     /**
@@ -45,9 +45,16 @@ public class ConsultaController implements Controller {
      * Metodo para redirecionar para a view de edicao
      * @param id Id referente ao Consulta
      */
-    public void update(int id) {
+    public void edit(int id) {
         // Edit.form((consulta) consulta); 
         
+    }
+    
+    /**
+     * Metodo para atualizar o banco de dados
+     */
+    public void update() {
+        //
     }
 
     /**

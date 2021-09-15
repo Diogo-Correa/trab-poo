@@ -7,6 +7,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import controllers.app.VeterinarioController;
 import models.clientes.Animal;
 import models.clinica.consultas.Atendimento;
 import util.ComboBoxItem;
@@ -118,6 +119,7 @@ public class Create extends JFrame implements ActionListener{
             // encaminha para a consulta
             this.atendimento.abreConsulta();
             Dashboard.setMessage("Paciente encaminhado!", Color.GREEN);
+            new VeterinarioController().update();
             this.dispose();
         }
         

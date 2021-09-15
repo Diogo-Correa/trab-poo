@@ -70,7 +70,6 @@ public class RolesDatabase {
             // e.printStackTrace();
         }
     }
-    
 
     public static Role find(int id) {
         try{
