@@ -61,16 +61,16 @@ public class App {
         //     System.out.println(doguinhos.getNome() + " " + doguinhos.getId());
         // }
 
-        // dog = dogs.find(4);
-        // System.out.println(dog.getName() + " " + dog.getId());
+        dog = dogs.find(0);
+        System.out.println(dog.getNome() + " " + dog.getId());
     }
 
     private static void initialize() {
-        EnfermidadesGenerator.generate();
+        // EnfermidadesGenerator.generate();
         // System.out.println(Enfermidades.getEnfermidades());
-        UsersGenerator.generate();
+        // UsersGenerator.generate();
         // System.out.println(Veterinarios.getVeterinarios());
-        AnimaisGenerator.generate();
+        // AnimaisGenerator.generate();
         // System.out.println(Animais.getAnimais());
     }
 }

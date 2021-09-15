@@ -18,8 +18,8 @@ public class Enfermidade {
     public Enfermidade(String nome, String gravidade) {
         this.nome = nome;
         this.gravidade = gravidade;
-        this.id = nextId++;
-        Enfermidades.addEnfermidade(this);
+        this.id = EnfermidadesDatabase.getLastId();
+        EnfermidadesDatabase.addRecord(this);
     }
 
     /**
