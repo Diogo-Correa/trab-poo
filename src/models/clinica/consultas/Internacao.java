@@ -2,7 +2,6 @@ package models.clinica.consultas;
 
 import java.awt.*;
 
-import util.auth.Auth;
 import util.database.VeterinariosDatabase;
 import util.errors.AltaJaFechada;
 import util.status.VeterinarioStatus;

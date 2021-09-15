@@ -2,9 +2,7 @@ package models.clinica.consultas;
 import java.io.Serializable;
 import java.util.Date;
 
-import controllers.app.AnimalController;
 import controllers.app.ConsultaController;
-import controllers.app.VeterinarioController;
 import models.clientes.Animal;
 import models.clinica.Veterinario;
 import util.Enfermidade;

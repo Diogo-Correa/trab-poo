@@ -11,6 +11,7 @@ import controllers.middlewares.auth.Role;
 import models.clinica.Estagiario;
 import util.ComboBoxItem;
 import util.auth.Auth;
+import util.database.EstagiariosDatabase;
 import util.database.RolesDatabase;
 
 public class Edit extends JFrame {
@@ -106,12 +107,13 @@ public class Edit extends JFrame {
     }
 
     public void update() {
-        if(!this.nome.getText().trim().equals("") && !this.idade.getText().trim().equals("") && !this.horas.getText().trim().equals("")) {
+        if(!this.nome.getText().trim().equals("") && !this.idade.getText().trim().equals("") && this.role.getSelectedItem() != null && !this.horas.getText().trim().equals("") && (!this.idade.getText().trim().equals("") && this.idade.getText().matches("[0-9]*"))) {
             ComboBoxItem r = (ComboBoxItem) this.role.getSelectedItem();
             this.estagiario.setNome(this.nome.getText());
             this.estagiario.setRole((Role) RolesDatabase.find(r.getId()));
             this.estagiario.setIdade(Integer.parseInt(this.idade.getText()));
             this.estagiario.setHorasSemanais(Integer.parseInt(this.horas.getText()));
+            EstagiariosDatabase.updateRecord(this.estagiario);
             dispose();
             return;
         } else if(this.nome.getText().trim().equals("")) {
@@ -120,7 +122,11 @@ public class Edit extends JFrame {
             this.error.setText("O campo idade nao pode ser nulo.");
         } else if(this.horas.getText().trim().equals("")) {
             this.error.setText("O campo crmv nao pode ser nulo.");
-        }
+        } else if(this.role.getSelectedItem() == null) {
+            this.error.setText("O campo role nao pode ser nulo.");
+        }  else if(!this.idade.getText().matches("[0-9]*")) {
+            this.error.setText("O campo idade deve ser um inteiro.");
+        } 
         return;
     }
 }

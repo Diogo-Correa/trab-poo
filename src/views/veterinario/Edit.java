@@ -14,6 +14,7 @@ import util.Enfermidade;
 import util.auth.Auth;
 import util.database.EnfermidadesDatabase;
 import util.database.RolesDatabase;
+import util.database.VeterinariosDatabase;
 
 public class Edit extends JFrame {
 
@@ -152,7 +153,7 @@ public class Edit extends JFrame {
     }
 
     public void update() {
-        if(!this.nome.getText().trim().equals("") && !this.idade.getText().trim().equals("") && !this.crmv.getText().trim().equals("") && ((this.espTrue.isSelected() && this.especialidade.getSelectedItem() != null) || this.espFalse.isSelected())) {
+        if(!this.nome.getText().trim().equals("") && !this.idade.getText().trim().equals("") && !this.crmv.getText().trim().equals("") && this.role.getSelectedItem() != null && ((this.espTrue.isSelected() && this.especialidade.getSelectedItem() != null) || this.espFalse.isSelected()) && (!this.idade.getText().trim().equals("") && this.idade.getText().matches("[0-9]*"))) {
             ComboBoxItem r = (ComboBoxItem) this.role.getSelectedItem();
             ComboBoxItem esp = (ComboBoxItem) this.especialidade.getSelectedItem();
             this.veterinario.setNome(this.nome.getText());
@@ -161,6 +162,7 @@ public class Edit extends JFrame {
             if(esp != null) this.veterinario.setEspecialidade((Enfermidade) EnfermidadesDatabase.find(esp.getId()));
             if(this.espFalse.isSelected()) this.veterinario.setEspecialidade(null);
             this.veterinario.setCRMV(this.crmv.getText());
+            VeterinariosDatabase.updateRecord(this.veterinario);
             dispose();
             return;
         } else if(this.nome.getText().trim().equals("")) {
@@ -171,7 +173,11 @@ public class Edit extends JFrame {
             this.error.setText("O campo crmv nao pode ser nulo.");
         } else if(!this.espTrue.isSelected() || !this.espFalse.isSelected()) {
             this.error.setText("O campo especialidade nao pode ser nulo.");
-        }
+        } else if(this.role.getSelectedItem() == null) {
+            this.error.setText("O campo role nao pode ser nulo.");
+        }  else if(!this.idade.getText().matches("[0-9]*")) {
+            this.error.setText("O campo idade deve ser um inteiro.");
+        } 
         return;
     }
 }
