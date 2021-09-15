@@ -11,7 +11,7 @@ import java.io.OutputStream;
 import models.clientes.Animal;
 
 public class AnimaisDatabase {
-    private static String dir = "src\\util\\database\\records\\";
+    private static String dir = "util/database/records/";
     private static String recordFileName = dir + "AnimaisRecords.txt";
 
     public static void addRecord(Animal objType) {
@@ -26,6 +26,48 @@ public class AnimaisDatabase {
             file.close();
         }catch(Exception e){
             e.printStackTrace(); // Ja que esta sendo usado swing, nao tem problema manter esse print
+        }
+    }
+
+    public static void updateRecord(Animal objType) {
+        try{
+            FileInputStream file = new FileInputStream(new File(recordFileName));
+            ArrayList<Animal> recordList = new ArrayList<Animal>();
+            Animal record;
+            ObjectInputStream obj_input = new ObjectInputStream(file);
+            
+            try{
+                while(true){
+                    record = (Animal) obj_input.readObject();
+                    if(record.getId() != objType.getId()){
+                        recordList.add(record);
+                    }else{
+                        recordList.add(objType);
+                    }
+                    obj_input = new ObjectInputStream(file);
+                }
+            }catch(Exception e){
+                // e.printStackTrace();
+                obj_input.close();
+            }   
+            file.close();
+            
+            // add all objs from list to file
+            OutputStream os = null;
+            try {
+                os = new FileOutputStream(recordFileName);
+                ObjectOutputStream oos = new ObjectOutputStream(os);
+                for (Animal animal : recordList) {
+                    oos.writeObject(animal);
+                }
+                oos.flush();
+            } finally {
+                if (os != null) {
+                    os.close();
+                }
+            }
+        }catch(Exception e){
+            // e.printStackTrace();
         }
     }
 
@@ -86,12 +128,12 @@ public class AnimaisDatabase {
                     obj_input = new ObjectInputStream(file);
                 }
             }catch(Exception e){
-                // e.printStackTrace();
+                e.printStackTrace();
                 obj_input.close();
             }
             file.close();
         }catch(Exception e){
-            // e.printStackTrace();
+            e.printStackTrace();
         }
         return null;
     }

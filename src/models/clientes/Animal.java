@@ -72,6 +72,14 @@ public class Animal implements Serializable {
     }
 
     /**
+     * Metodo para setar o nome do Animal
+     * @param String nome
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
      * Metodo para obter a Especia do Animal
      * @return Animal especie
      */
