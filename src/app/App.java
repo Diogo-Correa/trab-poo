@@ -16,6 +16,13 @@ import util.log.Activity;
 import views.Dashboard;
 import views.Login;
 
+import util.database.AnimaisDatabase;
+import models.clientes.Animal;
+import models.clientes.Dono;
+import java.util.ArrayList;
+
+
+
 
 public class App {
 
@@ -34,7 +41,28 @@ public class App {
     }
 
     public static void main(String[] args) throws Exception {
-        new App("[VetSystem] POO Project");
+        // new App("[VetSystem] POO Project");
+
+        AnimaisDatabase dogs = new AnimaisDatabase();
+        Animal dog = new Animal(
+            "Thor", 
+            "Cachorro", 
+            "Labrador", 
+            "Grande", 
+            "Longo", 
+            false
+            );
+        Dono dono = new Dono("Marcelo", "(21) 00000-0000", 26, dog.getId());
+            
+        // ArrayList<Animal> allDogs = new ArrayList<Animal>();
+        // allDogs = dogs.all();
+
+        // for(Animal doguinhos : allDogs) {
+        //     System.out.println(doguinhos.getNome() + " " + doguinhos.getId());
+        // }
+
+        // dog = dogs.find(4);
+        // System.out.println(dog.getName() + " " + dog.getId());
     }
 
     private static void initialize() {
