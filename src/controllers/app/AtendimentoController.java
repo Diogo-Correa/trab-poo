@@ -1,9 +1,12 @@
 package controllers.app;
 
+import java.awt.*;
+
 import controllers.Controller;
 import models.clinica.consultas.Atendimento;
 import util.auth.Auth;
 import util.database.Atendimentos;
+import views.Dashboard;
 import views.atendimento.*;
 
 public class AtendimentoController implements Controller {
@@ -13,6 +16,15 @@ public class AtendimentoController implements Controller {
      */
     public void index() {
         new Index();
+    }
+
+    /**
+     * Metodo para redirecionar para a view de visualizacao
+     * @param id Id referente ao Atendimento
+     */
+    public void show(int id) {
+        // Edit.form((atendimento) atendimento); 
+        
     }
 
     /**
@@ -28,7 +40,7 @@ public class AtendimentoController implements Controller {
      */
     public <A> void store(A obj) {
         Atendimentos.addAtendimento((Atendimento) obj);
-        // new App();
+        Dashboard.setMessage("Atendimento adicionado com sucesso", Color.GREEN);
         
     }
 
@@ -48,6 +60,7 @@ public class AtendimentoController implements Controller {
     public void delete(int id) {
         if(Auth.getRole().canDelete()) {
             Atendimentos.removeAtendimento(Atendimentos.find(id));
+            Dashboard.setMessage("Estagiario deletado com sucesso", Color.RED);
         } else {
             System.out.println("Voce nao tem permissao!");
         }

@@ -3,6 +3,7 @@ package views;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.*;
 
 import util.auth.Auth;
 
@@ -35,6 +36,7 @@ public class Login extends JFrame implements ActionListener {
 
         // panel
         this.panel = new JPanel(new GridLayout(3,1));
+        this.panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         this.panel.add(this.user_label);
         this.panel.add(this.userName_text);
@@ -49,13 +51,13 @@ public class Login extends JFrame implements ActionListener {
         this.panel.add(submit);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        
         // event listener
         this.submit.addActionListener(this);
         // this.cancel.addActionListener(this);
         add(panel, BorderLayout.CENTER);
         setTitle("Login Page!");
-        setSize(400, 100);
+        setSize(400, 150);
         setVisible(true);
     }
 

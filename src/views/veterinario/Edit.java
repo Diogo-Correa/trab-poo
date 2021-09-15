@@ -1,63 +1,177 @@
 package views.veterinario;
 
-import java.util.Scanner;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
 
-import app.App;
+import javax.swing.*;
+import javax.swing.border.*;
+
 import controllers.middlewares.auth.Role;
 import models.clinica.Veterinario;
+import util.ComboBoxItem;
 import util.Enfermidade;
 import util.auth.Auth;
 import util.database.Enfermidades;
 import util.database.Roles;
 
-public class Edit {
+public class Edit extends JFrame {
 
     private Veterinario veterinario;
+    
+    private JPanel panel;
+    private JLabel nome_txt, role_txt, idade_txt, crmv_txt, especialidade_txt, error, br, br2, br3;
+    private JTextField nome, idade, crmv;
+    private JRadioButton espTrue, espFalse;
+    private ButtonGroup radios = new ButtonGroup();      
+    private JComboBox role, especialidade;
+    private JButton atualizar, cancelar;
+    private Vector roles, especialidades;
 
     public Edit(Veterinario veterinario) {
-        if(!Auth.getRole().canEdit()) {
-            System.out.println("Voce nao tem permissao!");
-        } else {
+        if(Auth.getRole().canEdit() && veterinario != null) {
             this.veterinario = veterinario;
-            this.form();
+            run();
+        }
+        else { 
+            System.out.println("Voce nao tem permissao");
+            dispose();
         }
     }
     
-    public void form() {
-        Scanner input = new Scanner(System.in);
+    public void run() {
 
-        System.out.println("[Formulario de edicao de veterinarios]");
-        System.out.println("[Digite o mesmo valor caso nao queira alterar]");
+        // vetores
+        this.roles = new Vector();
+        this.especialidades = new Vector();
 
-        System.out.print("Digite o nome do veterinario ["+this.veterinario.getNome()+"]: ");
-        String name = input.next();
+        // panel
+        this.panel = new JPanel(new GridLayout(10, 10, 10, 10));
+        this.panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        System.out.print("Digite o ID do nivel de acesso do veterinario: ");
-        for(Role role : Roles.getRoles()) System.out.print(role.getId() +": "+role.getNome()+ "] ");
-        Role role = Roles.find(input.nextInt());
+        // labels
+        this.nome_txt = new JLabel("Digite o nome do usuario: ");
+        this.idade_txt = new JLabel("Digite a idade: ");
+        this.crmv_txt = new JLabel("Digite as crmv: ");
+        this.role_txt = new JLabel("Selecione um nivel de acesso: ");
+        this.especialidade_txt = new JLabel("Possui especialidade? ");
+        this.br = new JLabel();
+        this.br2 = new JLabel();
+        this.br3 = new JLabel();
+        this.error = new JLabel();
 
-        System.out.print("Digite o ID da especialidade do veterinario: ");
-        for(Enfermidade enfermidade : Enfermidades.getEnfermidades()) System.out.print(enfermidade.getId() +": "+enfermidade.getNome()+ "] ");
-        Enfermidade especialidade = Enfermidades.find(input.nextInt());
+        // inputs
+        this.nome = new JTextField(this.veterinario.getNome());
+        this.idade = new JTextField(Integer.toString(this.veterinario.getIdade()));
+        this.crmv = new JTextField(this.veterinario.getCRMV());
+        this.espTrue = new JRadioButton("Sim");
+        this.espFalse = new JRadioButton("Nao");
 
-        System.out.print("Digite a idade do veterinario ["+this.veterinario.getIdade()+"]: ");
-        int idade = input.nextInt();
-
-        System.out.println("Confirma as alteracoes?");
-        System.out.println("[0] Nao");
-        System.out.println("[1] Sim");
-        int confirma = input.nextInt();
-
-        if(confirma == 0) {
-          new App();
-        } else {
-            veterinario.setNome(name);
-            veterinario.setRole(role);
-            veterinario.setIdade(idade);
-            veterinario.setEspecialidade(especialidade);
-            new App();
+        this.role = new JComboBox(this.roles);
+        for(Role r : Roles.getRoles()) {
+            ComboBoxItem rol = new ComboBoxItem(r.getId(), r.getNome());
+            this.roles.addElement(rol);
+            if(r == this.veterinario.getRole()) this.role.setSelectedItem(rol);
         }
 
+        this.especialidade = new JComboBox(this.especialidades);
+        for(Enfermidade enf : Enfermidades.getEnfermidades()) {
+            ComboBoxItem enfermidade = new ComboBoxItem(enf.getId(), enf.getNome());
+            this.especialidades.addElement(enfermidade);
+            if(enf == this.veterinario.getEspecialidade()) this.especialidade.setSelectedItem(enfermidade);
+        }
 
+        this.atualizar = new JButton("atualizar");
+        this.cancelar = new JButton("Cancelar");
+        
+        this.panel.add(this.error);
+        this.error.setForeground(Color.RED);
+        this.panel.add(this.br3);
+
+        this.panel.add(this.nome_txt);
+        this.panel.add(this.nome);
+
+        this.panel.add(this.idade_txt);
+        this.panel.add(this.idade);
+
+        this.panel.add(this.crmv_txt);
+        this.panel.add(this.crmv);
+
+        this.panel.add(this.role_txt);
+        this.panel.add(this.role);
+
+        this.panel.add(this.especialidade_txt);
+        this.panel.add(this.br);
+        this.panel.add(this.espTrue);
+
+        this.panel.add(this.espFalse);
+        this.radios.add(this.espTrue);
+        this.panel.add(this.especialidade);
+
+        if(this.veterinario.getEspecialidade() != null) {
+            this.espTrue.setSelected(true);
+            this.especialidade.setVisible(true);
+        } else {
+            this.espFalse.setSelected(true);
+            this.especialidade.setVisible(false);
+        }
+
+        this.panel.add(this.br2);
+        this.espTrue.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) { 
+                especialidade.setVisible(true); 
+            }
+        });
+        this.radios.add(this.espFalse);
+        this.espFalse.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) { 
+                especialidade.setVisible(false); 
+             }
+        });
+
+        this.panel.add(this.atualizar);
+        this.atualizar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                update();
+            }
+        });
+        this.panel.add(cancelar);
+        this.cancelar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+
+
+        add(panel, BorderLayout.CENTER);
+        //this.atualizar.addActionListener(this);
+        //this.cancelar.addActionListener(this);
+        setTitle("[VetSystem] POO Project - Editar veterinario");
+        setSize(400, 400);
+        setVisible(true);
+    }
+
+    public void update() {
+        if(!this.nome.getText().trim().equals("") && !this.idade.getText().trim().equals("") && !this.crmv.getText().trim().equals("") && ((this.espTrue.isSelected() && this.especialidade.getSelectedItem() != null) || this.espFalse.isSelected())) {
+            ComboBoxItem r = (ComboBoxItem) this.role.getSelectedItem();
+            ComboBoxItem esp = (ComboBoxItem) this.especialidade.getSelectedItem();
+            this.veterinario.setNome(this.nome.getText());
+            this.veterinario.setRole((Role) Roles.find(r.getId()));
+            this.veterinario.setIdade(Integer.parseInt(this.idade.getText()));
+            if(esp != null) this.veterinario.setEspecialidade((Enfermidade) Enfermidades.find(esp.getId()));
+            if(this.espFalse.isSelected()) this.veterinario.setEspecialidade(null);
+            this.veterinario.setCRMV(this.crmv.getText());
+            dispose();
+            return;
+        } else if(this.nome.getText().trim().equals("")) {
+            this.error.setText("O campo nome nao pode ser nulo.");
+        } else if(this.idade.getText().trim().equals("")) {
+            this.error.setText("O campo idade nao pode ser nulo.");
+        } else if(this.crmv.getText().trim().equals("")) {
+            this.error.setText("O campo crmv nao pode ser nulo.");
+        } else if(!this.espTrue.isSelected() || !this.espFalse.isSelected()) {
+            this.error.setText("O campo especialidade nao pode ser nulo.");
+        }
+        return;
     }
 }

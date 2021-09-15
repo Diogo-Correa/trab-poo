@@ -1,62 +1,125 @@
 package views.atendimento;
 
-import java.util.Scanner;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+
+import javax.swing.*;
+import javax.swing.border.*;
 
 import models.clientes.Animal;
-import models.clinica.Veterinario;
 import models.clinica.consultas.Atendimento;
-import models.clinica.consultas.Consulta;
+import util.ComboBoxItem;
 import util.Enfermidade;
 import util.auth.Auth;
 import util.database.Animais;
 import util.database.Enfermidades;
-import util.database.Veterinarios;
+import util.status.AnimalStatus;
+import views.Dashboard;
 
-public class Create {
+public class Create extends JFrame implements ActionListener{
+    
+    private JPanel panel;
+    private JLabel animais_text, enfermidades_text, veterinario;
+    private JComboBox animais, enfermidades;
+    private JButton buscarVet, finalizar;
+    private Atendimento atendimento;
+    private Vector enfermidadesVec, animaisVec;
 
     public Create() {
-        if(!Auth.getRole().canCreate()) {
-            System.out.println("Voce nao tem permissao!");
-        } else{ 
-            form();
+        if(Auth.getRole().canCreate()) run();
+        else { 
+            System.out.println("Voce nao tem permissao");
+            dispose();
         }
+    }
+
+    public void run() {
+
+        // vetores
+        this.animaisVec = new Vector();
+        this.enfermidadesVec = new Vector();
+
+        // panel
+        this.panel = new JPanel(new GridLayout(10, 10, 10, 10));
+        this.panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+
+        this.animais_text = new JLabel("Selecione um animal: ");
+        for(Animal a : Animais.getAnimais()) {
+            if(a.getStatus() != AnimalStatus.EM_ATENDIMENTO)
+                animaisVec.addElement(new ComboBoxItem(a.getId(), a.getNome()));
+        }
+        this.animais = new JComboBox(animaisVec);
+
+
+        this.enfermidades_text = new JLabel("Selecione uma enfermidade: ");
+        for(Enfermidade e : Enfermidades.getEnfermidades()) {
+            enfermidadesVec.addElement(new ComboBoxItem(e.getId(), e.getNome()));
+        }
+        this.enfermidades = new JComboBox(enfermidadesVec);
+
+
+        this.buscarVet = new JButton("Buscar veterinario");
+        this.finalizar = new JButton("Encaminhar para consulta");
+
+
+        this.panel.add(animais_text);
+        this.panel.add(animais);
+
+        this.panel.add(enfermidades_text);
+        this.panel.add(enfermidades);
+
+        this.veterinario = new JLabel();
+        this.panel.add(veterinario);
+        this.panel.add(buscarVet);
+
+
+        add(panel, BorderLayout.CENTER);
+        this.buscarVet.addActionListener(this);
+        this.finalizar.addActionListener(this);
+        setTitle("[VetSystem] POO Project - Novo atendimento");
+        setSize(400, 400);
+        setVisible(true);
 
     }
 
-    public static void form() {
-        Scanner input = new Scanner(System.in);
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == this.buscarVet) {
+            // abre atendimento
+            ComboBoxItem animal = (ComboBoxItem) this.animais.getSelectedItem();
+            this.atendimento = new Atendimento(Animais.find(animal.getId()), Auth.getUser());
+            
+            // seta a enfermidade no animal
+            ComboBoxItem enfermidade = (ComboBoxItem) this.enfermidades.getSelectedItem();
+            this.atendimento.setEnfermidade(Enfermidades.find(enfermidade.getId()));
+
+            // busca por um veterinario
+            this.atendimento.buscaVeterinario();
+
+            if(atendimento.getVeterinario().getEspecialidade() == this.enfermidades.getSelectedItem())
+                this.veterinario.setText(
+                    "Veterinario selecionado: " + 
+                    atendimento.getVeterinario().getNome() +
+                    " | Especialista: Sim"
+                );
+
+            else
+                this.veterinario.setText(
+                        "Veterinario selecionado: " + 
+                        atendimento.getVeterinario().getNome() +
+                        " | Especialista: Nao"
+                    );
+
+            this.panel.add(this.finalizar);
+        }
+
+        if (e.getSource() == this.finalizar) {
+            // encaminha para a consulta
+            this.atendimento.abreConsulta();
+            Dashboard.setMessage("Paciente encaminhado!", Color.GREEN);
+            this.dispose();
+        }
         
-        // Busca por um animal
-        System.out.print("Animais: ");
-        for(Animal animal : Animais.getAnimais()) System.out.print(animal.getId() +": [" + animal.getNome()+ "] ");
-        System.out.println();
-        System.out.println("Digite o ID de um dos animais listados:");
-        Animal animal = Animais.find(input.nextInt());
-
-        // Busca enfermidade
-        System.out.print("Enfermidades: ");
-        for(Enfermidade enfer : Enfermidades.getEnfermidades()) System.out.print(enfer.getId() +": [" + enfer.getNome()+ "] ");
-        System.out.println();
-        System.out.println("Digite o ID de uma enfermidade listada:");
-        Enfermidade enfermidade = Enfermidades.find(input.nextInt());
-
-        // Inicia atendimento
-        Atendimento atendimento = new Atendimento(animal, Auth.getUser());
-
-        // seta a enfermidade no animal
-        atendimento.setEnfermidade(enfermidade);
-
-        // busca por um veterinario
-        atendimento.buscaVeterinario();
-        System.out.println("Veterinario selecionado: " + atendimento.getVeterinario().getNome());
-
-        // encaminha para a consulta
-        Consulta encaminhado = atendimento.abreConsulta();
-
-        // Infos da consulta, apos encaminhamento pelo primeiro atendimento.
-        System.out.println("ID: " + atendimento.getId());
-        System.out.println("Veterinario responsavel: " + encaminhado.getVeterinario().getNome());
-        System.out.println("Animal atendido: " + encaminhado.getAnimal().getNome());
-        System.out.println("Enfermidade: " + encaminhado.getEnfermidade().getNome());
     }
 }

@@ -14,6 +14,10 @@ public class Alta {
         this.emAberto = true;
     }
 
+    /**
+     * Metodo para finalizar a Consulta
+     * @throws AltaJaFechada
+     */
     public void fechar() throws AltaJaFechada {
         if (this.emAberto){
             this.emAberto = false;
@@ -21,37 +25,57 @@ public class Alta {
         } throw new AltaJaFechada("A alta ja foi fechada anteriormente.");
     }
 
+    /**
+     * Metodo para checagem do status da consulta
+     * @throws AltaJaFechada
+     */
     private void tentarMudarAtributo() throws AltaJaFechada {
         if (!this.emAberto) {
             throw new AltaJaFechada("Essa consulta ja foi dada alta e nao pode ser modificada.");
         }
     }
 
-    // Modificador do Medicamento
+    /**
+     * Metodo para adicao de medicamento na Alta
+     * @param medicamento (Medicamento)
+     * @throws AltaJaFechada
+     */
     public void addMedicamento (Medicamento medicamento) throws AltaJaFechada {
-        tentarMudarAtributo();
+        this.tentarMudarAtributo();
 
         this.medicamento.add(medicamento);
     }
 
+    /**
+     * Metodo para remocao de medicamento na alta
+     * @param medicamento (Medicamento)
+     */
     public void removeMedicamento (Medicamento medicamento) throws AltaJaFechada {
-        tentarMudarAtributo();
+        this.tentarMudarAtributo();
 
         this.medicamento.remove(medicamento);
     }
-    ////////////////////////////////
-
-    // Modificador do Precedimento
+    
+    
+    /**
+     * Metodo para adicao de Procedimento na Alta
+     * @param procedimento (Procedimento)
+     * @throws AltaJaFechada
+     */
     public void addProcedimento (Procedimento procedimento) throws AltaJaFechada {
-        tentarMudarAtributo();
+        this.tentarMudarAtributo();
 
         this.procedimento.add(procedimento);
     }
 
+    /**
+     * Metodo para remocao de Procedimento na Alta
+     * @param procedimento (Procedimento)
+     * @throws AltaJaFechada
+     */
     public void removeProcedimento (Procedimento procedimento) throws AltaJaFechada {
-        tentarMudarAtributo();
+        this.tentarMudarAtributo();
 
         this.procedimento.remove(procedimento);
     }
-    ///////////////////////////////
 }

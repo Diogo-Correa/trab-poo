@@ -8,6 +8,11 @@ public interface Controller {
     public void index();
 
     /**
+     * Metodo para redirecionar para a view show
+     */
+    public void show(int id);
+
+    /**
      * Metodo para redirecionar para a view create
      */
     public void create();
