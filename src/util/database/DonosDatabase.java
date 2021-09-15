@@ -11,7 +11,7 @@ import java.io.OutputStream;
 import models.clientes.Dono;
 
 public class DonosDatabase {
-    private static String dir = "util/database/records/";
+    private static String dir = "src\\util\\database\\records\\";
     private static String recordFileName = dir + "DonosRecords.txt";
 
     public static void addRecord(Dono objType) {

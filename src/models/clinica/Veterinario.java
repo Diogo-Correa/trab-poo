@@ -3,6 +3,7 @@ package models.clinica;
 import controllers.app.VeterinarioController;
 import controllers.middlewares.auth.Role;
 import util.Enfermidade;
+import util.errors.UserCadastradoException;
 import util.status.VeterinarioStatus;
 
 public class Veterinario extends User {
@@ -15,12 +16,14 @@ public class Veterinario extends User {
      * @param nome nome do User
      * @param password senha do User
      * @param role Role do User
+     * @param email email do User
      * @param idade idade do User
      * @param crmv crmv do Veterinario
      * @param especialidade Enfermidade de especialidade do Veterinario
+     * @throws UserCadastradoException
      */
-    public Veterinario(String nome, String password, Role role, int idade, String crmv, Enfermidade especialidade){
-        super(nome, password, idade, role);
+    public Veterinario(String nome, String password, Role role, String email, int idade, String crmv, Enfermidade especialidade) throws UserCadastradoException{
+        super(nome, password, idade, role, email);
         this.crmv = crmv;
         this.especialidade = especialidade;
         this.status = VeterinarioStatus.ATIVO;
@@ -32,11 +35,13 @@ public class Veterinario extends User {
      * @param nome nome do User
      * @param password senha do User
      * @param role Role do User
+     * @param email email do User
      * @param idade idade do User
      * @param crmv crmv do Veterinario
+     * @throws UserCadastradoException
      */
-    public Veterinario(String nome, String password, Role role, int idade, String crmv){
-        super(nome, password, idade, role);
+    public Veterinario(String nome, String password, Role role, String email, int idade, String crmv) throws UserCadastradoException{
+        super(nome, password, idade, role, email);
         this.crmv = crmv;
         this.especialidade = null;
         this.status = VeterinarioStatus.ATIVO;

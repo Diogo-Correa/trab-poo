@@ -10,18 +10,18 @@ import views.*;
 public class Auth {
     private static int tentativesCount = 3;
     private static User authUser;
-    private String name, password;
+    private String user, password;
     private static boolean authenticated;
   
     /**
      * 
-     * @param name nome do User
+     * @param user email do User
      * @param password senha do User
      */
-    public Auth(String name, String password) {
-      this.name = name;
+    public Auth(String user, String password) {
+      this.user = user;
       this.password = password;
-      new Activity("Usuário: " + this.name + " efetuou uma tentativa de login.");
+      new Activity("Usuário: " + this.user + " efetuou uma tentativa de login.");
       this.authenticate();
     }
 
@@ -56,9 +56,9 @@ public class Auth {
      */
     private void authenticate() {
       for(User user : Users.getUsers()) {
-        if(this.name.equals(user.getNome()) && this.password.equals(user.getPassword()) && !authenticated) {
+        if(this.user.equals(user.getEmail()) && this.password.equals(user.getPassword()) && !authenticated) {
           Login.setMessage("Login efetuado com sucesso!");
-          new Activity("Usuário: " + this.name + " login efetuado com sucesso!");
+          new Activity("Usuário: " + this.user + " login efetuado com sucesso!");
           authenticated = true;
           authUser = user;
           new App();
@@ -66,7 +66,7 @@ public class Auth {
 
         }
       }
-        new Activity("Usuário: " + this.name + " falha no login.");
+        new Activity("Usuário: " + this.user + " falha no login.");
         Login.setMessage("Voce possui " + tentativesCount + " tentativas.");
         if(tentativesCount > 0) {
           tentativesCount--;
@@ -78,11 +78,11 @@ public class Auth {
      * Metodo de logout de usuarios
      */
     public static void logout() {
-      String name = authUser.getNome();
+      String user = authUser.getNome();
       authenticated = false;
       authUser = null;
       tentativesCount = 3;
-      new Activity("Usuário: " + name + " deslogou-se do sistema.");
+      new Activity("Usuário: " + user + " deslogou-se do sistema.");
       new App();
     }
   }

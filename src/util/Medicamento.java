@@ -23,8 +23,7 @@ public class Medicamento {
     }
 
     public Animal getAnimal(){
-        // TODO return Animais.find(this.animalId);
-        return null;
+        return AnimaisDatabase.find(this.animalId);
     }
 
 }

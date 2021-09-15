@@ -2,9 +2,10 @@ package models.clinica;
 
 import controllers.middlewares.auth.Role;
 import util.database.Users;
+import util.errors.UserCadastradoException;
 
 public abstract class User {
-    private String name, password;
+    private String name, password, email;
     private int idade;
     private Role role;
     private static int nextId = 0;
@@ -13,12 +14,17 @@ public abstract class User {
     /**
      * User constructor
      * @param name
+     * @param email
      * @param password
      * @param idade
      * @param role
+     * @param email
+     * @throws UserCadastradoException
      */
-    public User(String name, String password, int idade, Role role) {
+    public User(String name, String password, int idade, Role role, String email) throws UserCadastradoException {
+        checkUser(email);
         this.name = name;
+        this.email = email;
         this.password = password;
         this.idade = idade;
         this.role = role;
@@ -43,6 +49,18 @@ public abstract class User {
      * @param value novo nome do usuario
      */
     public void setNome(String value) { this.name = value; }
+
+    /**
+     * Metodo para obter o email do User
+     * @return User email
+     */
+    public String getEmail() { return this.email; }
+
+    /**
+     * Metodo para setar um novo email ao User
+     * @param value novo email do usuario
+     */
+    public void setEmail(String value) { this.email = value; }
 
     /**
      * Metodo para obter a senha do usuario
@@ -80,4 +98,16 @@ public abstract class User {
      */
     public void setIdade(int value) { this.idade = value;}
 
+    /**
+     * Metodo para verificar se ja possui um email cadastrado
+     * @param email email do User
+     */
+    public static boolean checkUser(String email) throws UserCadastradoException {
+        for(User user : Users.getUsers()) {
+            if(user.getEmail().equals(email)) {
+                throw new UserCadastradoException("Email de usuario ja cadastrado");
+            }
+        }
+        return false;
+    }
 }

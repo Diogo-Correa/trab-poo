@@ -11,7 +11,7 @@ import java.io.OutputStream;
 import models.clientes.Animal;
 
 public class AnimaisDatabase {
-    private static String dir = "util/database/records/";
+    private static String dir = "src\\util\\database\\records\\";
     private static String recordFileName = dir + "AnimaisRecords.txt";
 
     public static void addRecord(Animal objType) {
@@ -25,7 +25,7 @@ public class AnimaisDatabase {
             obj_output.close();
             file.close();
         }catch(Exception e){
-            // e.printStackTrace(); // Ja que esta sendo usado swing, nao tem problema manter esse print
+            e.printStackTrace(); // Ja que esta sendo usado swing, nao tem problema manter esse print
         }
     }
 

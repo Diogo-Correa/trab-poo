@@ -12,7 +12,7 @@ import models.clinica.consultas.Atendimento;
 import util.ComboBoxItem;
 import util.Enfermidade;
 import util.auth.Auth;
-import util.database.Animais;
+import util.database.AnimaisDatabase;
 import util.database.Enfermidades;
 import util.status.AnimalStatus;
 import views.Dashboard;
@@ -46,7 +46,7 @@ public class Create extends JFrame implements ActionListener{
 
 
         this.animais_text = new JLabel("Selecione um animal: ");
-        for(Animal a : Animais.getAnimais()) {
+        for(Animal a : AnimaisDatabase.all()) {
             if(a.getStatus() != AnimalStatus.EM_ATENDIMENTO)
                 animaisVec.addElement(new ComboBoxItem(a.getId(), a.getNome()));
         }
@@ -88,7 +88,7 @@ public class Create extends JFrame implements ActionListener{
         if (e.getSource() == this.buscarVet) {
             // abre atendimento
             ComboBoxItem animal = (ComboBoxItem) this.animais.getSelectedItem();
-            this.atendimento = new Atendimento(Animais.find(animal.getId()), Auth.getUser());
+            this.atendimento = new Atendimento(AnimaisDatabase.find(animal.getId()), Auth.getUser());
             
             // seta a enfermidade no animal
             ComboBoxItem enfermidade = (ComboBoxItem) this.enfermidades.getSelectedItem();
