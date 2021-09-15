@@ -28,6 +28,49 @@ public class AtendimentosDatabase {
         }
     }
 
+    public static void updateRecord(Atendimento objType) {
+        try{
+            FileInputStream file = new FileInputStream(new File(recordFileName));
+            ArrayList<Atendimento> recordList = new ArrayList<Atendimento>();
+            Atendimento record;
+            ObjectInputStream obj_input = new ObjectInputStream(file);
+
+            try{
+                while(true){
+                    record = (Atendimento) obj_input.readObject();
+                    if(record.getId() != objType.getId()){
+                        recordList.add(record);
+                    }else{
+                        recordList.add(objType);
+                    }
+                    obj_input = new ObjectInputStream(file);
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+                obj_input.close();
+            }   
+            file.close();
+
+            // add all objs from list to file
+            OutputStream os = null;
+            try {
+                os = new FileOutputStream(new File(recordFileName));
+                ObjectOutputStream oos = null;
+                for (Atendimento animal : recordList) {
+                    oos = new ObjectOutputStream(os);
+                    oos.writeObject(animal);
+                }
+                oos.flush();
+            } finally {
+                if (os != null) {
+                    os.close();
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public static void removeRecord(int id) {
         try{
             FileInputStream file = new FileInputStream(new File(recordFileName));

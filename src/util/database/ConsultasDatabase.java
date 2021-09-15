@@ -28,6 +28,49 @@ public class ConsultasDatabase {
         }
     }
 
+    public static void updateRecord(Consulta objType) {
+        try{
+            FileInputStream file = new FileInputStream(new File(recordFileName));
+            ArrayList<Consulta> recordList = new ArrayList<Consulta>();
+            Consulta record;
+            ObjectInputStream obj_input = new ObjectInputStream(file);
+
+            try{
+                while(true){
+                    record = (Consulta) obj_input.readObject();
+                    if(record.getId() != objType.getId()){
+                        recordList.add(record);
+                    }else{
+                        recordList.add(objType);
+                    }
+                    obj_input = new ObjectInputStream(file);
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+                obj_input.close();
+            }   
+            file.close();
+
+            // add all objs from list to file
+            OutputStream os = null;
+            try {
+                os = new FileOutputStream(new File(recordFileName));
+                ObjectOutputStream oos = null;
+                for (Consulta animal : recordList) {
+                    oos = new ObjectOutputStream(os);
+                    oos.writeObject(animal);
+                }
+                oos.flush();
+            } finally {
+                if (os != null) {
+                    os.close();
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public static void removeRecord(int id) {
         try{
             FileInputStream file = new FileInputStream(new File(recordFileName));
