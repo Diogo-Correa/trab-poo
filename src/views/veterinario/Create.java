@@ -158,16 +158,16 @@ public class Create extends JFrame {
             ComboBoxItem r = (ComboBoxItem) this.role.getSelectedItem();
             ComboBoxItem esp = (ComboBoxItem) this.especialidade.getSelectedItem();
             if(espFalse.isSelected()){ 
-                new VeterinarioController().store(new Veterinario(
+                new Veterinario(
                     this.nome.getText(), 
                     this.senha.getText(), 
                     RolesDatabase.find(r.getId()),
                     this.email.getText(),  
                     Integer.parseInt(idade.getText()), 
                     this.crmv.getText()
-                ));
+                );
             } else {
-                new VeterinarioController().store(new Veterinario(
+                new Veterinario(
                     this.nome.getText(), 
                     this.senha.getText(), 
                     RolesDatabase.find(r.getId()),
@@ -175,7 +175,7 @@ public class Create extends JFrame {
                     Integer.parseInt(idade.getText()), 
                     this.crmv.getText(),
                     EnfermidadesDatabase.find(esp.getId()) 
-                ));
+                );
             }
             dispose();
             return;

@@ -92,6 +92,7 @@ public class Create extends JFrame {
                 create();
             }
         });
+        
         this.panel.add(cancelar);
         this.cancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

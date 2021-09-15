@@ -8,7 +8,9 @@ import controllers.app.VeterinarioController;
 import models.clientes.Animal;
 import models.clinica.Veterinario;
 import util.Enfermidade;
+import util.database.AnimaisDatabase;
 import util.database.ConsultasDatabase;
+import util.database.VeterinariosDatabase;
 import util.errors.AltaJaFechada;
 import util.status.AnimalStatus;
 import util.status.VeterinarioStatus;
@@ -30,10 +32,10 @@ public class Consulta implements Serializable {
     public Consulta(Veterinario veterinario, Animal animal, Enfermidade enfermidade) {
         this.veterinario = veterinario;
         this.veterinario.setStatus(VeterinarioStatus.ATENDENDO);
-        new VeterinarioController().update(this.veterinario.getId());
+        VeterinariosDatabase.updateRecord(this.veterinario);
         this.animal = animal;
         this.animal.setStatus(AnimalStatus.EM_ATENDIMENTO);
-        new AnimalController().update(this.animal.getId());
+        AnimaisDatabase.updateRecord(this.animal);
         this.enfermidade = enfermidade;
         this.id = ConsultasDatabase.getLastId() + 1;
         this.dataDaConsultaAbertura = new Date();
@@ -104,7 +106,9 @@ public class Consulta implements Serializable {
             this.resultadoDaConsulta.fechar();
             this.dataDaConsultaFechamento = new Date();
             this.veterinario.setStatus(VeterinarioStatus.ATIVO);
+            VeterinariosDatabase.updateRecord(this.veterinario);
             this.animal.setStatus(AnimalStatus.ATIVO);
+            AnimaisDatabase.updateRecord(this.animal);
         }catch(AltaJaFechada e){
             // Tratar caso a alta já tenha sido fechada
             System.out.println(e); // Temp

@@ -19,7 +19,8 @@ import util.status.VeterinarioStatus;
 public class Dashboard extends JFrame implements ActionListener { 
     private JPanel panel;
     private static JLabel message;
-    private JLabel emConsulta, enfermidade, dataConsulta;
+    private JLabel emConsulta, enfermidade, dataConsulta, horas_internacao;
+    private JTextField horas_interna;
     private JMenu userMenu, atendMenu, vetMenu, estagMenu, clientesMenu;
     private JMenuItem logout, novoAtend, vetItem, estagItem, novoEstag, novoVet, novoCliente;
     private JMenuBar mainMenu;
@@ -108,9 +109,12 @@ public class Dashboard extends JFrame implements ActionListener {
             this.emConsulta = new JLabel();
             this.enfermidade = new JLabel();
             this.dataConsulta = new JLabel();
+            this.horas_internacao = new JLabel("Digite o tempo de internacao em ms");
+            this.horas_interna = new JTextField("10000");
             this.emConsulta.setForeground(Color.WHITE);
             this.enfermidade.setForeground(Color.WHITE);
             this.dataConsulta.setForeground(Color.WHITE);
+            this.horas_internacao.setForeground(Color.WHITE);
 
             this.panel.add(emConsulta);
             this.emConsulta.setText("Voce esta com uma consulta aberta com o pet: " + consulta.getAnimal().getNome());
@@ -119,6 +123,8 @@ public class Dashboard extends JFrame implements ActionListener {
             this.panel.add(enfermidade);
             this.enfermidade.setText("Enfermidade do pet: " + consulta.getEnfermidade().getNome());
             this.panel.add(this.abrirFicha);
+            this.panel.add(this.horas_internacao);
+            this.panel.add(this.horas_interna);
             this.panel.add(this.internar);
             this.panel.add(this.fecharConsulta);
 
@@ -175,10 +181,12 @@ public class Dashboard extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == this.internar) {
-            new Thread(new Internacao(this.consulta)).start();
+            new Thread(new Internacao(this.consulta, Integer.parseInt(this.horas_interna.getText()))).start();
             this.dataConsulta.setText("");
             this.enfermidade.setText("");
             this.emConsulta.setText("");
+            this.horas_internacao.setText("");
+            this.horas_interna.setVisible(false);
             this.abrirFicha.setVisible(false);
             this.internar.setVisible(false);
             this.fecharConsulta.setVisible(false);
@@ -190,8 +198,10 @@ public class Dashboard extends JFrame implements ActionListener {
                 this.dataConsulta.setText("");
                 this.enfermidade.setText("");
                 this.emConsulta.setText("");
+                this.horas_internacao.setText("");
+                this.horas_interna.setVisible(false);
                 this.abrirFicha.setVisible(false);
-            this.internar.setVisible(false);
+                this.internar.setVisible(false);
                 this.fecharConsulta.setVisible(false);
                 setMessage("Consulta finalizada!", Color.RED);
             } catch (AltaJaFechada error) {

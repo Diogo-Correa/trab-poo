@@ -124,14 +124,14 @@ public class Create extends JFrame {
     public void create() throws NumberFormatException, UserCadastradoException {
         if((!this.email.getText().trim().equals("") && !User.checkUser(this.email.getText())) && !this.nome.getText().trim().equals("") && !this.senha.getText().trim().equals("") && (!this.idade.getText().trim().equals("") && this.idade.getText().matches("[0-9]*")) && !this.horas.getText().trim().equals("")) {
             ComboBoxItem r = (ComboBoxItem) this.role.getSelectedItem();
-            new EstagiarioController().store(new Estagiario(
+            new Estagiario(
                 this.nome.getText(), 
                 this.senha.getText(), 
                 RolesDatabase.find(r.getId()), 
                 this.email.getText(), 
                 Integer.parseInt(this.idade.getText()), 
                 Integer.parseInt(this.horas.getText())
-                ));
+                );
             dispose();
             return;
         } else if(this.nome.getText().trim().equals("")) {
