@@ -20,8 +20,8 @@ public class Dashboard extends JFrame implements ActionListener {
     private JPanel panel;
     private static JLabel message;
     private JLabel emConsulta, enfermidade, dataConsulta;
-    private JMenu userMenu, atendMenu, vetMenu, estagMenu;
-    private JMenuItem logout, novoAtend, vetItem, estagItem, novoEstag, novoVet;
+    private JMenu userMenu, atendMenu, vetMenu, estagMenu, clientesMenu;
+    private JMenuItem logout, novoAtend, vetItem, estagItem, novoEstag, novoVet, novoCliente;
     private JMenuBar mainMenu;
     private Container ContentPane;
     private JButton fecharConsulta, abrirFicha, internar;
@@ -44,6 +44,7 @@ public class Dashboard extends JFrame implements ActionListener {
         this.atendMenu = new JMenu("Atendimentos");
         this.vetMenu = new JMenu("Veterinarios");
         this.estagMenu = new JMenu("Estagiarios");
+        this.clientesMenu = new JMenu("Clientes");
 
         // User items
         this.logout = new JMenuItem("Logout", new ImageIcon());
@@ -52,6 +53,10 @@ public class Dashboard extends JFrame implements ActionListener {
         // Atendimento items
         this.novoAtend = new JMenuItem("Novo", new ImageIcon());
         this.atendMenu.add(this.novoAtend);
+
+        // Cliente items
+        this.novoCliente = new JMenuItem("Novo", new ImageIcon());
+        this.clientesMenu.add(this.novoCliente);
 
         // Veterinarios items
         this.novoVet = new JMenuItem("Novo", new ImageIcon());
@@ -81,6 +86,7 @@ public class Dashboard extends JFrame implements ActionListener {
         if(estag != null) this.mainMenu.add(this.atendMenu);
         this.mainMenu.add(this.vetMenu);
         this.mainMenu.add(this.estagMenu);
+        this.mainMenu.add(this.clientesMenu);
 
         // panel vet
         this.panel = new JPanel(new GridLayout(10,10,10,10));
@@ -128,6 +134,7 @@ public class Dashboard extends JFrame implements ActionListener {
         this.novoAtend.addActionListener(this);
         this.vetItem.addActionListener(this);
         this.estagItem.addActionListener(this);
+        this.novoCliente.addActionListener(this);
         this.ContentPane = getContentPane();
         this.ContentPane.add(this.mainMenu, BorderLayout.NORTH);
         add(panel, BorderLayout.CENTER);
@@ -149,6 +156,10 @@ public class Dashboard extends JFrame implements ActionListener {
 
         if (e.getSource() == this.novoAtend) {
             new AtendimentoController().create();
+        }
+
+        if (e.getSource() == this.novoCliente) {
+            new AnimalController().create();
         }
 
         if (e.getSource() == this.vetItem) {

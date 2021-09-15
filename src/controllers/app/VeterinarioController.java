@@ -53,8 +53,8 @@ public class VeterinarioController implements Controller {
     /**
      * Metodo para atualizar o banco de dados
      */
-    public void update() {
-        // VeterinariosDatabase.attRecord();
+    public void update(int id) {
+        VeterinariosDatabase.updateRecord(VeterinariosDatabase.find(id));
     }
 
     /**

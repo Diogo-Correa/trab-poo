@@ -2,7 +2,9 @@ package models.clinica.consultas;
 import java.io.Serializable;
 import java.util.Date;
 
+import controllers.app.AnimalController;
 import controllers.app.ConsultaController;
+import controllers.app.VeterinarioController;
 import models.clientes.Animal;
 import models.clinica.Veterinario;
 import util.Enfermidade;
@@ -28,8 +30,10 @@ public class Consulta implements Serializable {
     public Consulta(Veterinario veterinario, Animal animal, Enfermidade enfermidade) {
         this.veterinario = veterinario;
         this.veterinario.setStatus(VeterinarioStatus.ATENDENDO);
+        new VeterinarioController().update(this.veterinario.getId());
         this.animal = animal;
         this.animal.setStatus(AnimalStatus.EM_ATENDIMENTO);
+        new AnimalController().update(this.animal.getId());
         this.enfermidade = enfermidade;
         this.id = ConsultasDatabase.getLastId() + 1;
         this.dataDaConsultaAbertura = new Date();

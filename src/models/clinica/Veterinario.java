@@ -95,4 +95,9 @@ public class Veterinario extends User {
     public void setStatus(VeterinarioStatus status) {
         this.status = status;
     }
+    
+    @Override
+    public String toString() {
+        return "Nome: " + this.getNome() + ", Id: " + this.getId();
+    }
 }

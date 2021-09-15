@@ -4,6 +4,8 @@ import util.Medicamento;
 import util.database.AnimaisDatabase;
 import util.database.DonosDatabase;
 import java.io.Serializable;
+
+import controllers.app.AnimalController;
 import util.status.AnimalStatus;
 
 public class Animal implements Serializable {
@@ -31,7 +33,7 @@ public class Animal implements Serializable {
         this.agressivo = agressivo;
         this.id = AnimaisDatabase.getLastId() + 1;
         this.status = AnimalStatus.ATIVO;
-        AnimaisDatabase.addRecord(this);
+        new AnimalController().store(this);
     }
     
     /**

@@ -1,8 +1,9 @@
 package controllers.app;
 
 import controllers.Controller;
+import models.clientes.Animal;
 import util.database.AnimaisDatabase;
-import views.animal.Show;
+import views.animal.*;
 
 public class AnimalController implements Controller {
 
@@ -25,7 +26,7 @@ public class AnimalController implements Controller {
      * Metodo para redirecionar para a view create do Animal
      */
     public void create() {
-        //
+        new Create();
     }
 
     /**
@@ -33,7 +34,7 @@ public class AnimalController implements Controller {
      * @param obj Objeto referente ao Animal
      */
     public <O> void store(O obj) {
-        //
+        AnimaisDatabase.addRecord((Animal) obj);
     }
 
     /**
@@ -47,8 +48,8 @@ public class AnimalController implements Controller {
     /**
      * Metodo para atualizar o banco de dados
      */
-    public void update() {
-        //
+    public void update(int id) {
+        AnimaisDatabase.updateRecord(AnimaisDatabase.find(id));
     }
 
     /**

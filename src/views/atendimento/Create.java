@@ -119,7 +119,6 @@ public class Create extends JFrame implements ActionListener{
             // encaminha para a consulta
             this.atendimento.abreConsulta();
             Dashboard.setMessage("Paciente encaminhado!", Color.GREEN);
-            new VeterinarioController().update();
             this.dispose();
         }
         

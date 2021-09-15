@@ -11,7 +11,7 @@ import java.io.OutputStream;
 import util.Medicamento;
 
 public class MedicamentosDatabase {
-    private static String dir = "util/database/records/";
+    private static String dir = "src\\util\\database\\records\\";
     private static String recordFileName = dir + "MedicamentosRecords.txt";
 
     public static void addRecord(Medicamento objType) {

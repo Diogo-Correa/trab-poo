@@ -111,7 +111,6 @@ public class Atendimento  implements Serializable {
                 System.out.println("O veterinário informado já está em atendimento. Realize uma nova busca.");
                 return null;
             }
-
             return new Consulta(this.veterinario, this.animal, this.enfermidade); 
         }
         else System.out.println("Por favor informe um veterinário e a enfermidade do animal.");

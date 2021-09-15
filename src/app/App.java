@@ -20,6 +20,7 @@ import views.Login;
 import util.database.AnimaisDatabase;
 import models.clientes.Animal;
 import util.generator.AnimaisGenerator;
+import util.generator.EnfermidadesGenerator;
 
 public class App {
 
@@ -38,7 +39,7 @@ public class App {
     }
 
     public static void main(String[] args) throws Exception {
-        // new App("[VetSystem] POO Project");
+        new App("[VetSystem] POO Project");
         
         // Animal a1 = new Animal(
         //     "aaaa", 
@@ -66,15 +67,12 @@ public class App {
     }
 
     private static void initialize() {
-        // EnfermidadesGenerator.generate();
-        // System.out.println(Enfermidades.getEnfermidades());
-        //try {
-        //UsersGenerator.generate();
-        //} catch (UserCadastradoException e) {
-        //e.printStackTrace();
-        //}
-        // System.out.println(Veterinarios.getVeterinarios());
-        // AnimaisGenerator.generate();
-        // System.out.println(AnimaisDatabase.all());
+        EnfermidadesGenerator.generate();
+        try {
+        UsersGenerator.generate();
+        } catch (UserCadastradoException e) {
+        e.printStackTrace();
+        }
+        AnimaisGenerator.generate();
     }
 }

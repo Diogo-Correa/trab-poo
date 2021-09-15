@@ -12,7 +12,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
 public class VeterinariosDatabase {
-    private static String dir = "util/database/records/";
+    private static String dir = "src\\util\\database\\records\\";
     private static String recordFileName = dir + "VeterinariosRecords.txt";
 
     public static void addRecord(Veterinario objType) {

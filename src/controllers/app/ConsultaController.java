@@ -53,7 +53,7 @@ public class ConsultaController implements Controller {
     /**
      * Metodo para atualizar o banco de dados
      */
-    public void update() {
+    public void update(int id) {
         //
     }
 

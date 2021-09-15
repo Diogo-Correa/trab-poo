@@ -32,7 +32,7 @@ public interface Controller {
     /**
      * Metodo para atualizar os dados do banco de dados
      */
-    public void update();
+    public void update(int id);
 
     /**
      * Metodo de exclusao de dados do ArrayList
