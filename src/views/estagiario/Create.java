@@ -10,15 +10,17 @@ import javax.swing.border.*;
 import controllers.app.EstagiarioController;
 import controllers.middlewares.auth.Role;
 import models.clinica.Estagiario;
+import models.clinica.User;
 import util.ComboBoxItem;
 import util.auth.Auth;
 import util.database.Roles;
+import util.errors.UserCadastradoException;
 
 public class Create extends JFrame {
     
     private JPanel panel;
-    private JLabel nome_txt, senha_txt, role_txt, idade_txt, horas_txt, error, br;
-    private JTextField nome, idade, horas;
+    private JLabel nome_txt, senha_txt, role_txt, email_txt, idade_txt, horas_txt, error, br;
+    private JTextField nome, idade, horas, email;
     private JPasswordField senha;
     private JComboBox role;
     private JButton adicionar, cancelar;
@@ -47,6 +49,7 @@ public class Create extends JFrame {
         this.idade_txt = new JLabel("Digite a idade: ");
         this.horas_txt = new JLabel("Digite as horas semanais: ");
         this.role_txt = new JLabel("Selecione um nivel de acesso: ");
+        this.email_txt = new JLabel("Digite o email do usuario: ");
 
         // labels errors
         this.error = new JLabel();
@@ -57,6 +60,7 @@ public class Create extends JFrame {
         this.senha = new JPasswordField();
         this.idade = new JTextField();
         this.horas = new JTextField();
+        this.email = new JTextField();
 
         for(Role r : Roles.getRoles()) {
             this.roles.addElement(new ComboBoxItem(r.getId(), r.getNome()));
@@ -74,6 +78,9 @@ public class Create extends JFrame {
         this.panel.add(this.nome_txt);
         this.panel.add(this.nome);
 
+        this.panel.add(this.email_txt);
+        this.panel.add(this.email);
+
         this.panel.add(this.senha_txt);
         this.panel.add(this.senha);
 
@@ -89,7 +96,12 @@ public class Create extends JFrame {
         this.panel.add(this.adicionar);
         this.adicionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                create();
+                try {
+                    create();
+                } catch (NumberFormatException | UserCadastradoException e1) {
+                    e1.printStackTrace();
+                    error.setText("O email ja esta em uso.");
+                }
             }
         });
         this.panel.add(cancelar);
@@ -109,12 +121,14 @@ public class Create extends JFrame {
 
     }
 
-    public void create() {
-        if(!this.nome.getText().trim().equals("") && !this.senha.getText().trim().equals("") && !this.idade.getText().trim().equals("") && !this.horas.getText().trim().equals("")) {
+    public void create() throws NumberFormatException, UserCadastradoException {
+        if((!this.email.getText().trim().equals("") && !User.checkUser(this.email.getText())) && !this.nome.getText().trim().equals("") && !this.senha.getText().trim().equals("") && (!this.idade.getText().trim().equals("") && this.idade.getText().matches("[0-9]*")) && !this.horas.getText().trim().equals("")) {
             ComboBoxItem r = (ComboBoxItem) this.role.getSelectedItem();
             new EstagiarioController().store(new Estagiario(
-                this.nome.getText(), this.senha.getText(), 
+                this.nome.getText(), 
+                this.senha.getText(), 
                 Roles.find(r.getId()), 
+                this.email.getText(), 
                 Integer.parseInt(this.idade.getText()), 
                 Integer.parseInt(this.horas.getText())
                 ));
@@ -122,11 +136,15 @@ public class Create extends JFrame {
             return;
         } else if(this.nome.getText().trim().equals("")) {
             this.error.setText("O campo nome nao pode ser nulo.");
-        } else if(this.senha.getText().trim().equals("")) {
+        } else if(this.email.getText().trim().equals("")) {
+            this.error.setText("O campo email nao pode ser nulo.");
+        }   else if(this.senha.getText().trim().equals("")) {
             this.error.setText("O campo senha nao pode ser nulo.");
         }  else if(this.idade.getText().trim().equals("")) {
             this.error.setText("O campo idade nao pode ser nulo.");
-        } else if(this.horas.getText().trim().equals("")) {
+        }  else if(!this.idade.getText().matches("[0-9]*")) {
+            this.error.setText("O campo idade deve ser um inteiro.");
+        }  else if(this.horas.getText().trim().equals("")) {
             this.error.setText("O campo horas nao pode ser nulo.");
         }
         return;

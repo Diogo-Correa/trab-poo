@@ -11,17 +11,11 @@
 package app;
 
 import util.auth.Auth;
+import util.errors.UserCadastradoException;
 import util.generator.*;
 import util.log.Activity;
 import views.Dashboard;
 import views.Login;
-
-import util.database.AnimaisDatabase;
-import models.clientes.Animal;
-import models.clientes.Dono;
-import java.util.ArrayList;
-
-
 
 
 public class App {
@@ -41,36 +35,20 @@ public class App {
     }
 
     public static void main(String[] args) throws Exception {
-        // new App("[VetSystem] POO Project");
-
-        AnimaisDatabase dogs = new AnimaisDatabase();
-        Animal dog = new Animal(
-            "Thor", 
-            "Cachorro", 
-            "Labrador", 
-            "Grande", 
-            "Longo", 
-            false
-            );
-        Dono dono = new Dono("Marcelo", "(21) 00000-0000", 26, dog.getId());
-            
-        // ArrayList<Animal> allDogs = new ArrayList<Animal>();
-        // allDogs = dogs.all();
-
-        // for(Animal doguinhos : allDogs) {
-        //     System.out.println(doguinhos.getNome() + " " + doguinhos.getId());
-        // }
-
-        dog = dogs.find(0);
-        System.out.println(dog.getNome() + " " + dog.getId());
+        new App("[VetSystem] POO Project");
     }
 
     private static void initialize() {
         // EnfermidadesGenerator.generate();
         // System.out.println(Enfermidades.getEnfermidades());
-        // UsersGenerator.generate();
+        try {
+            UsersGenerator.generate();
+        } catch (UserCadastradoException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         // System.out.println(Veterinarios.getVeterinarios());
         // AnimaisGenerator.generate();
-        // System.out.println(Animais.getAnimais());
+        // System.out.println(AnimaisDatabase.all());
     }
 }

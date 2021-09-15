@@ -1,7 +1,7 @@
 package controllers.app;
 
 import controllers.Controller;
-import util.database.Animais;
+import util.database.AnimaisDatabase;
 import views.animal.Show;
 
 public class AnimalController implements Controller {
@@ -18,7 +18,7 @@ public class AnimalController implements Controller {
      * @param id Id referente ao Animal
      */
     public void show(int id) {
-        new Show(Animais.find(id));
+        new Show(AnimaisDatabase.find(id));
     }
 
     /**
