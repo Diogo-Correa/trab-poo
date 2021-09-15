@@ -9,7 +9,7 @@ import java.io.*;
 import util.log.Activity;
 
 public class ConsultasDatabase {
-    private static String dir = "src\\util\\database\\records\\";
+    private static String dir = "util/database/records/";
     private static String recordFileName = dir + "ConsultasRecords.txt";
 
     public static void addRecord(Consulta objType) {

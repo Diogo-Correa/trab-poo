@@ -19,6 +19,7 @@ import views.Login;
 
 import util.database.AnimaisDatabase;
 import models.clientes.Animal;
+import util.generator.AnimaisGenerator;
 
 public class App {
 
@@ -37,16 +38,31 @@ public class App {
     }
 
     public static void main(String[] args) throws Exception {
-        // new App("[VetSystem] POO Project");
-
-        AnimaisDatabase dogs = new AnimaisDatabase();
-        Animal dog = dogs.find(1);
-        // dog.setNome("Tor");
-        System.out.println(dog.getNome());
-        // dogs.updateRecord(dog);
-        // dog = dogs.find(1);
-        // System.out.println(dog.getNome());
+        //new App("[VetSystem] POO Project");
         
+        // Animal a1 = new Animal(
+        //     "aaaa", 
+        //     "Cachorro", 
+        //     "Labrador", 
+        //     "Grande", 
+        //     "Longo", 
+        //     false
+        // );
+
+        // AnimaisGenerator.generate();
+        System.out.println(AnimaisDatabase.all());
+
+        Animal dog = AnimaisDatabase.find(3); 
+        System.out.println(dog.getNome());
+
+        dog.setNome("Toasd");
+        System.out.println(dog.getNome());
+
+        AnimaisDatabase.updateRecord(dog);
+
+        System.out.println(AnimaisDatabase.all());
+        dog = AnimaisDatabase.find(3);
+        System.out.println(dog.getNome());
     }
 
     private static void initialize() {

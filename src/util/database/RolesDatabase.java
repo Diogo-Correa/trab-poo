@@ -12,7 +12,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
 public class RolesDatabase {
-    private static String dir = "src\\util\\database\\records\\";
+    private static String dir = "util/database/records/";
     private static String recordFileName = dir + "RolesRecords.txt";
 
     public static void addRecord(Role objType) {
