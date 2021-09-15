@@ -99,8 +99,9 @@ public class VeterinariosDatabase {
             OutputStream os = null;
             try {
                 os = new FileOutputStream(recordFileName);
-                ObjectOutputStream oos = new ObjectOutputStream(os);
+                ObjectOutputStream oos = null;
                 for (Veterinario veterinario : recordList) {
+                    oos = new ObjectOutputStream(os);
                     oos.writeObject(veterinario);
                 }
                 oos.flush();

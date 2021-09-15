@@ -56,8 +56,9 @@ public class RolesDatabase {
             OutputStream os = null;
             try {
                 os = new FileOutputStream(recordFileName);
-                ObjectOutputStream oos = new ObjectOutputStream(os);
+                ObjectOutputStream oos = null;
                 for (Role role : recordList) {
+                    oos = new ObjectOutputStream(os);
                     oos.writeObject(role);
                 }
                 oos.flush();
