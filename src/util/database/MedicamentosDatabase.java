@@ -1,12 +1,9 @@
 package util.database;
 
 import java.util.ArrayList;
-import util.log.Activity;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
@@ -110,7 +107,7 @@ public class MedicamentosDatabase {
             try{
                 while(true){
                     record = (Medicamento) obj_input.readObject();
-                    if(record.animalId == id){
+                    if(record.getId() == id){
                         recordList.add(record);
                     }
                     obj_input = new ObjectInputStream(file);

@@ -7,7 +7,6 @@ import util.database.AnimaisDatabase;
 import util.database.MedicamentosDatabase;
 import util.database.DonosDatabase;
 import java.io.Serializable;
-import util.database.Animais;
 import util.status.AnimalStatus;
 
 public class Animal implements Serializable {
@@ -16,7 +15,7 @@ public class Animal implements Serializable {
     private String nome, especie, raca, porte, pelagem;
     private boolean agressivo;
     
-    /*
+    /**
      * 
      * @param nome
      * @param especie
@@ -37,8 +36,6 @@ public class Animal implements Serializable {
         this.status = AnimalStatus.ATIVO;
         AnimaisDatabase.addRecord(this);
     }
-    
-
     
     /**
      * Metodo para obter o id do Animal
@@ -139,13 +136,6 @@ public class Animal implements Serializable {
      */
     public ArrayList<Medicamento> getMedicamentos() {
         return MedicamentosDatabase.findByAnimal(this.id);
-    }
-
-    public void showMedicamentos() {
-        for(Medicamento medicamento : this.getMedicamentos()) {
-            System.out.println(medicamento.getNome() + " " + medicamento.getDosagem());
-        }
-        return this.medicamentos;
     }
 
     /**
