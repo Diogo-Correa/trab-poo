@@ -3,13 +3,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import util.Medicamento;
-import util.Procedimento;
 import util.errors.AltaJaFechada;
 
 public class Alta implements Serializable {
     private Boolean emAberto;
     private ArrayList<Medicamento> medicamento = new ArrayList<Medicamento>();
-    private ArrayList<Procedimento> procedimento = new ArrayList<Procedimento>();
 
     public Alta() {
         this.emAberto = true;
@@ -55,28 +53,5 @@ public class Alta implements Serializable {
         this.tentarMudarAtributo();
 
         this.medicamento.remove(medicamento);
-    }
-    
-    
-    /**
-     * Metodo para adicao de Procedimento na Alta
-     * @param procedimento (Procedimento)
-     * @throws AltaJaFechada
-     */
-    public void addProcedimento (Procedimento procedimento) throws AltaJaFechada {
-        this.tentarMudarAtributo();
-
-        this.procedimento.add(procedimento);
-    }
-
-    /**
-     * Metodo para remocao de Procedimento na Alta
-     * @param procedimento (Procedimento)
-     * @throws AltaJaFechada
-     */
-    public void removeProcedimento (Procedimento procedimento) throws AltaJaFechada {
-        this.tentarMudarAtributo();
-
-        this.procedimento.remove(procedimento);
     }
 }

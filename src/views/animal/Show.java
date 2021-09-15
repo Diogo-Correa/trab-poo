@@ -2,17 +2,22 @@ package views.animal;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Vector;
 
 import javax.swing.*;
 import javax.swing.border.*;
 
 import models.clientes.Animal;
+import util.ComboBoxItem;
+import util.Medicamento;
 import util.auth.Auth;
+import util.database.MedicamentosDatabase;
 
 public class Show extends JFrame implements ActionListener{
 
     private JPanel panel;
     private JLabel nome, especie, raca, porte, pelagem, agressivo, dono, status, semMedicamentos;
+    private Vector medicamentos;
     private Animal animal;
 
     public Show(Animal animal) {
@@ -45,6 +50,7 @@ public class Show extends JFrame implements ActionListener{
         this.semMedicamentos.setForeground(Color.WHITE);
         this.semMedicamentos.setBackground(Color.BLACK);
         this.semMedicamentos.setOpaque(true);
+        this.medicamentos = new Vector();
 
         this.panel.add(this.nome);
         this.panel.add(this.especie);
@@ -55,18 +61,18 @@ public class Show extends JFrame implements ActionListener{
         this.panel.add(this.status);
         this.panel.add(this.dono);
 
-        /*
-        if(this.animal.getMedicamentos().size() == 0) {
+        
+        if(MedicamentosDatabase.all().size() == 0) {
             this.panel.add(this.semMedicamentos);
             this.semMedicamentos.setText("O animal nao faz uso de nenhuma medicacao.");
         } else {
-            for(Medicamento m : this.animal.getMedicamentos()) {
+            for(Medicamento m : MedicamentosDatabase.all()) {
                 medicamentos.addElement(new ComboBoxItem(m.getId(), m.getNome()));
             }
             JComboBox animais = new JComboBox(medicamentos);
             this.panel.add(animais);
         }
-        */
+       
 
         // event listener
         // this.medicamentos.addActionListener(this);

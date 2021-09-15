@@ -12,9 +12,10 @@ public class Medicamento implements Serializable {
     private String nome;
 
     public Medicamento(String nome, int animalId) {
-        this.id = MedicamentosDatabase.last().id + 1;
+        this.id = MedicamentosDatabase.getLastId() + 1;
         if(AnimaisDatabase.find(animalId) != null){ this.animalId = animalId; }
         this.nome = nome;
+        MedicamentosDatabase.addRecord(this);
     }
 
     public String getNome() {

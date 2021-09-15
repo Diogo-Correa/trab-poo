@@ -11,6 +11,7 @@ import models.clinica.Estagiario;
 import models.clinica.Veterinario;
 import models.clinica.consultas.Consulta;
 import models.clinica.consultas.Internacao;
+import util.Medicamento;
 import util.auth.Auth;
 import util.database.*;
 import util.errors.AltaJaFechada;
@@ -19,13 +20,13 @@ import util.status.VeterinarioStatus;
 public class Dashboard extends JFrame implements ActionListener { 
     private JPanel panel;
     private static JLabel message;
-    private JLabel emConsulta, enfermidade, dataConsulta, horas_internacao;
-    private JTextField horas_interna;
+    private JLabel emConsulta, enfermidade, dataConsulta, horas_internacao, medicamento_txt;
+    private JTextField horas_interna, medicamento;
     private JMenu userMenu, atendMenu, vetMenu, estagMenu, clientesMenu;
     private JMenuItem logout, novoAtend, vetItem, estagItem, novoEstag, novoVet, novoCliente;
     private JMenuBar mainMenu;
     private Container ContentPane;
-    private JButton fecharConsulta, abrirFicha, internar;
+    private JButton fecharConsulta, abrirFicha, internar, novoMedicamento;
     private Consulta consulta;
 
     
@@ -90,7 +91,7 @@ public class Dashboard extends JFrame implements ActionListener {
         this.mainMenu.add(this.clientesMenu);
 
         // panel vet
-        this.panel = new JPanel(new GridLayout(10,10,10,10));
+        this.panel = new JPanel(new GridLayout(15,15,15,15));
         this.panel.setBorder(new EmptyBorder(10, 10, 10, 10));
         this.panel.setBackground(Color.DARK_GRAY);
 
@@ -106,15 +107,19 @@ public class Dashboard extends JFrame implements ActionListener {
             this.fecharConsulta = new JButton("FECHAR CONSULTA");
             this.abrirFicha = new JButton("ABRIR FICHA");
             this.internar = new JButton("INTERNAR");
+            this.novoMedicamento = new JButton("ADICIONAR MEDICAMENTO");
             this.emConsulta = new JLabel();
             this.enfermidade = new JLabel();
             this.dataConsulta = new JLabel();
-            this.horas_internacao = new JLabel("Digite o tempo de internacao em ms");
+            this.horas_internacao = new JLabel("Digite o tempo de internacao em ms: ");
             this.horas_interna = new JTextField("10000");
+            this.medicamento_txt = new JLabel("Digite o nome do medicamento: ");
+            this.medicamento = new JTextField();
             this.emConsulta.setForeground(Color.WHITE);
             this.enfermidade.setForeground(Color.WHITE);
             this.dataConsulta.setForeground(Color.WHITE);
             this.horas_internacao.setForeground(Color.WHITE);
+            this.medicamento_txt.setForeground(Color.WHITE);
 
             this.panel.add(emConsulta);
             this.emConsulta.setText("Voce esta com uma consulta aberta com o pet: " + consulta.getAnimal().getNome());
@@ -125,12 +130,16 @@ public class Dashboard extends JFrame implements ActionListener {
             this.panel.add(this.abrirFicha);
             this.panel.add(this.horas_internacao);
             this.panel.add(this.horas_interna);
+            this.panel.add(this.medicamento_txt);
+            this.panel.add(this.medicamento);
+            this.panel.add(this.novoMedicamento);
             this.panel.add(this.internar);
             this.panel.add(this.fecharConsulta);
 
             this.abrirFicha.addActionListener(this);
             this.internar.addActionListener(this);
             this.fecharConsulta.addActionListener(this);
+            this.novoMedicamento.addActionListener(this);
         } 
         
 
@@ -144,7 +153,7 @@ public class Dashboard extends JFrame implements ActionListener {
         this.ContentPane = getContentPane();
         this.ContentPane.add(this.mainMenu, BorderLayout.NORTH);
         add(panel, BorderLayout.CENTER);
-        setSize(600, 600);
+        setSize(800, 800);
         setVisible(true);
     }
 
@@ -162,6 +171,18 @@ public class Dashboard extends JFrame implements ActionListener {
 
         if (e.getSource() == this.novoAtend) {
             new AtendimentoController().create();
+        }
+
+        if (e.getSource() == this.novoMedicamento) {
+            if(!this.medicamento.getText().trim().equals("")) {
+                try {
+                    this.consulta.getAlta().addMedicamento(new Medicamento(this.medicamento.getText(), this.consulta.getAnimal().getId()));
+                } catch (AltaJaFechada e1) {
+                    e1.printStackTrace();
+                }
+            } else {
+                setMessage("O campo medicamento nao pode ser nulo.", Color.RED);
+            }
         }
 
         if (e.getSource() == this.novoCliente) {

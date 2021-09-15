@@ -47,7 +47,7 @@ public class Edit extends JFrame {
         this.especialidades = new Vector();
 
         // panel
-        this.panel = new JPanel(new GridLayout(10, 10, 10, 10));
+        this.panel = new JPanel(new GridLayout(15, 15, 15, 15));
         this.panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         // labels

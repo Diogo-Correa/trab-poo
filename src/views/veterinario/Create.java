@@ -45,7 +45,7 @@ public class Create extends JFrame {
         this.especialidades = new Vector();
 
         // panel
-        this.panel = new JPanel(new GridLayout(10, 10, 10, 10));
+        this.panel = new JPanel(new GridLayout(15, 15, 15, 15));
         this.panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         // labels
@@ -83,9 +83,9 @@ public class Create extends JFrame {
         this.adicionar = new JButton("Adicionar");
         this.cancelar = new JButton("Cancelar");
         
-        this.panel.add(this.error);
+        /* this.panel.add(this.error);
         this.error.setForeground(Color.RED);
-        this.panel.add(this.br3);
+        this.panel.add(this.br3); */
 
         this.panel.add(this.nome_txt);
         this.panel.add(this.nome);
@@ -142,13 +142,16 @@ public class Create extends JFrame {
                 dispose();
             }
         });
+        
+        this.panel.add(this.error);
+        this.error.setForeground(Color.RED);
 
 
         add(panel, BorderLayout.CENTER);
         //this.adicionar.addActionListener(this);
         //this.cancelar.addActionListener(this);
         setTitle("[VetSystem] POO Project - Novo atendimento");
-        setSize(400, 400);
+        setSize(600, 800);
         setVisible(true);
 
     }
