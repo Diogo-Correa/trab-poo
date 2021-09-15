@@ -38,16 +38,31 @@ public class App {
     }
 
     public static void main(String[] args) throws Exception {
-        // new App("[VetSystem] POO Project");
-        // AnimaisGenerator.generate();
-        AnimaisDatabase dogs = new AnimaisDatabase();
-        Animal dog = dogs.find(2);
-        System.out.println(dog.getNome());
-        dog.setNome("Tor");
-        dogs.updateRecord(dog);
-        dog = dogs.find(2);
-        System.out.println(dog.getNome());
+        //new App("[VetSystem] POO Project");
         
+        // Animal a1 = new Animal(
+        //     "aaaa", 
+        //     "Cachorro", 
+        //     "Labrador", 
+        //     "Grande", 
+        //     "Longo", 
+        //     false
+        // );
+
+        // AnimaisGenerator.generate();
+        System.out.println(AnimaisDatabase.all());
+
+        Animal dog = AnimaisDatabase.find(3); 
+        System.out.println(dog.getNome());
+
+        dog.setNome("Toasd");
+        System.out.println(dog.getNome());
+
+        AnimaisDatabase.updateRecord(dog);
+
+        System.out.println(AnimaisDatabase.all());
+        dog = AnimaisDatabase.find(3);
+        System.out.println(dog.getNome());
     }
 
     private static void initialize() {

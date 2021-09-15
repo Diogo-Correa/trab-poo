@@ -18,7 +18,8 @@ public class AnimaisDatabase {
         try{
             FileOutputStream file = new FileOutputStream(new File(recordFileName),true);
             ObjectOutputStream obj_output = new ObjectOutputStream(file);
-    
+            
+            System.out.println(objType);
             obj_output.writeObject(objType);
             
             obj_output.flush();
@@ -35,7 +36,7 @@ public class AnimaisDatabase {
             ArrayList<Animal> recordList = new ArrayList<Animal>();
             Animal record;
             ObjectInputStream obj_input = new ObjectInputStream(file);
-            
+
             try{
                 while(true){
                     record = (Animal) obj_input.readObject();
@@ -47,17 +48,18 @@ public class AnimaisDatabase {
                     obj_input = new ObjectInputStream(file);
                 }
             }catch(Exception e){
-                // e.printStackTrace();
+                e.printStackTrace();
                 obj_input.close();
             }   
             file.close();
-            
+
             // add all objs from list to file
             OutputStream os = null;
             try {
-                os = new FileOutputStream(recordFileName);
-                ObjectOutputStream oos = new ObjectOutputStream(os);
+                os = new FileOutputStream(new File(recordFileName));
+                ObjectOutputStream oos = null;
                 for (Animal animal : recordList) {
+                    oos = new ObjectOutputStream(os);
                     oos.writeObject(animal);
                 }
                 oos.flush();
@@ -67,7 +69,7 @@ public class AnimaisDatabase {
                 }
             }
         }catch(Exception e){
-            // e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
@@ -96,9 +98,9 @@ public class AnimaisDatabase {
             // add all objs from list to file
             OutputStream os = null;
             try {
-                os = new FileOutputStream(recordFileName);
-                ObjectOutputStream oos = new ObjectOutputStream(os);
+                ObjectOutputStream oos = null;
                 for (Animal animal : recordList) {
+                    oos = new ObjectOutputStream(os);
                     oos.writeObject(animal);
                 }
                 oos.flush();
@@ -111,6 +113,7 @@ public class AnimaisDatabase {
             // e.printStackTrace();
         }
     }
+    
 
     public static Animal find(int id) {
         try{
@@ -128,12 +131,12 @@ public class AnimaisDatabase {
                     obj_input = new ObjectInputStream(file);
                 }
             }catch(Exception e){
-                e.printStackTrace();
+                // e.printStackTrace();
                 obj_input.close();
             }
             file.close();
         }catch(Exception e){
-            e.printStackTrace();
+            // e.printStackTrace();
         }
         return null;
     }
