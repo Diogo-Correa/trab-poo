@@ -11,7 +11,7 @@ import controllers.middlewares.auth.Role;
 import models.clinica.Estagiario;
 import util.ComboBoxItem;
 import util.auth.Auth;
-import util.database.Roles;
+import util.database.RolesDatabase;
 
 public class Edit extends JFrame {
 
@@ -58,7 +58,7 @@ public class Edit extends JFrame {
         this.horas = new JTextField(Integer.toString(this.estagiario.getHorasSemanais()));
 
         this.role = new JComboBox(this.roles);
-        for(Role r : Roles.getRoles()) {
+        for(Role r : RolesDatabase.all()) {
             ComboBoxItem rol = new ComboBoxItem(r.getId(), r.getNome());
             this.roles.addElement(rol);
             if(r == this.estagiario.getRole()) this.role.setSelectedItem(rol);
@@ -109,7 +109,7 @@ public class Edit extends JFrame {
         if(!this.nome.getText().trim().equals("") && !this.idade.getText().trim().equals("") && !this.horas.getText().trim().equals("")) {
             ComboBoxItem r = (ComboBoxItem) this.role.getSelectedItem();
             this.estagiario.setNome(this.nome.getText());
-            this.estagiario.setRole((Role) Roles.find(r.getId()));
+            this.estagiario.setRole((Role) RolesDatabase.find(r.getId()));
             this.estagiario.setIdade(Integer.parseInt(this.idade.getText()));
             this.estagiario.setHorasSemanais(Integer.parseInt(this.horas.getText()));
             dispose();

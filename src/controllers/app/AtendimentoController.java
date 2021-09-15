@@ -5,7 +5,7 @@ import java.awt.*;
 import controllers.Controller;
 import models.clinica.consultas.Atendimento;
 import util.auth.Auth;
-import util.database.Atendimentos;
+import util.database.AtendimentosDatabase;
 import views.Dashboard;
 import views.atendimento.*;
 
@@ -39,7 +39,7 @@ public class AtendimentoController implements Controller {
      * @param obj Objeto referente ao Atendimento
      */
     public <A> void store(A obj) {
-        Atendimentos.addAtendimento((Atendimento) obj);
+        AtendimentosDatabase.addRecord((Atendimento) obj);
         Dashboard.setMessage("Atendimento adicionado com sucesso", Color.GREEN);
         
     }
@@ -59,7 +59,7 @@ public class AtendimentoController implements Controller {
      */
     public void delete(int id) {
         if(Auth.getRole().canDelete()) {
-            Atendimentos.removeAtendimento(Atendimentos.find(id));
+            AtendimentosDatabase.removeRecord(id);
             Dashboard.setMessage("Estagiario deletado com sucesso", Color.RED);
         } else {
             System.out.println("Voce nao tem permissao!");

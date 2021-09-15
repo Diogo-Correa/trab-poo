@@ -11,9 +11,7 @@ import models.clinica.Estagiario;
 import models.clinica.Veterinario;
 import models.clinica.consultas.Consulta;
 import util.auth.Auth;
-import util.database.Consultas;
-import util.database.Estagiarios;
-import util.database.Veterinarios;
+import util.database.*;
 import util.errors.AltaJaFechada;
 import util.status.VeterinarioStatus;
 
@@ -30,10 +28,10 @@ public class Dashboard extends JFrame implements ActionListener {
 
     
     // Verifica se o usuario logado eh um veterinario
-    private Veterinario vet = Veterinarios.find(Auth.getUser().getId());
+    private Veterinario vet = VeterinariosDatabase.find(Auth.getUser().getId());
 
     // Verifica se o usuario logado eh um estagiario
-    private Estagiario estag = Estagiarios.find(Auth.getUser().getId());
+    private Estagiario estag = EstagiariosDatabase.find(Auth.getUser().getId());
 
     // Pega o animal referente a consulta aberta
     private Animal animal;
@@ -94,7 +92,7 @@ public class Dashboard extends JFrame implements ActionListener {
         // Se o veterinario logar e estiver em atendimento, exibe a consulta.
         if(this.vet != null && vet.getVeterinarioStatus() == VeterinarioStatus.ATENDENDO) {
 
-            this.consulta = Consultas.findOpenConsulta();
+            this.consulta = ConsultasDatabase.findByVet(Auth.getUser().getId());
             this.animal = consulta.getAnimal();
 
             this.fecharConsulta = new JButton("FECHAR CONSULTA");

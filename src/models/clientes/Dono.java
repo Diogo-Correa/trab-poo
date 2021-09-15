@@ -1,9 +1,10 @@
 package models.clientes;
 
+import java.io.Serializable;
+
 import util.database.DonosDatabase;
 
-public class Dono {
-    private static int nextId = 0;
+public class Dono implements Serializable {
     private int id;
     private int animalId;
     private String nome, tel;
@@ -20,7 +21,7 @@ public class Dono {
         this.nome = nome;
         this.tel = tel;
         this.idade = idade;
-        this.id = nextId++;
+        this.id = DonosDatabase.getLastId() + 1;
         this.animalId = animalId;
         DonosDatabase.addRecord(this);
     }

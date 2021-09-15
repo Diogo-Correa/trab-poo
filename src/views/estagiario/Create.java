@@ -13,7 +13,7 @@ import models.clinica.Estagiario;
 import models.clinica.User;
 import util.ComboBoxItem;
 import util.auth.Auth;
-import util.database.Roles;
+import util.database.RolesDatabase;
 import util.errors.UserCadastradoException;
 
 public class Create extends JFrame {
@@ -62,7 +62,7 @@ public class Create extends JFrame {
         this.horas = new JTextField();
         this.email = new JTextField();
 
-        for(Role r : Roles.getRoles()) {
+        for(Role r : RolesDatabase.all()) {
             this.roles.addElement(new ComboBoxItem(r.getId(), r.getNome()));
         }
         this.role = new JComboBox(this.roles);
@@ -127,7 +127,7 @@ public class Create extends JFrame {
             new EstagiarioController().store(new Estagiario(
                 this.nome.getText(), 
                 this.senha.getText(), 
-                Roles.find(r.getId()), 
+                RolesDatabase.find(r.getId()), 
                 this.email.getText(), 
                 Integer.parseInt(this.idade.getText()), 
                 Integer.parseInt(this.horas.getText())

@@ -3,7 +3,7 @@ package util.auth;
 import app.App;
 import controllers.middlewares.auth.Role;
 import models.clinica.User;
-import util.database.Users;
+import util.database.UsersDatabase;
 import util.log.Activity;
 import views.*;
 
@@ -55,7 +55,7 @@ public class Auth {
      * Metodo de autenticacao de usuarios 
      */
     private void authenticate() {
-      for(User user : Users.getUsers()) {
+      for(User user : UsersDatabase.all()) {
         if(this.user.equals(user.getEmail()) && this.password.equals(user.getPassword()) && !authenticated) {
           Login.setMessage("Login efetuado com sucesso!");
           new Activity("Usuário: " + this.user + " login efetuado com sucesso!");

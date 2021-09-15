@@ -1,14 +1,16 @@
 package models.clinica;
 
+import java.io.Serializable;
+
 import controllers.middlewares.auth.Role;
-import util.database.Users;
+import util.database.UsersDatabase;
+import util.database.VeterinariosDatabase;
 import util.errors.UserCadastradoException;
 
-public abstract class User {
+public abstract class User implements Serializable {
     private String name, password, email;
     private int idade;
     private Role role;
-    private static int nextId = 0;
     private int id = 0;
 
     /**
@@ -28,8 +30,8 @@ public abstract class User {
         this.password = password;
         this.idade = idade;
         this.role = role;
-        this.id = nextId++;
-        Users.addUser(this);
+        this.id = UsersDatabase.getLastId() + 1;
+        UsersDatabase.addRecord(this);
     }
 
     /**
@@ -103,7 +105,7 @@ public abstract class User {
      * @param email email do User
      */
     public static boolean checkUser(String email) throws UserCadastradoException {
-        for(User user : Users.getUsers()) {
+        for(Veterinario user : VeterinariosDatabase.all()) {
             if(user.getEmail().equals(email)) {
                 throw new UserCadastradoException("Email de usuario ja cadastrado");
             }

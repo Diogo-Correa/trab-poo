@@ -39,7 +39,7 @@ public class App {
     }
 
     private static void initialize() {
-        // EnfermidadesGenerator.generate();
+        EnfermidadesGenerator.generate();
         // System.out.println(Enfermidades.getEnfermidades());
         try {
             UsersGenerator.generate();
@@ -48,7 +48,7 @@ public class App {
             e.printStackTrace();
         }
         // System.out.println(Veterinarios.getVeterinarios());
-        // AnimaisGenerator.generate();
+        AnimaisGenerator.generate();
         // System.out.println(AnimaisDatabase.all());
     }
 }

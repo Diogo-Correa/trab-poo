@@ -1,16 +1,18 @@
 package models.clinica.consultas;
 
+import java.io.Serializable;
+
 import controllers.app.AtendimentoController;
 import models.clientes.Animal;
 import models.clinica.User;
 import models.clinica.Veterinario;
 import util.Enfermidade;
-import util.database.Veterinarios;
+import util.database.AtendimentosDatabase;
+import util.database.VeterinariosDatabase;
 import util.status.VeterinarioStatus;
 
-public class Atendimento {
-    private static int nextId = 0;
-    private int id = 0;
+public class Atendimento  implements Serializable {
+    private int id;
     private Animal animal;
     private Enfermidade enfermidade;
     private Veterinario veterinario;
@@ -24,7 +26,7 @@ public class Atendimento {
     public Atendimento(Animal animal, User user) {
         this.animal = animal;
         this.user = user;
-        this.id = nextId++;
+        this.id = AtendimentosDatabase.getLastId() + 1;
         new AtendimentoController().store(this);
     }
 
@@ -80,7 +82,7 @@ public class Atendimento {
      * Caso nao ache um Veterinario atendendo as condicoes, seta como responsavel um Veterinario com status VeterinarioStatus.ATIVO
      */
     public void buscaVeterinario() {
-        for(Veterinario vet : Veterinarios.getVeterinarios()) {
+        for(Veterinario vet : VeterinariosDatabase.all()) {
             if(vet.getEspecialidade() == this.enfermidade && vet.getVeterinarioStatus() == VeterinarioStatus.ATENDENDO) 
                 System.out.println("O veterinário " + vet.getNome() +" já está em atendimento.");
             

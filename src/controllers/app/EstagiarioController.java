@@ -5,8 +5,7 @@ import java.awt.*;
 import controllers.Controller;
 import models.clinica.Estagiario;
 import util.auth.Auth;
-import util.database.Estagiarios;
-import util.database.Users;
+import util.database.EstagiariosDatabase;
 import views.Dashboard;
 import views.estagiario.*;
 
@@ -24,7 +23,7 @@ public class EstagiarioController implements Controller {
      * @param id Id referente ao Estagiario
      */
     public void show(int id) {
-        new Show(Estagiarios.find(id));
+        new Show(EstagiariosDatabase.find(id));
     }
 
     /**
@@ -39,7 +38,7 @@ public class EstagiarioController implements Controller {
      * @param obj Objeto referente ao Estagiario
      */
     public <E> void store(E obj) {
-        Estagiarios.addEstagiario((Estagiario) obj);
+        EstagiariosDatabase.addRecord((Estagiario) obj);
         //Dashboard.setMessage("Estagiario adicionado com sucesso", Color.GREEN);
     }
 
@@ -48,7 +47,7 @@ public class EstagiarioController implements Controller {
      * @param id Id referente ao Estagiario
      */
     public void update(int id) {
-        new Edit(Estagiarios.find(id)); 
+        new Edit(EstagiariosDatabase.find(id)); 
     }
 
     /**
@@ -57,8 +56,8 @@ public class EstagiarioController implements Controller {
      */
     public void delete(int id) {
         if(Auth.getRole().canDelete()) {
-            Estagiarios.removeEstagiario(Estagiarios.find(id));
-            Users.removeUser(Users.find(id));
+            EstagiariosDatabase.removeRecord(id);
+            // Users.removeUser(Users.find(id));
             Dashboard.setMessage("Estagiario deletado com sucesso", Color.RED);
         } else {
             System.out.println("Voce nao tem permissao!");

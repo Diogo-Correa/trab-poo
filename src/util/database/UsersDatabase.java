@@ -1,6 +1,9 @@
 package util.database;
 
 import java.util.ArrayList;
+
+import models.clinica.User;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -8,13 +11,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
-import util.Medicamento;
-
-public class MedicamentosDatabase {
+public class UsersDatabase {
     private static String dir = "src\\util\\database\\records\\";
-    private static String recordFileName = dir + "MedicamentosRecords.txt";
+    private static String recordFileName = dir + "UsersRecords.txt";
 
-    public static void addRecord(Medicamento objType) {
+    public static void addRecord(User objType) {
         try{
             FileOutputStream file = new FileOutputStream(new File(recordFileName),true);
             ObjectOutputStream obj_output = new ObjectOutputStream(file);
@@ -32,14 +33,14 @@ public class MedicamentosDatabase {
     public static void removeRecord(int id) {
         try{
             FileInputStream file = new FileInputStream(new File(recordFileName));
-            ArrayList<Medicamento> recordList = new ArrayList<Medicamento>();
-            Medicamento record;
+            ArrayList<User> recordList = new ArrayList<User>();
+            User record;
             ObjectInputStream obj_input = new ObjectInputStream(file);
             
             // Find the id, don't add to list
             try{
                 while(true){
-                    record = (Medicamento) obj_input.readObject();
+                    record = (User) obj_input.readObject();
                     if(record.getId() != id){
                         recordList.add(record);
                     }
@@ -56,8 +57,8 @@ public class MedicamentosDatabase {
             try {
                 os = new FileOutputStream(recordFileName);
                 ObjectOutputStream oos = new ObjectOutputStream(os);
-                for (Medicamento medicamento : recordList) {
-                    oos.writeObject(medicamento);
+                for (User user : recordList) {
+                    oos.writeObject(user);
                 }
                 oos.flush();
             } finally {
@@ -71,16 +72,16 @@ public class MedicamentosDatabase {
     }
     
 
-    public static Medicamento find(int id) {
+    public static User find(int id) {
         try{
             FileInputStream file = new FileInputStream(new File(recordFileName));
             ObjectInputStream obj_input = new ObjectInputStream(file);
-            Medicamento record;
+            User record;
             
             // Find the id
             try{
                 while(true){
-                    record = (Medicamento) obj_input.readObject();
+                    record = (User) obj_input.readObject();
                     if(record.getId() == id){
                         return record;
                     }
@@ -97,41 +98,15 @@ public class MedicamentosDatabase {
         return null;
     }
 
-    public static ArrayList<Medicamento> findBymedicamento(int id){
-        ArrayList<Medicamento> recordList = new ArrayList<Medicamento>();
+    public static User last(){
         try{
             FileInputStream file = new FileInputStream(new File(recordFileName));
-            ObjectInputStream obj_input = new ObjectInputStream(file);
-            Medicamento record;
-            
-            try{
-                while(true){
-                    record = (Medicamento) obj_input.readObject();
-                    if(record.getId() == id){
-                        recordList.add(record);
-                    }
-                    obj_input = new ObjectInputStream(file);
-                }
-            }catch(Exception e){
-                // e.printStackTrace();
-                obj_input.close();
-            }
-            file.close();
-        }catch(Exception e){
-            // e.printStackTrace();
-        }
-        return recordList;
-    }
-
-    public static Medicamento last(){
-        try{
-            FileInputStream file = new FileInputStream(new File(recordFileName));
-            Medicamento record = null;
+            User record = null;
             ObjectInputStream obj_input = new ObjectInputStream(file);
             
             try{
                 while(true){
-                    record = (Medicamento) obj_input.readObject();
+                    record = (User) obj_input.readObject();
                     obj_input = new ObjectInputStream(file);
                 }
             }catch(Exception e){// e.printStackTrace();
@@ -144,17 +119,17 @@ public class MedicamentosDatabase {
         }
         return null;
     }
-    
-    public static ArrayList<Medicamento> all(){
-        ArrayList<Medicamento> recordList = new ArrayList<Medicamento>();
+
+    public static ArrayList<User> all(){
+        ArrayList<User> recordList = new ArrayList<User>();
         try{
             FileInputStream file = new FileInputStream(new File(recordFileName));
             ObjectInputStream obj_input = new ObjectInputStream(file);
-            Medicamento record;
+            User record;
             
             try{
                 while(true){
-                    record = (Medicamento) obj_input.readObject();
+                    record = (User) obj_input.readObject();
                     recordList.add(record);
                     obj_input = new ObjectInputStream(file);
                 }
@@ -170,7 +145,7 @@ public class MedicamentosDatabase {
     }
     
     public static int getLastId(){
-        Medicamento a = last();
+        User a = last();
         if(a != null){
             return a.getId();
         }

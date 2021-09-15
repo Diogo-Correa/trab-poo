@@ -1,16 +1,17 @@
 package models.clinica.consultas;
+import java.io.Serializable;
 import java.util.Date;
 
 import controllers.app.ConsultaController;
 import models.clientes.Animal;
 import models.clinica.Veterinario;
 import util.Enfermidade;
+import util.database.ConsultasDatabase;
 import util.errors.AltaJaFechada;
 import util.status.AnimalStatus;
 import util.status.VeterinarioStatus;
 
-public class Consulta {
-    private static int nextId = 0;
+public class Consulta implements Serializable {
     private int id;
     private Veterinario veterinario;
     private Animal animal;
@@ -30,7 +31,7 @@ public class Consulta {
         this.animal = animal;
         this.animal.setStatus(AnimalStatus.EM_ATENDIMENTO);
         this.enfermidade = enfermidade;
-        this.id = nextId++;
+        this.id = ConsultasDatabase.getLastId() + 1;
         this.dataDaConsultaAbertura = new Date();
         this.resultadoDaConsulta = new Alta();
         new ConsultaController().store(this);

@@ -8,7 +8,7 @@ import javax.swing.border.*;
 import controllers.app.VeterinarioController;
 import models.clinica.Veterinario;
 import util.auth.Auth;
-import util.database.Veterinarios;
+import util.database.VeterinariosDatabase;
 
 public class Index extends JFrame {
 
@@ -27,12 +27,12 @@ public class Index extends JFrame {
         // this.cancel = new JButton("FECHAR");
 
         // panel
-        this.panel = new JPanel(new GridLayout(Veterinarios.getVeterinarios().size(), 10, 10, 10));
+        this.panel = new JPanel(new GridLayout(VeterinariosDatabase.all().size(), 10, 10, 10));
         this.panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         
         // this.panel.add(this.cancel);
-        for(Veterinario vet : Veterinarios.getVeterinarios()) {
+        for(Veterinario vet : VeterinariosDatabase.all()) {
             JLabel vetName = new JLabel();
             JLabel vetId = new JLabel();
 

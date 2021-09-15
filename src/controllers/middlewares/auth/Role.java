@@ -1,20 +1,20 @@
 package controllers.middlewares.auth;
 
+import java.io.Serializable;
 import java.util.*;
 
-import util.database.Roles;
+import util.database.RolesDatabase;
 import util.log.Activity;
 
-public class Role {
+public class Role implements Serializable {
     private ArrayList<Permission> permissions = new ArrayList<Permission>();
     private String name;
-    private static int nextId = 0;
     private int id = 0;
   
     public Role(String name) {
       this.name = name;
-      id = nextId++;
-      Roles.addRole(this);
+      this.id = RolesDatabase.getLastId() + 1;
+      RolesDatabase.addRecord(this);
     }
 
     public int getId() { return id; }

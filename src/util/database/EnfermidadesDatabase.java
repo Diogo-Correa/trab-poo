@@ -1,6 +1,9 @@
 package util.database;
 
 import java.util.ArrayList;
+
+import util.Enfermidade;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -8,10 +11,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
-import models.clientes.Enfermidade;
-
 public class EnfermidadesDatabase {
-    private static String dir = "util/database/records/";
+    private static String dir = "src\\util\\database\\records\\";
     private static String recordFileName = dir + "EnfermidadesRecords.txt";
 
     public static void addRecord(Enfermidade objType) {
@@ -56,8 +57,8 @@ public class EnfermidadesDatabase {
             try {
                 os = new FileOutputStream(recordFileName);
                 ObjectOutputStream oos = new ObjectOutputStream(os);
-                for (Enfermidade animal : recordList) {
-                    oos.writeObject(animal);
+                for (Enfermidade enfermidade : recordList) {
+                    oos.writeObject(enfermidade);
                 }
                 oos.flush();
             } finally {
@@ -113,32 +114,6 @@ public class EnfermidadesDatabase {
                 file.close();
                 return record;
             }
-        }catch(Exception e){
-            // e.printStackTrace();
-        }
-        return null;
-    }
-    
-    public static Enfermidade findByDono(int id){
-        try{
-            FileInputStream file = new FileInputStream(new File(recordFileName));
-            ObjectInputStream obj_input = new ObjectInputStream(file);
-            Enfermidade record;
-            
-            // Find the id
-            try{
-                while(true){
-                    record = (Enfermidade) obj_input.readObject();
-                    if(record.getDonoId() == id){
-                        return record;
-                    }
-                    obj_input = new ObjectInputStream(file);
-                }
-            }catch(Exception e){
-                // e.printStackTrace();
-                obj_input.close();
-            }
-            file.close();
         }catch(Exception e){
             // e.printStackTrace();
         }

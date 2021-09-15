@@ -1,12 +1,13 @@
 package util;
 
-import util.database.Enfermidades;
+import java.io.Serializable;
+
+import util.database.EnfermidadesDatabase;
 
 // import java.util.ArrayList;
 
-public class Enfermidade {
+public class Enfermidade implements Serializable {
 
-    private static int nextId = 0;
     private int id = 0;
     private String nome, gravidade;
 

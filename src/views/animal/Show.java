@@ -60,6 +60,7 @@ public class Show extends JFrame implements ActionListener{
         this.panel.add(this.status);
         this.panel.add(this.dono);
 
+        /*
         if(this.animal.getMedicamentos().size() == 0) {
             this.panel.add(this.semMedicamentos);
             this.semMedicamentos.setText("O animal nao faz uso de nenhuma medicacao.");
@@ -70,6 +71,7 @@ public class Show extends JFrame implements ActionListener{
             JComboBox animais = new JComboBox(medicamentos);
             this.panel.add(animais);
         }
+        */
 
         // event listener
         // this.medicamentos.addActionListener(this);

@@ -12,8 +12,8 @@ import models.clinica.Veterinario;
 import util.ComboBoxItem;
 import util.Enfermidade;
 import util.auth.Auth;
-import util.database.Enfermidades;
-import util.database.Roles;
+import util.database.EnfermidadesDatabase;
+import util.database.RolesDatabase;
 
 public class Edit extends JFrame {
 
@@ -68,14 +68,14 @@ public class Edit extends JFrame {
         this.espFalse = new JRadioButton("Nao");
 
         this.role = new JComboBox(this.roles);
-        for(Role r : Roles.getRoles()) {
+        for(Role r : RolesDatabase.all()) {
             ComboBoxItem rol = new ComboBoxItem(r.getId(), r.getNome());
             this.roles.addElement(rol);
             if(r == this.veterinario.getRole()) this.role.setSelectedItem(rol);
         }
 
         this.especialidade = new JComboBox(this.especialidades);
-        for(Enfermidade enf : Enfermidades.getEnfermidades()) {
+        for(Enfermidade enf : EnfermidadesDatabase.all()) {
             ComboBoxItem enfermidade = new ComboBoxItem(enf.getId(), enf.getNome());
             this.especialidades.addElement(enfermidade);
             if(enf == this.veterinario.getEspecialidade()) this.especialidade.setSelectedItem(enfermidade);
@@ -156,9 +156,9 @@ public class Edit extends JFrame {
             ComboBoxItem r = (ComboBoxItem) this.role.getSelectedItem();
             ComboBoxItem esp = (ComboBoxItem) this.especialidade.getSelectedItem();
             this.veterinario.setNome(this.nome.getText());
-            this.veterinario.setRole((Role) Roles.find(r.getId()));
+            this.veterinario.setRole((Role) RolesDatabase.find(r.getId()));
             this.veterinario.setIdade(Integer.parseInt(this.idade.getText()));
-            if(esp != null) this.veterinario.setEspecialidade((Enfermidade) Enfermidades.find(esp.getId()));
+            if(esp != null) this.veterinario.setEspecialidade((Enfermidade) EnfermidadesDatabase.find(esp.getId()));
             if(this.espFalse.isSelected()) this.veterinario.setEspecialidade(null);
             this.veterinario.setCRMV(this.crmv.getText());
             dispose();

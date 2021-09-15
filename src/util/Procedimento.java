@@ -1,4 +1,7 @@
 package util;
-public class Procedimento {
+
+import java.io.Serializable;
+
+public class Procedimento implements Serializable {
     
 }

@@ -134,9 +134,9 @@ public class Animal implements Serializable {
      * Metodo para obter a lista de medicamentos usados pelo Animal
      * @return Animal medicamentos
      */
-    public ArrayList<Medicamento> getMedicamentos() {
-        return MedicamentosDatabase.findByAnimal(this.id);
-    }
+    //public ArrayList<Medicamento> getMedicamentos() {
+    //  return MedicamentosDatabase.findByAnimal(this.id);
+    //}
 
     /**
      * Metodo para adicao de um novo medicamento para uso do Animal

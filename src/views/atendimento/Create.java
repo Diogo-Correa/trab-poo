@@ -13,7 +13,7 @@ import util.ComboBoxItem;
 import util.Enfermidade;
 import util.auth.Auth;
 import util.database.AnimaisDatabase;
-import util.database.Enfermidades;
+import util.database.EnfermidadesDatabase;
 import util.status.AnimalStatus;
 import views.Dashboard;
 
@@ -54,7 +54,7 @@ public class Create extends JFrame implements ActionListener{
 
 
         this.enfermidades_text = new JLabel("Selecione uma enfermidade: ");
-        for(Enfermidade e : Enfermidades.getEnfermidades()) {
+        for(Enfermidade e : EnfermidadesDatabase.all()) {
             enfermidadesVec.addElement(new ComboBoxItem(e.getId(), e.getNome()));
         }
         this.enfermidades = new JComboBox(enfermidadesVec);
@@ -92,7 +92,7 @@ public class Create extends JFrame implements ActionListener{
             
             // seta a enfermidade no animal
             ComboBoxItem enfermidade = (ComboBoxItem) this.enfermidades.getSelectedItem();
-            this.atendimento.setEnfermidade(Enfermidades.find(enfermidade.getId()));
+            this.atendimento.setEnfermidade(EnfermidadesDatabase.find(enfermidade.getId()));
 
             // busca por um veterinario
             this.atendimento.buscaVeterinario();

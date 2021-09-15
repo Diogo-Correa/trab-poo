@@ -1,8 +1,11 @@
 package util;
+import java.io.Serializable;
+
 import models.clientes.Animal;
 import util.database.AnimaisDatabase;
 import util.database.MedicamentosDatabase;
-public class Medicamento {
+
+public class Medicamento implements Serializable {
     
     private int id;
     private int animalId;

@@ -5,8 +5,7 @@ import java.awt.*;
 import controllers.Controller;
 import models.clinica.Veterinario;
 import util.auth.Auth;
-import util.database.Users;
-import util.database.Veterinarios;
+import util.database.VeterinariosDatabase;
 import views.Dashboard;
 import views.veterinario.*;
 
@@ -24,7 +23,7 @@ public class VeterinarioController implements Controller {
      * @param id Id referente ao Veterinario
      */
     public void show(int id) {
-        new Show(Veterinarios.find(id));
+        new Show(VeterinariosDatabase.find(id));
     }
 
     /**
@@ -39,7 +38,7 @@ public class VeterinarioController implements Controller {
      * @param obj Objeto referente ao Veterinario
      */
     public <V> void store(V obj) {
-        Veterinarios.addVeterinario((Veterinario) obj);
+        VeterinariosDatabase.addRecord((Veterinario) obj);
         //Dashboard.setMessage("Veterinario adicionado com sucesso", Color.GREEN);
     }
 
@@ -48,7 +47,7 @@ public class VeterinarioController implements Controller {
      * @param id Id referente ao Veterinario
      */
     public void update(int id) {
-        new Edit(Veterinarios.find(id)); 
+        new Edit(VeterinariosDatabase.find(id)); 
     }
 
 
@@ -58,8 +57,8 @@ public class VeterinarioController implements Controller {
      */
     public void delete(int id) {
         if(Auth.getRole().canDelete()) {
-            Veterinarios.removeVeterinario(Veterinarios.find(id));
-            Users.removeUser(Users.find(id));
+            VeterinariosDatabase.removeRecord(id);
+            // Users.removeUser(Users.find(id));
             Dashboard.setMessage("Veterinario deletado com sucesso", Color.RED); 
         } else {
             System.out.println("Voce nao tem permissao!");

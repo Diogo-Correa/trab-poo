@@ -8,7 +8,7 @@ import javax.swing.border.*;
 import controllers.app.EstagiarioController;
 import models.clinica.Estagiario;
 import util.auth.Auth;
-import util.database.Estagiarios;
+import util.database.EstagiariosDatabase;
 
 public class Index extends JFrame {
 
@@ -24,11 +24,11 @@ public class Index extends JFrame {
     public void run() {
 
         // panel
-        this.panel = new JPanel(new GridLayout(Estagiarios.getEstagiarios().size(), 10, 10, 10));
+        this.panel = new JPanel(new GridLayout(EstagiariosDatabase.all().size(), 10, 10, 10));
         this.panel.setBorder(new EmptyBorder(10, 10, 10, 10));
         
         // this.panel.add(this.cancel);
-        for(Estagiario estag : Estagiarios.getEstagiarios()) {
+        for(Estagiario estag : EstagiariosDatabase.all()) {
             JLabel estagName = new JLabel();
             JLabel estagId = new JLabel();
 
@@ -88,7 +88,7 @@ public class Index extends JFrame {
         // this.submit.addActionListener(this);
         add(panel, BorderLayout.CENTER);
         setTitle("[VetSystem] POO Project - Estagiarios");
-        setSize(500, Estagiarios.getEstagiarios().size()*100);
+        setSize(500, EstagiariosDatabase.all().size()*100);
         setVisible(true);
     }
 }

@@ -14,10 +14,9 @@ import models.clinica.Veterinario;
 import util.ComboBoxItem;
 import util.Enfermidade;
 import util.auth.Auth;
-import util.database.Enfermidades;
-import util.database.Roles;
+import util.database.EnfermidadesDatabase;
+import util.database.RolesDatabase;
 import util.errors.UserCadastradoException;
-import views.Dashboard;
 
 public class Create extends JFrame {
     
@@ -71,12 +70,12 @@ public class Create extends JFrame {
         this.espTrue = new JRadioButton("Sim");
         this.espFalse = new JRadioButton("Nao");
 
-        for(Role r : Roles.getRoles()) {
+        for(Role r : RolesDatabase.all()) {
             this.roles.addElement(new ComboBoxItem(r.getId(), r.getNome()));
         }
         this.role = new JComboBox(this.roles);
 
-        for(Enfermidade enf : Enfermidades.getEnfermidades()) {
+        for(Enfermidade enf : EnfermidadesDatabase.all()) {
             this.especialidades.addElement(new ComboBoxItem(enf.getId(), enf.getNome()));
         }
         this.especialidade = new JComboBox(this.especialidades);
@@ -162,7 +161,7 @@ public class Create extends JFrame {
                 new VeterinarioController().store(new Veterinario(
                     this.nome.getText(), 
                     this.senha.getText(), 
-                    Roles.find(r.getId()),
+                    RolesDatabase.find(r.getId()),
                     this.email.getText(),  
                     Integer.parseInt(idade.getText()), 
                     this.crmv.getText()
@@ -171,11 +170,11 @@ public class Create extends JFrame {
                 new VeterinarioController().store(new Veterinario(
                     this.nome.getText(), 
                     this.senha.getText(), 
-                    Roles.find(r.getId()),
+                    RolesDatabase.find(r.getId()),
                     this.email.getText(),  
                     Integer.parseInt(idade.getText()), 
                     this.crmv.getText(),
-                    Enfermidades.find(esp.getId()) 
+                    EnfermidadesDatabase.find(esp.getId()) 
                 ));
             }
             dispose();

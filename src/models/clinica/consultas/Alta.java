@@ -1,11 +1,12 @@
 package models.clinica.consultas;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import util.Medicamento;
 import util.Procedimento;
 import util.errors.AltaJaFechada;
 
-public class Alta {
+public class Alta implements Serializable {
     private Boolean emAberto;
     private ArrayList<Medicamento> medicamento = new ArrayList<Medicamento>();
     private ArrayList<Procedimento> procedimento = new ArrayList<Procedimento>();
