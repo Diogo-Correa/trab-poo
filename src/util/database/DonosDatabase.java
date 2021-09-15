@@ -98,8 +98,9 @@ public class DonosDatabase {
             OutputStream os = null;
             try {
                 os = new FileOutputStream(recordFileName);
-                ObjectOutputStream oos = new ObjectOutputStream(os);
+                ObjectOutputStream oos = null;
                 for (Dono animal : recordList) {
+                    oos = new ObjectOutputStream(os);
                     oos.writeObject(animal);
                 }
                 oos.flush();

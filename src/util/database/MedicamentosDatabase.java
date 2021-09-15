@@ -55,8 +55,9 @@ public class MedicamentosDatabase {
             OutputStream os = null;
             try {
                 os = new FileOutputStream(recordFileName);
-                ObjectOutputStream oos = new ObjectOutputStream(os);
+                ObjectOutputStream oos = null;
                 for (Medicamento medicamento : recordList) {
+                    oos = new ObjectOutputStream(os);
                     oos.writeObject(medicamento);
                 }
                 oos.flush();

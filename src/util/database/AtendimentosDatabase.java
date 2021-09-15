@@ -96,10 +96,10 @@ public class AtendimentosDatabase {
             // add all objs from list to file
             OutputStream os = null;
             try {
-                os = new FileOutputStream(recordFileName);
-                ObjectOutputStream oos = new ObjectOutputStream(os);
+                ObjectOutputStream oos = null;
                 for (Atendimento atendimento : recordList) {
                     oos.writeObject(atendimento);
+                    oos = new ObjectOutputStream(os);
                 }
                 oos.flush();
             } finally {

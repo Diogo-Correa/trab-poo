@@ -56,8 +56,9 @@ public class EnfermidadesDatabase {
             OutputStream os = null;
             try {
                 os = new FileOutputStream(recordFileName);
-                ObjectOutputStream oos = new ObjectOutputStream(os);
+                ObjectOutputStream oos = null;
                 for (Enfermidade enfermidade : recordList) {
+                    oos = new ObjectOutputStream(os);
                     oos.writeObject(enfermidade);
                 }
                 oos.flush();

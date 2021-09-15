@@ -98,6 +98,7 @@ public class AnimaisDatabase {
             // add all objs from list to file
             OutputStream os = null;
             try {
+                os = new FileOutputStream(new File(recordFileName));
                 ObjectOutputStream oos = null;
                 for (Animal animal : recordList) {
                     oos = new ObjectOutputStream(os);
