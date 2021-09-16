@@ -1,8 +1,12 @@
 package controllers.app;
 
+import java.awt.*;
+
 import controllers.Controller;
 import models.clientes.Animal;
+import util.auth.Auth;
 import util.database.AnimaisDatabase;
+import views.Dashboard;
 import views.animal.*;
 
 public class AnimalController implements Controller {
@@ -11,7 +15,7 @@ public class AnimalController implements Controller {
      * Metodo para redirecionar para a view index do Animal
      */
     public void index() {
-        //
+        new Index();
     }
 
     /**
@@ -57,7 +61,13 @@ public class AnimalController implements Controller {
      * @param id ID referente ao Animal
      */
     public void delete(int id) {
-        //
+        if(Auth.getRole().canDelete()) {
+            AnimaisDatabase.removeRecord(id);
+            // Users.removeUser(Users.find(id));
+            Dashboard.setMessage("Estagiario deletado com sucesso", Color.RED);
+        } else {
+            System.out.println("Voce nao tem permissao!");
+        }
     }
     
 }

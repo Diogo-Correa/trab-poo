@@ -23,7 +23,7 @@ public class Dashboard extends JFrame implements ActionListener {
     private JLabel emConsulta, enfermidade, dataConsulta, horas_internacao, medicamento_txt;
     private JTextField horas_interna, medicamento;
     private JMenu userMenu, atendMenu, vetMenu, estagMenu, clientesMenu;
-    private JMenuItem logout, novoAtend, vetItem, estagItem, novoEstag, novoVet, novoCliente;
+    private JMenuItem logout, novoAtend, vetItem, estagItem, novoEstag, novoVet, novoCliente, animais;
     private JMenuBar mainMenu;
     private Container ContentPane;
     private JButton fecharConsulta, abrirFicha, internar, novoMedicamento;
@@ -59,6 +59,9 @@ public class Dashboard extends JFrame implements ActionListener {
         // Cliente items
         this.novoCliente = new JMenuItem("Novo", new ImageIcon());
         this.clientesMenu.add(this.novoCliente);
+
+        this.animais = new JMenuItem("Listagem", new ImageIcon());
+        this.clientesMenu.add(this.animais);
 
         // Veterinarios items
         this.novoVet = new JMenuItem("Novo", new ImageIcon());
@@ -111,8 +114,8 @@ public class Dashboard extends JFrame implements ActionListener {
             this.emConsulta = new JLabel();
             this.enfermidade = new JLabel();
             this.dataConsulta = new JLabel();
-            this.horas_internacao = new JLabel("Digite o tempo de internacao em ms: ");
-            this.horas_interna = new JTextField("10000");
+            this.horas_internacao = new JLabel("Digite o tempo de internacao em segundos: ");
+            this.horas_interna = new JTextField("5");
             this.medicamento_txt = new JLabel("Digite o nome do medicamento: ");
             this.medicamento = new JTextField();
             this.emConsulta.setForeground(Color.WHITE);
@@ -150,6 +153,7 @@ public class Dashboard extends JFrame implements ActionListener {
         this.vetItem.addActionListener(this);
         this.estagItem.addActionListener(this);
         this.novoCliente.addActionListener(this);
+        this.animais.addActionListener(this);
         this.ContentPane = getContentPane();
         this.ContentPane.add(this.mainMenu, BorderLayout.NORTH);
         add(panel, BorderLayout.CENTER);
@@ -187,6 +191,10 @@ public class Dashboard extends JFrame implements ActionListener {
 
         if (e.getSource() == this.novoCliente) {
             new AnimalController().create();
+        }
+
+        if (e.getSource() == this.animais) {
+            new AnimalController().index();
         }
 
         if (e.getSource() == this.vetItem) {

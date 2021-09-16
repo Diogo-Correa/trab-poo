@@ -21,7 +21,7 @@ public class Internacao implements Runnable {
 
     public void run() {
         try {
-            Thread.sleep(this.time);
+            Thread.sleep(this.time * 1000);
             try {
                 this.consulta.terminarConsulta();
                 Dashboard.setMessage("O paciente " + this.consulta.getAnimal().getNome() + " teve alta!", Color.CYAN);

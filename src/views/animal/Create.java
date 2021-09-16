@@ -86,12 +86,12 @@ public class Create extends JFrame {
         this.radios.add(this.agressivoTrue);
         this.radios.add(this.agressivoFalse);
 
-        this.panel.add(this.adicionar);
         this.adicionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 create();
             }
         });
+        this.panel.add(this.adicionar);
         
         this.panel.add(cancelar);
         this.cancelar.addActionListener(new ActionListener() {
@@ -111,7 +111,7 @@ public class Create extends JFrame {
     }
 
     public void create() {
-        if(!this.nome.getText().trim().equals("") && this.especie.getText().trim().equals("") && !this.raca.getText().trim().equals("") && !this.porte.getText().trim().equals("") && !this.pelagem.getText().trim().equals("")) {
+        if(!this.nome.getText().trim().equals("") && !this.especie.getText().trim().equals("") && !this.raca.getText().trim().equals("") && !this.porte.getText().trim().equals("") && !this.pelagem.getText().trim().equals("")) {
             new Animal(
                 this.nome.getText(), 
                 this.especie.getText(),
@@ -119,7 +119,7 @@ public class Create extends JFrame {
                 this.porte.getText(),
                 this.pelagem.getText(),
                 this.agressivoTrue.isSelected() ? true : false
-                );
+            );
             dispose();
             return;
         } else if(this.nome.getText().trim().equals("")) {
@@ -132,6 +132,8 @@ public class Create extends JFrame {
             this.error.setText("O campo raca nao pode ser nulo.");
         }  else if(this.pelagem.getText().trim().equals("")) {
             this.error.setText("O campo raca nao pode ser nulo.");
+        } else if(!this.agressivoTrue.isSelected() || !this.agressivoFalse.isSelected()) {
+            this.error.setText("O campo agressivo nao pode ser nulo.");
         }
         return;
     }
