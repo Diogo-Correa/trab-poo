@@ -7,13 +7,14 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import models.clientes.Animal;
+import models.clientes.Dono;
 import util.auth.Auth;
 
 public class Create extends JFrame {
     
     private JPanel panel;
-    private JLabel nome_txt, especie_txt, pelagem_txt, agressivo_txt, raca_txt, porte_txt, error, br, br2;
-    private JTextField nome, especie, raca, porte, pelagem;
+    private JLabel nome_txt, especie_txt, pelagem_txt, agressivo_txt, raca_txt, porte_txt, dono_nome_txt, idade_txt, tel_txt, error, br, br2;
+    private JTextField nome, especie, raca, porte, pelagem, dono_nome, idade, tel;
     private JRadioButton agressivoTrue, agressivoFalse;
     private ButtonGroup radios = new ButtonGroup(); 
     private JButton adicionar, cancelar;
@@ -29,7 +30,7 @@ public class Create extends JFrame {
     public void run() {
 
         // panel
-        this.panel = new JPanel(new GridLayout(10, 10, 10, 10));
+        this.panel = new JPanel(new GridLayout(12, 12, 12, 12));
         this.panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         // labels
@@ -39,6 +40,9 @@ public class Create extends JFrame {
         this.porte_txt = new JLabel("Digite o porte do animal: ");
         this.pelagem_txt = new JLabel("Digite a pelagem do animal: ");
         this.agressivo_txt = new JLabel("O animal e agressivo?: ");
+        this.dono_nome_txt = new JLabel("Digite o nome do dono do animal: ");
+        this.idade_txt = new JLabel("Digite a idade do dono: ");
+        this.tel_txt = new JLabel("Digite o telefone do dono: ");
 
         // labels errors
         this.error = new JLabel();
@@ -51,6 +55,9 @@ public class Create extends JFrame {
         this.raca = new JTextField();
         this.porte = new JTextField();
         this.pelagem = new JTextField();
+        this.dono_nome = new JTextField();
+        this.idade = new JTextField();
+        this.tel = new JTextField();
         this.agressivoTrue = new JRadioButton("Sim");
         this.agressivoFalse = new JRadioButton("Nao");
 
@@ -86,6 +93,16 @@ public class Create extends JFrame {
         this.radios.add(this.agressivoTrue);
         this.radios.add(this.agressivoFalse);
 
+        this.panel.add(this.dono_nome_txt);
+        this.panel.add(this.dono_nome);
+
+        this.panel.add(this.idade_txt);
+        this.panel.add(this.idade);
+
+        this.panel.add(this.tel_txt);
+        this.panel.add(this.tel);
+
+
         this.adicionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 create();
@@ -105,20 +122,33 @@ public class Create extends JFrame {
         //this.adicionar.addActionListener(this);
         //this.cancelar.addActionListener(this);
         setTitle("[VetSystem] POO Project - Novo animal");
-        setSize(400, 400);
+        setSize(400, 500);
         setVisible(true);
 
     }
 
     public void create() {
-        if(!this.nome.getText().trim().equals("") && !this.especie.getText().trim().equals("") && !this.raca.getText().trim().equals("") && !this.porte.getText().trim().equals("") && !this.pelagem.getText().trim().equals("")) {
-            new Animal(
+        if(!this.nome.getText().trim().equals("") 
+        && !this.especie.getText().trim().equals("") 
+        && !this.raca.getText().trim().equals("") 
+        && !this.porte.getText().trim().equals("") 
+        && !this.pelagem.getText().trim().equals("")
+        && !this.dono_nome.getText().trim().equals("")
+        && (!this.idade.getText().trim().equals("") && this.idade.getText().matches("[0-9]*"))
+        && (!this.tel.getText().trim().equals("") && this.tel.getText().matches("[0-9]*"))) {
+            Animal newAnimal = new Animal(
                 this.nome.getText(), 
                 this.especie.getText(),
                 this.raca.getText(), 
                 this.porte.getText(),
                 this.pelagem.getText(),
                 this.agressivoTrue.isSelected() ? true : false
+            );
+            new Dono(
+                this.dono_nome.getText(),
+                this.tel.getText(), 
+                Integer.parseInt(this.idade.getText()),
+                newAnimal.getId()
             );
             dispose();
             return;
@@ -128,13 +158,23 @@ public class Create extends JFrame {
             this.error.setText("O campo porte nao pode ser nulo.");
         } else if(this.especie.getText().trim().equals("")) {
             this.error.setText("O campo especie nao pode ser nulo.");
-        }  else if(this.raca.getText().trim().equals("")) {
+        } else if(this.raca.getText().trim().equals("")) {
             this.error.setText("O campo raca nao pode ser nulo.");
-        }  else if(this.pelagem.getText().trim().equals("")) {
+        } else if(this.pelagem.getText().trim().equals("")) {
             this.error.setText("O campo raca nao pode ser nulo.");
         } else if(!this.agressivoTrue.isSelected() || !this.agressivoFalse.isSelected()) {
             this.error.setText("O campo agressivo nao pode ser nulo.");
-        }
+        } else if(!this.idade.getText().matches("[0-9]*")) {
+            this.error.setText("O campo idade deve ser um inteiro.");
+        } else if(!this.tel.getText().matches("[0-9]*")) {
+            this.error.setText("O campo telefone deve conter apenas numeros inteiros.");
+        } else if(this.dono_nome.getText().trim().equals("")) {
+            this.error.setText("O campo dono_nome nao pode ser nulo.");
+        } else if(this.tel.getText().trim().equals("")) {
+            this.error.setText("O campo dono_tel nao pode ser nulo.");
+        }  else if(this.idade.getText().trim().equals("")) {
+            this.error.setText("O campo dono_idade nao pode ser nulo.");
+        }      
         return;
     }
 }
