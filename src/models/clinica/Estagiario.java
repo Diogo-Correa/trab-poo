@@ -2,6 +2,7 @@ package models.clinica;
 
 import controllers.app.EstagiarioController;
 import controllers.middlewares.auth.Role;
+import util.database.EstagiariosDatabase;
 import util.errors.UserCadastradoException;
 
 public class Estagiario extends User {
@@ -32,5 +33,8 @@ public class Estagiario extends User {
      * 
      * @param horasSemanais recebe a nova hora semanal do estagiario
      */
-    public void setHorasSemanais(int horasSemanais) { this.horasSemanais = horasSemanais; }
+    public void setHorasSemanais(int horasSemanais) { 
+        this.horasSemanais = horasSemanais;
+        EstagiariosDatabase.updateRecord(this);  
+    }
 }

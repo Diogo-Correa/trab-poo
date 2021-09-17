@@ -62,11 +62,11 @@ public class Show extends JFrame implements ActionListener{
         this.panel.add(this.dono);
 
         
-        if(MedicamentosDatabase.all().size() == 0) {
+        if(MedicamentosDatabase.findByAnimal(this.animal.getId()).size() == 0) {
             this.panel.add(this.semMedicamentos);
             this.semMedicamentos.setText("O animal nao faz uso de nenhuma medicacao.");
         } else {
-            for(Medicamento m : MedicamentosDatabase.all()) {
+            for(Medicamento m : MedicamentosDatabase.findByAnimal(this.animal.getId())) {
                 medicamentos.addElement(new ComboBoxItem(m.getId(), m.getNome()));
             }
             JComboBox animais = new JComboBox(medicamentos);

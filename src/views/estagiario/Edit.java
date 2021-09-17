@@ -62,7 +62,7 @@ public class Edit extends JFrame {
         for(Role r : RolesDatabase.all()) {
             ComboBoxItem rol = new ComboBoxItem(r.getId(), r.getNome());
             this.roles.addElement(rol);
-            if(r == this.estagiario.getRole()) this.role.setSelectedItem(rol);
+            if(this.estagiario.getRole() != null && r.getId() == this.estagiario.getRole().getId()) this.role.setSelectedItem(rol);
         }
 
         this.atualizar = new JButton("Atualizar");
@@ -81,8 +81,8 @@ public class Edit extends JFrame {
         this.panel.add(this.horas_txt);
         this.panel.add(this.horas);
 
-        this.panel.add(this.role_txt);
-        this.panel.add(this.role);
+        // this.panel.add(this.role_txt);
+        // this.panel.add(this.role);
 
         this.panel.add(this.atualizar);
         this.atualizar.addActionListener(new ActionListener() {
@@ -107,10 +107,10 @@ public class Edit extends JFrame {
     }
 
     public void update() {
-        if(!this.nome.getText().trim().equals("") && !this.idade.getText().trim().equals("") && this.role.getSelectedItem() != null && !this.horas.getText().trim().equals("") && (!this.idade.getText().trim().equals("") && this.idade.getText().matches("[0-9]*"))) {
+        if(!this.nome.getText().trim().equals("") && !this.idade.getText().trim().equals("") && !this.horas.getText().trim().equals("") && (!this.idade.getText().trim().equals("") && this.idade.getText().matches("[0-9]*"))) {
             ComboBoxItem r = (ComboBoxItem) this.role.getSelectedItem();
             this.estagiario.setNome(this.nome.getText());
-            this.estagiario.setRole((Role) RolesDatabase.find(r.getId()));
+            // this.estagiario.setRole(RolesDatabase.find(r.getId()));
             this.estagiario.setIdade(Integer.parseInt(this.idade.getText()));
             this.estagiario.setHorasSemanais(Integer.parseInt(this.horas.getText()));
             EstagiariosDatabase.updateRecord(this.estagiario);
@@ -122,9 +122,7 @@ public class Edit extends JFrame {
             this.error.setText("O campo idade nao pode ser nulo.");
         } else if(this.horas.getText().trim().equals("")) {
             this.error.setText("O campo crmv nao pode ser nulo.");
-        } else if(this.role.getSelectedItem() == null) {
-            this.error.setText("O campo role nao pode ser nulo.");
-        }  else if(!this.idade.getText().matches("[0-9]*")) {
+        } else if(!this.idade.getText().matches("[0-9]*")) {
             this.error.setText("O campo idade deve ser um inteiro.");
         } 
         return;

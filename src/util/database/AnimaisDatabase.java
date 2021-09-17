@@ -19,7 +19,6 @@ public class AnimaisDatabase {
             FileOutputStream file = new FileOutputStream(new File(recordFileName),true);
             ObjectOutputStream obj_output = new ObjectOutputStream(file);
             
-            System.out.println(objType);
             obj_output.writeObject(objType);
             
             obj_output.flush();

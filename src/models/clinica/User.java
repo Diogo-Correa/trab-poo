@@ -50,7 +50,10 @@ public abstract class User implements Serializable {
      * Metodo para setar um novo nome ao User
      * @param value novo nome do usuario
      */
-    public void setNome(String value) { this.name = value; }
+    public void setNome(String value) { 
+        this.name = value; 
+        UsersDatabase.updateRecord(this); 
+    }
 
     /**
      * Metodo para obter o email do User
@@ -62,7 +65,10 @@ public abstract class User implements Serializable {
      * Metodo para setar um novo email ao User
      * @param value novo email do usuario
      */
-    public void setEmail(String value) { this.email = value; }
+    public void setEmail(String value) { 
+        this.email = value; 
+        UsersDatabase.updateRecord(this); 
+    }
 
     /**
      * Metodo para obter a senha do usuario
@@ -74,7 +80,10 @@ public abstract class User implements Serializable {
      * Metodo para setar um novo valor de password ao User
      * @param value novo passwod do User
      */
-    public void setPassword(String value) { this.password = value; }
+    public void setPassword(String value) { 
+        this.password = value; 
+        UsersDatabase.updateRecord(this); 
+    }
 
     /**
      * Metodo para obter a Role do usuario
@@ -86,7 +95,10 @@ public abstract class User implements Serializable {
      * Metodo para seter um novo Role para o User
      * @param value novo User Role
      */
-    public void setRole(Role value) { this.role = value; }
+    public void setRole(Role value) { 
+        this.role = value;
+        UsersDatabase.updateRecord(this); 
+    }
     
     /**
      * Metodo para obter a idade do User
@@ -98,7 +110,10 @@ public abstract class User implements Serializable {
      * Metodo para setar uma nova idade ao User
      * @param value nova idade do User
      */
-    public void setIdade(int value) { this.idade = value;}
+    public void setIdade(int value) { 
+        this.idade = value;
+        UsersDatabase.updateRecord(this); 
+    }
 
     /**
      * Metodo para verificar se ja possui um email cadastrado

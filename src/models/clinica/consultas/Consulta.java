@@ -30,10 +30,8 @@ public class Consulta implements Serializable {
     public Consulta(Veterinario veterinario, Animal animal, Enfermidade enfermidade) {
         this.veterinario = veterinario;
         this.veterinario.setStatus(VeterinarioStatus.ATENDENDO);
-        VeterinariosDatabase.updateRecord(this.veterinario);
         this.animal = animal;
         this.animal.setStatus(AnimalStatus.EM_ATENDIMENTO);
-        AnimaisDatabase.updateRecord(this.animal);
         this.enfermidade = enfermidade;
         this.id = ConsultasDatabase.getLastId() + 1;
         this.dataDaConsultaAbertura = new Date();

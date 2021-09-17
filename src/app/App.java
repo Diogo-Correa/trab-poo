@@ -10,6 +10,7 @@
 
 package app;
 
+import util.Enfermidade;
 import util.auth.Auth;
 import util.errors.UserCadastradoException;
 import util.generator.UsersGenerator;
@@ -49,6 +50,6 @@ public class App {
         } catch (UserCadastradoException e) {
         e.printStackTrace();
         }
-        AnimaisGenerator.generate(); */
+        AnimaisGenerator.generate(); */ 
     }
 }

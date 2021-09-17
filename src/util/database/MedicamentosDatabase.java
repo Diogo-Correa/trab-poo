@@ -123,6 +123,32 @@ public class MedicamentosDatabase {
         return recordList;
     }
 
+    public static ArrayList<Medicamento> findByAnimal(int id){
+        ArrayList<Medicamento> recordList = new ArrayList<Medicamento>();
+        try{
+            FileInputStream file = new FileInputStream(new File(recordFileName));
+            ObjectInputStream obj_input = new ObjectInputStream(file);
+            Medicamento record;
+            
+            try{
+                while(true){
+                    record = (Medicamento) obj_input.readObject();
+                    if(record.getAnimal().getId() == id){
+                        recordList.add(record);
+                    }
+                    obj_input = new ObjectInputStream(file);
+                }
+            }catch(Exception e){
+                // e.printStackTrace();
+                obj_input.close();
+            }
+            file.close();
+        }catch(Exception e){
+            // e.printStackTrace();
+        }
+        return recordList;
+    }
+
     public static Medicamento last(){
         try{
             FileInputStream file = new FileInputStream(new File(recordFileName));

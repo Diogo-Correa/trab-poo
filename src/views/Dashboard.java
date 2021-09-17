@@ -128,14 +128,14 @@ public class Dashboard extends JFrame implements ActionListener {
             this.emConsulta.setText("Voce esta com uma consulta aberta com o pet: " + consulta.getAnimal().getNome());
             this.panel.add(dataConsulta);
             this.dataConsulta.setText("Consulta aberta em: " + consulta.getDataAbertura());
-            this.panel.add(enfermidade);
-            this.enfermidade.setText("Enfermidade do pet: " + consulta.getEnfermidade().getNome());
+            this.panel.add(this.enfermidade);
+            this.enfermidade.setText("O pet possui a enfermidade: " + consulta.getEnfermidade().getNome() + " | Gravidade: " + consulta.getEnfermidade().getGravidade());
             this.panel.add(this.abrirFicha);
-            this.panel.add(this.horas_internacao);
-            this.panel.add(this.horas_interna);
             this.panel.add(this.medicamento_txt);
             this.panel.add(this.medicamento);
             this.panel.add(this.novoMedicamento);
+            this.panel.add(this.horas_internacao);
+            this.panel.add(this.horas_interna);
             this.panel.add(this.internar);
             this.panel.add(this.fecharConsulta);
 
@@ -216,6 +216,9 @@ public class Dashboard extends JFrame implements ActionListener {
             this.emConsulta.setText("");
             this.horas_internacao.setText("");
             this.horas_interna.setVisible(false);
+            this.medicamento_txt.setText("");
+            this.medicamento.setVisible(false);
+            this.novoMedicamento.setVisible(false);
             this.abrirFicha.setVisible(false);
             this.internar.setVisible(false);
             this.fecharConsulta.setVisible(false);
@@ -229,6 +232,9 @@ public class Dashboard extends JFrame implements ActionListener {
                 this.emConsulta.setText("");
                 this.horas_internacao.setText("");
                 this.horas_interna.setVisible(false);
+                this.medicamento_txt.setText("");
+                this.medicamento.setVisible(false);
+                this.novoMedicamento.setVisible(false);
                 this.abrirFicha.setVisible(false);
                 this.internar.setVisible(false);
                 this.fecharConsulta.setVisible(false);

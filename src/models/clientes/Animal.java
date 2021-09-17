@@ -3,7 +3,10 @@ package models.clientes;
 import util.Medicamento;
 import util.database.AnimaisDatabase;
 import util.database.DonosDatabase;
+import util.database.MedicamentosDatabase;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import controllers.app.AnimalController;
 import util.status.AnimalStatus;
@@ -33,7 +36,7 @@ public class Animal implements Serializable {
         this.agressivo = agressivo;
         this.id = AnimaisDatabase.getLastId() + 1;
         this.status = AnimalStatus.ATIVO;
-        new AnimalController().store(this);
+        AnimaisDatabase.addRecord(this);
     }
     
     /**
@@ -63,7 +66,10 @@ public class Animal implements Serializable {
      * Metodo para setar um novo valor de Status para o Animal
      * @param status novo valor AnimalStatus
      */
-    public void setStatus(AnimalStatus status) { this.status = status; }
+    public void setStatus(AnimalStatus status) { 
+        this.status = status;
+        AnimaisDatabase.updateRecord(this);   
+    }
 
     /**
      * Metodo para obter o nome do Animal
@@ -79,6 +85,7 @@ public class Animal implements Serializable {
      */
     public void setNome(String nome) {
         this.nome = nome;
+        AnimaisDatabase.updateRecord(this);
     }
 
     /**
@@ -127,6 +134,7 @@ public class Animal implements Serializable {
      */
     public void setAgressivo() {
         this.agressivo = !this.agressivo;
+        AnimaisDatabase.updateRecord(this);
     }
 
     /**
@@ -141,21 +149,8 @@ public class Animal implements Serializable {
      * Metodo para obter a lista de medicamentos usados pelo Animal
      * @return Animal medicamentos
      */
-    //public ArrayList<Medicamento> getMedicamentos() {
-    //  return MedicamentosDatabase.findByAnimal(this.id);
-    //}
-
-    /**
-     * Metodo para adicao de um novo medicamento para uso do Animal
-     * @param medicamento Medicamento
-     */
-    public void addMedicamento(Medicamento medicamento) {
-        // TODO Create medicamento, add MedicamentosDatabase
+    public ArrayList<Medicamento> getMedicamentos() {
+      return MedicamentosDatabase.findByAnimal(this.id);
     }
 
-    @Override
-    public String toString() {
-        return "Nome: " + this.nome + ", Id: " + this.id;
-    }
-    
 }

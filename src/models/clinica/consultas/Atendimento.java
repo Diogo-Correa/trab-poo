@@ -58,6 +58,7 @@ public class Atendimento  implements Serializable {
      */
     public void setEnfermidade(Enfermidade enfermidade) {
         this.enfermidade = enfermidade;
+        AtendimentosDatabase.updateRecord(this); 
     }
 
     /**
@@ -83,13 +84,14 @@ public class Atendimento  implements Serializable {
      */
     public void buscaVeterinario() {
         for(Veterinario vet : VeterinariosDatabase.all()) {
-            if(vet.getEspecialidade() == this.enfermidade && vet.getVeterinarioStatus() == VeterinarioStatus.ATENDENDO) 
-                System.out.println("O veterinário " + vet.getNome() +" já está em atendimento.");
             
-            if((vet.getEspecialidade() == null || vet.getEspecialidade() != this.enfermidade) && vet.getVeterinarioStatus() == VeterinarioStatus.ATIVO && this.veterinario == null) 
+            if(vet.getEspecialidade() != null && vet.getEspecialidade().getId() == this.enfermidade.getId() && vet.getVeterinarioStatus() == VeterinarioStatus.ATENDENDO) 
+                System.out.println("O veterinário " + vet.getNome() +" já está em atendimento.");
+
+            if((vet.getEspecialidade() == null || vet.getEspecialidade().getId() != this.enfermidade.getId()) && vet.getVeterinarioStatus() == VeterinarioStatus.ATIVO && this.veterinario == null) 
                 this.veterinario = vet;
 
-            if(vet.getEspecialidade() == this.enfermidade && vet.getVeterinarioStatus() == VeterinarioStatus.ATIVO) {
+            if(vet.getEspecialidade() != null && vet.getEspecialidade().getId()  == this.enfermidade.getId()  && vet.getVeterinarioStatus() == VeterinarioStatus.ATIVO) {
                 this.veterinario = vet;
                 return;
             }

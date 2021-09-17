@@ -44,6 +44,8 @@ public class Show extends JFrame implements ActionListener{
         
         this.crmv = new JLabel("CRMV: " + this.veterinario.getCRMV());
         this.panel.add(this.crmv);
+        
+        System.out.println("Especialidade: " + this.veterinario.getEspecialidade());
 
         // event listener
         // this.medicamentos.addActionListener(this);

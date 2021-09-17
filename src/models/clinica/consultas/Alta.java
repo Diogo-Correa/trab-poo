@@ -51,7 +51,6 @@ public class Alta implements Serializable {
      */
     public void removeMedicamento (Medicamento medicamento) throws AltaJaFechada {
         this.tentarMudarAtributo();
-
         this.medicamento.remove(medicamento);
     }
 }

@@ -3,6 +3,7 @@ package models.clinica;
 import controllers.app.VeterinarioController;
 import controllers.middlewares.auth.Role;
 import util.Enfermidade;
+import util.database.VeterinariosDatabase;
 import util.errors.UserCadastradoException;
 import util.status.VeterinarioStatus;
 
@@ -27,7 +28,7 @@ public class Veterinario extends User {
         this.crmv = crmv;
         this.especialidade = especialidade;
         this.status = VeterinarioStatus.ATIVO;
-        new VeterinarioController().store(this);
+        VeterinariosDatabase.addRecord(this);
     }
 
     /**
@@ -45,7 +46,7 @@ public class Veterinario extends User {
         this.crmv = crmv;
         this.especialidade = null;
         this.status = VeterinarioStatus.ATIVO;
-        new VeterinarioController().store(this);
+        VeterinariosDatabase.addRecord(this);
     }
 
     /**
@@ -62,6 +63,7 @@ public class Veterinario extends User {
      */
     public void setCRMV(String crmv) {
         this.crmv = crmv;
+        VeterinariosDatabase.updateRecord(this);
     }
 
     /**
@@ -70,6 +72,7 @@ public class Veterinario extends User {
      */
     public void setEspecialidade(Enfermidade especialidade) {
         this.especialidade = especialidade;
+        VeterinariosDatabase.updateRecord(this);
     }
 
     /**
@@ -94,10 +97,6 @@ public class Veterinario extends User {
      */
     public void setStatus(VeterinarioStatus status) {
         this.status = status;
-    }
-    
-    @Override
-    public String toString() {
-        return "Nome: " + this.getNome() + ", Id: " + this.getId();
+        VeterinariosDatabase.updateRecord(this);
     }
 }

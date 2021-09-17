@@ -72,14 +72,14 @@ public class Edit extends JFrame {
         for(Role r : RolesDatabase.all()) {
             ComboBoxItem rol = new ComboBoxItem(r.getId(), r.getNome());
             this.roles.addElement(rol);
-            if(r == this.veterinario.getRole()) this.role.setSelectedItem(rol);
+            if(r.getId() == this.veterinario.getRole().getId()) this.role.setSelectedItem(rol);
         }
 
         this.especialidade = new JComboBox(this.especialidades);
         for(Enfermidade enf : EnfermidadesDatabase.all()) {
             ComboBoxItem enfermidade = new ComboBoxItem(enf.getId(), enf.getNome());
             this.especialidades.addElement(enfermidade);
-            if(enf == this.veterinario.getEspecialidade()) this.especialidade.setSelectedItem(enfermidade);
+            if(this.veterinario.getEspecialidade() != null && enf.getId() == this.veterinario.getEspecialidade().getId()) this.especialidade.setSelectedItem(enfermidade);
         }
 
         this.atualizar = new JButton("atualizar");
@@ -98,8 +98,8 @@ public class Edit extends JFrame {
         this.panel.add(this.crmv_txt);
         this.panel.add(this.crmv);
 
-        this.panel.add(this.role_txt);
-        this.panel.add(this.role);
+        // this.panel.add(this.role_txt);
+        // this.panel.add(this.role);
 
         this.panel.add(this.especialidade_txt);
         this.panel.add(this.br);
@@ -148,21 +148,20 @@ public class Edit extends JFrame {
         //this.atualizar.addActionListener(this);
         //this.cancelar.addActionListener(this);
         setTitle("[VetSystem] POO Project - Editar veterinario");
-        setSize(400, 400);
+        setSize(400, 600);
         setVisible(true);
     }
 
     public void update() {
-        if(!this.nome.getText().trim().equals("") && !this.idade.getText().trim().equals("") && !this.crmv.getText().trim().equals("") && this.role.getSelectedItem() != null && ((this.espTrue.isSelected() && this.especialidade.getSelectedItem() != null) || this.espFalse.isSelected()) && (!this.idade.getText().trim().equals("") && this.idade.getText().matches("[0-9]*"))) {
+        if(!this.nome.getText().trim().equals("") && !this.idade.getText().trim().equals("") && !this.crmv.getText().trim().equals("") && ((this.espTrue.isSelected() && this.especialidade.getSelectedItem() != null) || this.espFalse.isSelected()) && (!this.idade.getText().trim().equals("") && this.idade.getText().matches("[0-9]*"))) {
             ComboBoxItem r = (ComboBoxItem) this.role.getSelectedItem();
             ComboBoxItem esp = (ComboBoxItem) this.especialidade.getSelectedItem();
             this.veterinario.setNome(this.nome.getText());
-            this.veterinario.setRole((Role) RolesDatabase.find(r.getId()));
+            // this.veterinario.setRole(RolesDatabase.find(r.getId()));
             this.veterinario.setIdade(Integer.parseInt(this.idade.getText()));
             if(esp != null) this.veterinario.setEspecialidade((Enfermidade) EnfermidadesDatabase.find(esp.getId()));
             if(this.espFalse.isSelected()) this.veterinario.setEspecialidade(null);
             this.veterinario.setCRMV(this.crmv.getText());
-            VeterinariosDatabase.updateRecord(this.veterinario);
             dispose();
             return;
         } else if(this.nome.getText().trim().equals("")) {
@@ -173,9 +172,7 @@ public class Edit extends JFrame {
             this.error.setText("O campo crmv nao pode ser nulo.");
         } else if(!this.espTrue.isSelected() || !this.espFalse.isSelected()) {
             this.error.setText("O campo especialidade nao pode ser nulo.");
-        } else if(this.role.getSelectedItem() == null) {
-            this.error.setText("O campo role nao pode ser nulo.");
-        }  else if(!this.idade.getText().matches("[0-9]*")) {
+        } else if(!this.idade.getText().matches("[0-9]*")) {
             this.error.setText("O campo idade deve ser um inteiro.");
         } 
         return;

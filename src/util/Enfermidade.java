@@ -19,7 +19,7 @@ public class Enfermidade implements Serializable {
     public Enfermidade(String nome, String gravidade) {
         this.nome = nome;
         this.gravidade = gravidade;
-        this.id = EnfermidadesDatabase.getLastId();
+        this.id = EnfermidadesDatabase.getLastId() + 1;
         EnfermidadesDatabase.addRecord(this);
     }
 
@@ -27,7 +27,7 @@ public class Enfermidade implements Serializable {
      * Metodo para obter o ID da Enfermidade
      * @return Enfermidade ID
      */
-    public int getId() { return id; }
+    public int getId() { return this.id; }
 
     /**
      * Metodo para obter o nome da Enfermidade
