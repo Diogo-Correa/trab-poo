@@ -21,7 +21,7 @@ public class ComboBoxItem {
          */
         public int getId()
         {
-            return id;
+            return this.id;
         }
 
         /**
@@ -30,7 +30,7 @@ public class ComboBoxItem {
          */
         public String getDescricao()
         {
-            return descricao;
+            return this.descricao;
         }
 
         /**
@@ -39,6 +39,6 @@ public class ComboBoxItem {
          */
         public String toString()
         {
-            return descricao;
+            return this.descricao;
         }
 }

@@ -35,6 +35,7 @@ public class Consulta implements Serializable {
         this.enfermidade = enfermidade;
         this.id = ConsultasDatabase.getLastId() + 1;
         this.dataDaConsultaAbertura = new Date();
+        this.dataDaConsultaFechamento = null;
         this.resultadoDaConsulta = new Alta();
         new ConsultaController().store(this);
     }

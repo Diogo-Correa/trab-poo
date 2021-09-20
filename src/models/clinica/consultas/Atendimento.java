@@ -58,7 +58,6 @@ public class Atendimento  implements Serializable {
      */
     public void setEnfermidade(Enfermidade enfermidade) {
         this.enfermidade = enfermidade;
-        AtendimentosDatabase.updateRecord(this); 
     }
 
     /**

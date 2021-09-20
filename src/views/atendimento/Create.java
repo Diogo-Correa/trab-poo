@@ -14,6 +14,7 @@ import util.ComboBoxItem;
 import util.Enfermidade;
 import util.auth.Auth;
 import util.database.AnimaisDatabase;
+import util.database.AtendimentosDatabase;
 import util.database.EnfermidadesDatabase;
 import util.database.VeterinariosDatabase;
 import util.status.AnimalStatus;
@@ -120,6 +121,7 @@ public class Create extends JFrame implements ActionListener{
         if (e.getSource() == this.finalizar) {
             // encaminha para a consulta
             this.atendimento.abreConsulta();
+            AtendimentosDatabase.updateRecord(this.atendimento); 
             Dashboard.setMessage("Paciente encaminhado!", Color.GREEN);
             this.dispose();
         }

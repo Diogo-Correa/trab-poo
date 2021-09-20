@@ -162,7 +162,7 @@ public class Create extends JFrame {
             this.error.setText("O campo raca nao pode ser nulo.");
         } else if(this.pelagem.getText().trim().equals("")) {
             this.error.setText("O campo raca nao pode ser nulo.");
-        } else if(!this.agressivoTrue.isSelected() || !this.agressivoFalse.isSelected()) {
+        } else if(!this.agressivoTrue.isSelected() && !this.agressivoFalse.isSelected()) {
             this.error.setText("O campo agressivo nao pode ser nulo.");
         } else if(!this.idade.getText().matches("[0-9]*")) {
             this.error.setText("O campo idade deve ser um inteiro.");

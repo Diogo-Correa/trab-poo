@@ -44,12 +44,12 @@ public class App {
     }
 
     private static void initialize() {
-        /* EnfermidadesGenerator.generate();
+        EnfermidadesGenerator.generate();
         try {
         UsersGenerator.generate();
         } catch (UserCadastradoException e) {
         e.printStackTrace();
         }
-        AnimaisGenerator.generate(); */ 
+        AnimaisGenerator.generate(); 
     }
 }
